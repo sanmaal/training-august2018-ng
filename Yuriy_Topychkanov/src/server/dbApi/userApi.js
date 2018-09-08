@@ -5,7 +5,7 @@ module.exports.saveUser = function (email, password) {
     return user.save()
         .then(
             docs => Promise.resolve(docs),
-            err => Promise.reject(err.errmsg)
+            err => Promise.reject(err)
         )
 };
 

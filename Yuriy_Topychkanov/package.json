@@ -1,0 +1,23 @@
+{
+  "name": "angular-homework-2018-ng",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "launchDb": "mongod --dbpath=./data/",
+    "server": "node ./src/server/index.js",
+    "initDb": "node ./src/server/dbApi/addPokemonsToDb.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "crypto": "^1.0.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.10",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
