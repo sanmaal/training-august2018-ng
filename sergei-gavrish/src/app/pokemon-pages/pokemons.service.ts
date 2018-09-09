@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -14,6 +14,21 @@ export class PokemonsService {
 
   getPokemons(page: number, limit: number): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(`http://localhost:3000/pokemons/?_page=${page}&_limit=${limit}`)
+      .pipe(
+        tap(_ => console.log('fetched pokemons')),
+        catchError(this.handleError('getPokemons', []))
+      );
+  }
+
+  getCathcedPokemons(page: number, limit: number): Observable<Pokemon[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'x-access-token': ''
+      })
+    };
+
+    return this.http.get<Pokemon[]>(`http://localhost:3000/pokemons/catched/?_page=${page}&_limit=${limit}`, httpOptions)
       .pipe(
         tap(_ => console.log('fetched pokemons')),
         catchError(this.handleError('getPokemons', []))

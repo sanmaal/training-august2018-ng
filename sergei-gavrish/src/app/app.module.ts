@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PokemonPagesModule } from './pokemon-pages/pokemon-pages.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PokemonPagesModule } from './pokemon-pages/pokemon-pages.module';
     BrowserModule,
     HttpClientModule,
     PokemonPagesModule,
+    AuthModule,
     AppRoutingModule,
   ],
   providers: [],
