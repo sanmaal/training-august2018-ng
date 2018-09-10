@@ -7,11 +7,11 @@ import { PokemonsService } from '../pokemons.service';
 import { Pokemon } from '../pokemon';
 
 @Component({
-  selector: 'app-pokemon-detail',
-  templateUrl: './pokemon-detail.component.html',
-  styleUrls: ['./pokemon-detail.component.css']
+  selector: 'app-pokemon-item',
+  templateUrl: './pokemon-item.component.html',
+  styleUrls: ['./pokemon-item.component.css']
 })
-export class PokemonDetailComponent implements OnInit {
+export class PokemonItemComponent implements OnInit {
   @Input() pokemon$: Observable<Pokemon>;
 
   constructor(

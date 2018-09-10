@@ -4,11 +4,11 @@ import { Pokemon } from '../pokemon';
 import { PokemonsService } from '../pokemons.service';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  selector: 'app-pokemons-list',
+  templateUrl: './pokemons-list.component.html',
+  styleUrls: ['./pokemons-list.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class PokemonsListComponent implements OnInit {
   pokemons: Pokemon[];
   private page: number;
   private limit: number;

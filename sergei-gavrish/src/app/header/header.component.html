@@ -1,9 +1,9 @@
-<nav>
+<nav id="main">
   <ul>
     <li><a routerLink="/pokemons">Pokemons</a></li>
-    <li><a routerLink="/pokemons/cathced"  routerLinkActive="active">My pokemons</a></li>
-    <li><a routerLink="/signIn">Sign In</a></li>
-    <li><a routerLink="/signUp">Sign Up</a></li>
-    <li><a (click)="logout()">Logout</a></li>
+    <li *ngIf="isLoggedIn$ | async"><a routerLink="/pokemons/cathced"  routerLinkActive="active">My pokemons</a></li>
+    <li #block><a routerLink="/signIn">Sign In</a></li>
+    <li *ngIf="!isLoggedIn$ | async"><a routerLink="/signUp">Sign Up</a></li>
+    <li *ngIf="isLoggedIn$ | async; else block"><a (click)="logout()">Logout</a></li>
   </ul>
 </nav>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthenticationService } from '../authentication.service';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -11,13 +11,14 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class SignInUpComponent implements OnInit {
   profileForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    login: new FormControl('Igor', Validators.required),
+    password: new FormControl('12345', Validators.required),
   });
 
   constructor(
     private route: ActivatedRoute,
-    private service: AuthenticationService,
+    private router: Router,
+    private service: AuthService,
   ) { }
 
   ngOnInit() {
@@ -25,8 +26,14 @@ export class SignInUpComponent implements OnInit {
 
   onSubmit(): void {
     const { login, password } = this.profileForm.value;
-    this.service[this.route.snapshot.data.form](login, password)
-      .subscribe(data => console.log(data));
+    if (login && password) {
+      this.service[this.route.snapshot.data.form](login, password)
+        .subscribe(data => {
+          console.log('success');
+          this.router.navigate(['/pokemons/cathced']);
+          // route navigate to pokemon page
+        });
+    }
   }
 
 }

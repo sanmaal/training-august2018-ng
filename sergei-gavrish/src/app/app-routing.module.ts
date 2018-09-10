@@ -8,7 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   // {
-  //   path: 'pokemons', component: MainPageComponent,
+  //   path: 'pokemons', component: PokemonsPageComponent,
   // },
   // {
   //   path: 'pokemons/cathced', component: ,
@@ -22,8 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,
-    { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

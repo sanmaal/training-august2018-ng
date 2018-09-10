@@ -4,12 +4,11 @@ import { Pokemon } from '../pokemon';
 import { PokemonsService } from '../pokemons.service';
 
 @Component({
-  selector: 'app-catched-page',
-  templateUrl: './catched-page.component.html',
-  styleUrls: ['./catched-page.component.css']
+  selector: 'app-pokemons-page',
+  templateUrl: './pokemons-page.component.html',
+  styleUrls: ['./pokemons-page.component.css']
 })
-
-export class CatchedPageComponent implements OnInit {
+export class PokemonsPageComponent implements OnInit {
   pokemons: Pokemon[];
   private page: number;
   private limit: number;
@@ -28,7 +27,7 @@ export class CatchedPageComponent implements OnInit {
   }
 
   getPokemons(page, limit): void {
-    this.service.getCathcedPokemons(page, limit)
+    this.service.getPokemons(page, limit)
       .subscribe(pokemons => this.pokemons.push(...pokemons));
   }
 
@@ -36,5 +35,4 @@ export class CatchedPageComponent implements OnInit {
     this.page++;
     this.getPokemons(this.page, this.limit);
   }
-
 }
