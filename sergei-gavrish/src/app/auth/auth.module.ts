@@ -11,6 +11,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     ReactiveFormsModule,
     AuthRoutingModule,
   ],
-  declarations: [SignInUpComponent]
+  declarations: [SignInUpComponent],
+  exports: [AuthRoutingModule]
 })
 export class AuthModule { }

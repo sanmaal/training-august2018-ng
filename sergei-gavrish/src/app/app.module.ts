@@ -1,38 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { PokemonsModule } from './pokemons/pokemons.module';
 import { AuthModule } from './auth/auth.module';
-import { AuthInterceptor } from './auth-interceptor.service';
-import { AuthService } from './auth.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainNavComponent } from './main-nav/main-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { AuthInterceptor } from './shared/services/auth-interceptor.service';
+import { AuthService } from './shared/services/auth.service';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    MainNavComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    MainModule,
     PokemonsModule,
     AuthModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
   providers: [
     {
@@ -42,6 +30,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     },
     AuthService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule { }

@@ -7,18 +7,6 @@ const routes: Routes = [
     redirectTo: '/pokemons',
     pathMatch: 'full'
   },
-  // {
-  //   path: 'pokemons', component: PokemonsPageComponent,
-  // },
-  // {
-  //   path: 'pokemons/cathced', component: ,
-  // },
-  // {
-  //   path: 'pokemons/:id', component: PokemonDetailComponent,
-  // },
-  // {
-  //   path: '**', component: 404
-  // }
 ];
 
 @NgModule({

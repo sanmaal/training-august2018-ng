@@ -4,11 +4,11 @@ import { Pokemon } from '../../shared/models/pokemon';
 import { PokemonsService } from '../../shared/services/pokemons.service';
 
 @Component({
-  selector: 'pokemons-list',
-  templateUrl: './pokemons-list.component.html',
-  styleUrls: ['./pokemons-list.component.css']
+  selector: 'app-catched-list',
+  templateUrl: './catched-list.component.html',
+  styleUrls: ['./catched-list.component.css']
 })
-export class PokemonsListComponent implements OnInit {
+export class CatchedListComponent implements OnInit {
 
   pokemons: Pokemon[];
 
@@ -18,12 +18,12 @@ export class PokemonsListComponent implements OnInit {
 
   ngOnInit() {
     this.service.startLoad();
-    this.getPokemons()
+    this.getPokemons();
   }
 
   getPokemons(): void {
-    this.service.getPokemons()
-      .subscribe(_ => this.pokemons = this.service.pokemons);
+    this.service.getCathcedPokemons()
+      .subscribe(_ => this.pokemons = this.service.catchedPokemons);
   }
 
   loadPage(): void {
