@@ -1,4 +1,7 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+<form 
+  class="site-wrap"
+  [formGroup]="profileForm" 
+  (ngSubmit)="onSubmit()">
   <label>
     Login:
     <input type="text" formControlName="login" required>

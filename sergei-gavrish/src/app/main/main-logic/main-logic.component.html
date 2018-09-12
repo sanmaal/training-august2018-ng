@@ -1,11 +1,1 @@
-<!-- <header *ngIf="isLoggedIn$ | async as isLoggedIn" ></header>
-<nav id="main">
-  <ul>
-    <li><a routerLink="/pokemons">Pokemons</a></li>
-    <li *ngIf="isLoggedIn$ | async as isLoggedIn"><a routerLink="/pokemons/cathced"  routerLinkActive="active">My pokemons</a></li>
-    <li #block><a routerLink="/signIn">Sign In</a></li>
-    <li #block><a routerLink="/signUp">Sign Up</a></li>
-    <li *ngIf="isLoggedIn$ | async; else block"><a (click)="logout()">Logout</a></li>
-  </ul>
-</nav> -->
 <app-main-view *ngLet="isLoggedIn$ | async as isLoggedIn" [isLoggedIn]="isLoggedIn" (logoutClick)="logout()"></app-main-view>

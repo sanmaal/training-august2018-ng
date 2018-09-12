@@ -11,6 +11,7 @@ import { Pokemon } from '../../shared/models/pokemon';
 })
 export class PokemonListItemComponent implements OnInit {
   @Input() pokemon: Pokemon;
+  @Input() isLoggedIn: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,15 @@ export class PokemonListItemComponent implements OnInit {
   catchPokemon(pokemon) {
     this.service.catchPokemon(pokemon)
     .subscribe(_ => console.log('catched'));
+  }
+
+  checkIfCatched(id: number): boolean {
+    if (this.service.checkIfCatched(id)) { return true; }
+  }
+
+  getDate(id: number) {
+    const pokemon = this.service.checkIfCatched(id);
+    if (pokemon) { return pokemon.date; }
   }
 
 }

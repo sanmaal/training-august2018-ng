@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { PokemonsService } from '../../shared/services/pokemons.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Pokemon } from '../../shared/models/pokemon';
 
 @Component({
@@ -19,6 +20,7 @@ export class PokemonPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: PokemonsService,
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,10 @@ export class PokemonPageComponent implements OnInit {
     console.log(pokemon);
     this.service.catchPokemon(pokemon)
     .subscribe(_ => console.log(this));
+  }
+
+  checkAuth() {
+    return this.auth.isLoggedIn;
   }
 
 }

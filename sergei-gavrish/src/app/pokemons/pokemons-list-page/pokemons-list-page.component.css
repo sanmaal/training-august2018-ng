@@ -3,6 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transform: scale(0.98);
+  transition: transform 0.5s;
+}
+
+.container body.fixed-nav {
+  transform: scale(1);
 }
 
 .pokemon-list {

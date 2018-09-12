@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Pokemon } from '../../shared/models/pokemon';
 import { PokemonsService } from '../../shared/services/pokemons.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { Pokemon } from '../../shared/models/pokemon';
 
 @Component({
   selector: 'app-catched-list',
@@ -10,23 +11,30 @@ import { PokemonsService } from '../../shared/services/pokemons.service';
 })
 export class CatchedListComponent implements OnInit {
 
-  pokemons: Pokemon[];
-
   constructor(
-    private service: PokemonsService
+    private service: PokemonsService,
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
-    this.service.startLoad();
-    this.getPokemons();
+    if (!this.service.catchedPokemons.length) {
+      this.loadMore();
+    } else {
+      this.getPokemons();
+    }
   }
 
-  getPokemons(): void {
+  loadMore(): void {
     this.service.getCathcedPokemons()
-      .subscribe(_ => this.pokemons = this.service.catchedPokemons);
+      .subscribe(_ => this.getPokemons());
   }
 
-  loadPage(): void {
-    this.getPokemons();
+  getPokemons(): Pokemon[] {
+    return this.service.catchedPokemons;
   }
+
+  // loadPage(): void {
+  //   this.service.increasecatchedPage = 1;
+  //   this.loadMore();
+  // }
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'pokemons', component: PokemonsListComponent,
   },
   {
-    path: 'pokemons/cathced', component: CatchedListComponent, canActivate: [AuthGuard]
+    path: 'pokemons/cathced', component: PokemonsListComponent, data: { page: 'catched' }, canActivate: [AuthGuard]
   },
   {
     path: 'pokemon/:id', component: PokemonPageComponent,

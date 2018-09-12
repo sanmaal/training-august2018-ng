@@ -13,7 +13,7 @@ export class MainViewComponent {
   }
 
   logout(): void {
-    this.logoutClick.emit()
+    this.logoutClick.emit();
   }
 
 }

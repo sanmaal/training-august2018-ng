@@ -7,10 +7,12 @@ import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.
 import { PokemonPageComponent } from './pokemon-page/pokemon-page.component';
 import { PokemonsRoutingModule } from './pokemons-routing.module';
 import { CatchedListComponent } from './catched-list/catched-list.component';
+import { NgLetModule } from '../shared/directives/ngLet';
 
 @NgModule({
   imports: [
     CommonModule,
+    NgLetModule,
     PokemonsRoutingModule,
   ],
   declarations: [PokemonsListComponent, PokemonsListPageComponent, PokemonListItemComponent, PokemonPageComponent, CatchedListComponent]

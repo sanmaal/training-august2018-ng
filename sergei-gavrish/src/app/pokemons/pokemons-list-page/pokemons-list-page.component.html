@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container site-wrap">
   <ul class="pokemon-list">
     <pokemon-list-item 
       class="pokemon" 
-      *ngFor="let pokemon of pokemons"
+      *ngFor="let pokemon of pokemons as pokemon"
       [pokemon]="pokemon"
+      [isLoggedIn]="isLoggedIn"
       ></pokemon-list-item>
   </ul>
   <button (click)="loadPage($event)">Load more</button>

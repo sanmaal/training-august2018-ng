@@ -36,3 +36,48 @@ nav a {
   text-transform: uppercase;
   cursor: pointer;
 }
+
+header {
+  text-align: center;
+  height:45vh;
+  background:#241e49 url(http://paperlief.com/images/pixel-art-pokemon-wallpaper-2.jpg) bottom center no-repeat;
+  background-size:cover;
+  display:flex;
+  align-items:flex-start;
+  justify-content: center;
+  color: #fff;
+  perspective: 500px;
+}
+
+header img {
+  width: 50vh;
+  height: auto;
+}
+
+.hero__title:before {
+  z-index: 1;
+  content: '_';
+  position: absolute;
+  color: #000;
+  left: 0;
+  transform: translateY(-200%);
+  font-size: 10rem;
+  line-height: 20px;
+}
+
+.hero__title {
+  font-size: 3em;
+  border-bottom: 0;
+  font-weight: 100;
+  letter-spacing: 2px;
+  font-family: 'againtsregular';
+  position: relative;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1);
+  z-index: 1;
+  display: inline-block;
+          animation-name: floating;
+          animation-duration: 40s;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+}
