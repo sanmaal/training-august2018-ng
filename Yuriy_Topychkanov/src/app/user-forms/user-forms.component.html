@@ -1,0 +1,4 @@
+<div class="form-overlay" id="form-overlay" *ngIf="formOverlayIsShown" (click)="hideFormOverlay($event, showingNow)">
+  <app-login-form *ngIf="showLoginForm"></app-login-form>
+  <app-registration-form *ngIf="showRegistrationForm"></app-registration-form>
+</div>

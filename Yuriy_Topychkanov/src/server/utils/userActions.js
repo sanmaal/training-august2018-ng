@@ -29,7 +29,7 @@ module.exports.login = function (req, res, next) {
         }
         return req.logIn(
             user,
-            err => err ? next(err) : res.redirect('/catched-pokemons')
+          err => err ? next(err) : res.redirect('/catched-pokemons?page=1')
         );
     }
 };

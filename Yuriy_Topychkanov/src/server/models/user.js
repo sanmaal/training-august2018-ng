@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     capturedPokemons: [
         {
-            id: { type: Number, unique: true },
+          id: { type: Number, ref: 'Pokemon', localField: 'id', foreignField: 'pokemonId' },
             timestamp: Number
         }
     ],

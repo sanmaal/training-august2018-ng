@@ -1,0 +1,9 @@
+.app-catalog-cards-holder {
+  display: flex;
+  flex-wrap: wrap;
+  app-flipping-card {
+    width: 33%;
+    position: relative;
+
+  }
+}

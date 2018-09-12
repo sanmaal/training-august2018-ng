@@ -1,0 +1,46 @@
+<div class="app-card-holder {{flipped ? 'flipped' : ''}}">
+  <div class="app-card-front-side app-card">
+
+    <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{data.pokemonId}}.png"
+         class="services">
+
+    <div class="stripe dark">
+      <a>
+        <p><span>{{data.name | uppercase}}</span><br>
+          <i class="fa fa-angle-right"></i>
+        </p>
+      </a>
+    </div>
+    <a class="rotate-btn" (click)="rotateCard()">
+      <i class="fa fa-repeat"></i> Learn more
+    </a>
+  </div>
+
+  <div class="app-card-back-side app-card">
+
+    <div class="app-content-holder">
+      <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{data.pokemonId}}.png"
+           class="services">
+      <ul>
+        <li *ngFor="let addition of additions">
+          {{addition.name | uppercase}}: {{addition.value}}
+        </li>
+      </ul>
+    </div>
+    <div class="app-btn-holder">
+      <button type="button" class="btn btn-indigo">CATCH</button>
+      <button type="button" class="btn btn-indigo">DETAIL</button>
+    </div>
+    <div class="stripe dark">
+      <a>
+        <p><span>{{data.name}}</span><br>
+          <i class="fa fa-angle-right"></i>
+        </p>
+      </a>
+    </div>
+
+    <a class="rotate-btn" (click)="rotateCard()">
+      <i class="fa fa-undo"></i> Click here to rotate back</a>
+
+  </div>
+</div>

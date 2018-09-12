@@ -1,0 +1,17 @@
+<form class="text-center border border-light p-5 bg-white" [formGroup]="authorizationForm" (ngSubmit)="onSubmit()">
+
+  <p class="h4 mb-4">Sign in</p>
+
+  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" formControlName="email" placeholder="E-mail"
+         required>
+
+  <input type="password" id="defaultLoginFormPassword" class="form-control" formControlName="password"
+         placeholder="Password" aria-describedby="defaultLoginFormPasswordHelpBlock" required>
+  <small id="defaultLoginFormPasswordHelpBlock" class="form-text text-muted mb-4">
+    At least 8 characters/digits
+  </small>
+
+  <button mdbBtn color="info" block="true" class="my-4" [disabled]="!authorizationForm.valid" type="submit">Sign in
+  </button>
+  <hr>
+</form>

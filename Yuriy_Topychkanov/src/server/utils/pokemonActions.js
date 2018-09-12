@@ -23,7 +23,7 @@ module.exports.getPokemon = function (req, res) {
 };
 
 module.exports.showCatchedPokemons = function (req, res) {
-    const { page } = req.body;
+  const { page } = req.query;
     const startPosition = 10 * (page - 1);
     const { user } = req;
     pokemonApi.getPokemonsCatchedByUser(user, startPosition)

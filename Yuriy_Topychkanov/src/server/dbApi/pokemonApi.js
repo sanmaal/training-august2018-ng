@@ -22,7 +22,8 @@ module.exports.findPokemonById = function (id) {
 };
 
 module.exports.getPokemonsCatchedByUser = function (user, startFrom) {
-    return User.findOne({ email: user.email })
+  return User
+    .findOne({ email: user.email }).populate('capturedPokemons.id')
         .then(
             ({ capturedPokemons }) => Promise.resolve(capturedPokemons.slice(startFrom, startFrom + 10)),
             (err) => Promise.reject(err)
@@ -30,9 +31,10 @@ module.exports.getPokemonsCatchedByUser = function (user, startFrom) {
 };
 
 module.exports.addPokemonToUser = function (user, id, timestamp) {
-    return User.updateOne(
+  return User
+    .updateOne(
         { $and: [ { email: user.email }, { 'capturedPokemons.id': { $ne: id } } ] },
-        { $push: { capturedPokemons: { id: id, timestamp: timestamp } } })
+      { $push: { capturedPokemons: { id: id, timestamp: timestamp } } })
         .then(
             (res) => res.n ? Promise.resolve('pokemon catched') : Promise.reject('can not catch pokemon twice'),
             err => Promise.reject(err)
@@ -40,11 +42,12 @@ module.exports.addPokemonToUser = function (user, id, timestamp) {
 };
 
 module.exports.removePokemonFromUser = function (user, id) {
-    return User.updateOne(
+  return User
+    .updateOne(
         { email: user.email },
         { $pull: { 'capturedPokemons': { id: id } } })
         .then(
-            ({ nModified }) => nModified > 0 ? Promise.resolve('pokemon released') : Promise.reject('the is no pokemon with such id in user collection'),
+          ({ nModified }) => nModified > 0 ? Promise.resolve('pokemon released') : Promise.reject('there is no pokemon with such id in user collection'),
             err => Promise.reject(err)
         );
 };

@@ -11,14 +11,12 @@ module.exports = function (app) {
     app.get('/pokemon/:id', function (req, res) {
         pokemonActions.getPokemon(req, res);
     });
+  app.get('/catched-pokemons', function (req, res) {
+    pokemonActions.showCatchedPokemons(req, res);
+  });
     app.post('/catch-pokemon', function (req, res) {
         pokemonActions.catchPokemon(req, res);
     });
-
-    app.post('/catched-pokemons', function (req, res) {
-        pokemonActions.showCatchedPokemons(req, res);
-    });
-
     app.post('/release-pokemon', function (req, res) {
         pokemonActions.releasePokemon(req, res)
     })

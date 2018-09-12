@@ -1,0 +1,131 @@
+.app-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1s;
+  min-height: 350px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+  .rotate-btn {
+    position: absolute;
+    bottom: 3rem;
+    width: 100%;
+    text-align: center;
+    padding: 1.2rem;
+    color: #eee;
+    a p {
+      padding: 0;
+      margin: 0;
+      letter-spacing: .25rem;
+    }
+    display: none;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.app-card:hover {
+  .rotate-btn {
+    display: block;
+  }
+  .stripe {
+
+    padding: 2rem;
+
+  }
+  .stripe a {
+    display: none;
+  }
+}
+
+.app-card-front-side {
+
+}
+
+.stripe {
+
+  position: absolute;
+  bottom: 3rem;
+  width: 100%;
+  text-align: center;
+  padding: 1.2rem;
+  a p {
+    padding: 0;
+    margin: 0;
+    letter-spacing: .25rem;
+  }
+}
+
+.stripe.dark {
+  background-color: rgba(0, 0, 0, .7);
+  a p {
+    color: #eee;
+  }
+}
+
+.stripe.light {
+  background-color: rgba(255, 255, 255, .7);
+  a p {
+    color: #424242;
+  }
+}
+
+.app-card img.services {
+  width: 50%;
+}
+
+.app-card-front-side {
+  position: relative;
+  z-index: 10;
+  transition: 1s;
+  transform: rotateY(0deg);
+}
+
+.app-card-back-side {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  position: absolute;
+  top: 15px;
+
+  transform: rotateY(-180deg);
+  opacity: 0;
+
+}
+
+.flipped {
+  .app-card-front-side {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  .app-card-back-side {
+    transform: rotateY(0);
+    visibility: visible;
+    z-index: 10;
+    opacity: 1;
+    img.services {
+      max-height: 120px;
+    }
+  }
+}
+
+.app-card-holder {
+  min-height: 350px;
+  position: relative;
+  padding: 15px;
+}
+
+.app-content-holder {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 15px;
+  .app-btn-holder {
+
+  }
+  ul {
+    list-style: none;
+    width: 100%;
+  }
+}
+

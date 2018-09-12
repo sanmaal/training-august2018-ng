@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row app-header">
+    <!--Navbar-->
+    <div class="col-md-12">
+      <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+
+        <mdb-navbar-brand><a class="navbar-brand" href="#"></a></mdb-navbar-brand>
+
+        <links>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link waves-light" routerLink="/" routerLinkActive="active" mdbWavesEffect>Pokemons list<span
+                class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/catched-pokemons" routerLinkActive="active">Catched
+                pokemons</a>
+            </li>
+            <li class="nav-item dropdown float-right" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
+                <i class="fa fa-user"></i> Profile</a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="toggleForm('Login')">Sign in</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="toggleForm('Registration')">Register</a>
+              </div>
+            </li>
+
+          </ul>
+
+        </links>
+
+      </mdb-navbar>
+    </div>
+  </div>
+</div>
