@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
+
 import { Pokemon } from '../models/pokemon';
 
 const httpOptions = {
@@ -40,7 +42,7 @@ export class PokemonsService {
   }
 
   getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(`http://localhost:3000/pokemons/?_page=${this.pokemonsPage}&_limit=${this.limit}`)
+    return this.http.get<Pokemon[]>(`${environment.host}/pokemons/?_page=${this.pokemonsPage}&_limit=${this.limit}`)
       .pipe(
         tap((pokemons: Pokemon[]) => this.pokemonsArray = this.pokemonsArray.concat(...pokemons)),
         catchError(this.handleError('getPokemons', []))
@@ -48,7 +50,7 @@ export class PokemonsService {
   }
 
   getCathcedPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(`http://localhost:3000/pokemons/catched/?_page=${this.catchedPage}&_limit=${this.limit}`, httpOptions)
+    return this.http.get<Pokemon[]>(`${environment.host}/pokemons/catched/?_page=${this.catchedPage}&_limit=${this.limit}`, httpOptions)
       .pipe(
         tap((pokemons: Pokemon[]) => this.catchedPokemonsArray = this.catchedPokemonsArray.concat(...pokemons)),
         catchError(this.handleError('getPokemons', []))
@@ -56,7 +58,7 @@ export class PokemonsService {
   }
 
   getPokemon(id: number | string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`http://localhost:3000/pokemons/${id}`)
+    return this.http.get<Pokemon>(`${environment.host}/pokemons/${id}`)
       .pipe(
         tap(_ => console.log('Pokemon was fetched successfully')),
         catchError(this.handleError<Pokemon>(`getPokemon ${id}`))
@@ -66,7 +68,7 @@ export class PokemonsService {
   catchPokemon(id: string): Observable<any> {
     const body = new HttpParams()
     .set('id', id);
-    return this.http.put('http://localhost:3000/pokemons/catch', body, httpOptions)
+    return this.http.put(`${environment.host}/pokemons/catch`, body, httpOptions)
       .pipe(
         tap((res: Pokemon[]) => this.catchedPokemonsArray = this.catchedPokemonsArray.concat(...res)),
         catchError(this.handleError<any>(`catchPokemon ${id}`))
