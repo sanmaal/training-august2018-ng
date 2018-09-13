@@ -31,7 +31,8 @@ export class PokemonsListPageComponent implements OnInit, OnChanges {
     this.loadPageClick.emit(event);
   }
 
-  checkPokemon(id: number) {
+  checkPokemon(id: string) {
+    console.log(typeof id);
     return this.service.catchedPokemons.filter( pokemon =>
       pokemon._id === id ? true : false);
   }

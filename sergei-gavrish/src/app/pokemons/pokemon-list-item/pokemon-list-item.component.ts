@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { PokemonsService } from '../../shared/services/pokemons.service';
 import { Pokemon } from '../../shared/models/pokemon';
@@ -27,11 +27,11 @@ export class PokemonListItemComponent implements OnInit {
     .subscribe(_ => console.log('catched'));
   }
 
-  checkIfCatched(id: number): boolean {
+  checkIfCatched(id: string): boolean {
     if (this.service.checkIfCatched(id)) { return true; }
   }
 
-  getDate(id: number) {
+  getDate(id: string) {
     const pokemon = this.service.checkIfCatched(id);
     if (pokemon) { return pokemon.date; }
   }

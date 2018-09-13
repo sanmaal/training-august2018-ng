@@ -6,7 +6,6 @@ import { PokemonsListPageComponent } from './pokemons-list-page/pokemons-list-pa
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { PokemonPageComponent } from './pokemon-page/pokemon-page.component';
 import { PokemonsRoutingModule } from './pokemons-routing.module';
-import { CatchedListComponent } from './catched-list/catched-list.component';
 import { NgLetModule } from '../shared/directives/ngLet';
 
 @NgModule({
@@ -15,6 +14,6 @@ import { NgLetModule } from '../shared/directives/ngLet';
     NgLetModule,
     PokemonsRoutingModule,
   ],
-  declarations: [PokemonsListComponent, PokemonsListPageComponent, PokemonListItemComponent, PokemonPageComponent, CatchedListComponent]
+  declarations: [PokemonsListComponent, PokemonsListPageComponent, PokemonListItemComponent, PokemonPageComponent]
 })
 export class PokemonsModule { }

@@ -73,7 +73,7 @@ export class PokemonsService {
       );
   }
 
-  checkIfCatched(id: number): void | Pokemon {
+  checkIfCatched(id: string): void | Pokemon {
     return this.catchedPokemonsArray.find( pokemon =>
       pokemon._id === id );
   }

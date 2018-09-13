@@ -13,7 +13,6 @@ import { Pokemon } from '../../shared/models/pokemon';
   styleUrls: ['./pokemon-page.component.css']
 })
 export class PokemonPageComponent implements OnInit {
-  @Input() pokemon: Pokemon;
   @Input() pokemonId$: Observable<Pokemon>;
 
   constructor(
@@ -35,9 +34,17 @@ export class PokemonPageComponent implements OnInit {
   }
 
   catchPokemon(pokemon) {
-    console.log(pokemon);
     this.service.catchPokemon(pokemon)
-    .subscribe(_ => console.log(this));
+    .subscribe(_ => console.log('catched'));
+  }
+
+  checkIfCatched(id: string): boolean {
+    if (this.service.checkIfCatched(id)) { return true; }
+  }
+
+  getDate(id: string) {
+    const pokemon = this.service.checkIfCatched(id);
+    if (pokemon) { return pokemon.date; }
   }
 
   checkAuth() {

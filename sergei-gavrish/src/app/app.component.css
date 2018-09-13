@@ -10,7 +10,5 @@ html {
 }
 body {
   margin: 0;
-}
-app-root {
-  width: 500;
+  max-width: 1000px;
 }

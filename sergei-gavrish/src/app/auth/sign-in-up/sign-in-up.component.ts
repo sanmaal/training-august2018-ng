@@ -3,11 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 
-
 @Component({
   selector: 'app-sign-in-up',
   templateUrl: './sign-in-up.component.html',
-  styleUrls: ['./sign-in-up.component.css']
+  styleUrls: ['./sign-in-up.component.css'],
 })
 export class SignInUpComponent implements OnInit {
   profileForm = new FormGroup({
