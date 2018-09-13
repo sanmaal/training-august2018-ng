@@ -10,8 +10,8 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class SignInUpComponent implements OnInit {
   profileForm = new FormGroup({
-    login: new FormControl('Igor', Validators.required),
-    password: new FormControl('12345', Validators.required),
+    login: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
   constructor(
