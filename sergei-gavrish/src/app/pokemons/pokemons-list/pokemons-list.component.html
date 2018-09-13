@@ -1,0 +1,6 @@
+<pokemons-list-page 
+  [pokemons]="getPokemons()"
+  (loadPageClick)="loadPage($event)"
+  *ngLet="checkAuth() | async as isLoggedIn"
+  [isLoggedIn]="isLoggedIn"
+></pokemons-list-page>
