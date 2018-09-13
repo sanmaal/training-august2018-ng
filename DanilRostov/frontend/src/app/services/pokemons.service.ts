@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class PokemonsService {
   start = 0;
-  limit = 10;
+  limit = 8;
 
   constructor(private http: Http) { }
 

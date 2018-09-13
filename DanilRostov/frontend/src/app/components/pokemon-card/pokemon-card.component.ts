@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
 export class PokemonCardComponent {
   @Input() pokemon;
 
+  imageUrl = `https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/1.png`;
+
   onClick() {
     console.log(1);
   }

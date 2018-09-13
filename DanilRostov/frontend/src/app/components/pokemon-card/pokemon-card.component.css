@@ -1,0 +1,8 @@
+.card-content {
+  height: 130px;
+}
+
+.card-title {
+  color: #000 !important;
+  position: static !important;
+}
