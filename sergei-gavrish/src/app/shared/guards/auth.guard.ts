@@ -24,12 +24,12 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string): Observable<boolean> {
-    return this.service.isLoggedIn
+    return this.service.isLoggedIn$
       .pipe(
         take(1),
-        map((isLoggedIn: boolean) => {
+        map((isLoggedIn$: boolean) => {
           if (
-            isLoggedIn &&
+            isLoggedIn$ &&
             new Date(JSON.parse(localStorage.getItem('expiresAt'))).getTime()
           ) {
             return true;

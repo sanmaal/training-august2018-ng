@@ -19,11 +19,9 @@ export class PokemonsListPageComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    console.log(this.isLoggedIn);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes.pokemons);
     Object.keys(changes).forEach( change => this[change] = changes[change].currentValue);
   }
 
@@ -32,7 +30,6 @@ export class PokemonsListPageComponent implements OnInit, OnChanges {
   }
 
   checkPokemon(id: string) {
-    console.log(typeof id);
     return this.service.catchedPokemons.filter( pokemon =>
       pokemon._id === id ? true : false);
   }

@@ -26,9 +26,9 @@ export class PokemonsListComponent implements OnInit {
   checkIfAny() {
     let source;
     if (this.route.snapshot.data.page === 'catched') {
-      source = this.service.catchedPokemons;
+      source = this.service.catchedPokemons$;
     } else {
-      source = this.service.pokemons;
+      source = this.service.pokemons$;
     }
     if (!source.length) {
       this.loadMore();
@@ -49,23 +49,23 @@ export class PokemonsListComponent implements OnInit {
 
   getPokemons(): Pokemon[] {
     if (this.route.snapshot.data.page === 'catched') {
-      return this.service.catchedPokemons;
+      return this.service.catchedPokemons$;
     } else {
-      return this.service.pokemons;
+      return this.service.pokemons$;
     }
   }
 
   loadPage(): void {
     if (this.route.snapshot.data.page === 'catched') {
-      this.service.increasecatchedPage = 1;
+      this.service.catchedPokemonsPage$ = 1;
     } else {
-      this.service.increasePokemonsPage = 1;
+      this.service.pokemonsPage$ = 1;
     }
     this.loadMore();
   }
 
   checkAuth() {
-    return this.auth.isLoggedIn;
+    return this.auth.isLoggedIn$;
   }
 
 }

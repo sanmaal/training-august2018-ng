@@ -16,7 +16,7 @@ export class MainLogicComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.service.isLoggedIn;
+    this.isLoggedIn$ = this.service.isLoggedIn$;
   }
 
   logout(): void {

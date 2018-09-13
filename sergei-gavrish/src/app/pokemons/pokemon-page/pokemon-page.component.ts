@@ -13,7 +13,7 @@ import { Pokemon } from '../../shared/models/pokemon';
   styleUrls: ['./pokemon-page.component.css']
 })
 export class PokemonPageComponent implements OnInit {
-  @Input() pokemonId$: Observable<Pokemon>;
+  @Input() pokemon$: Observable<Pokemon>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,29 +26,31 @@ export class PokemonPageComponent implements OnInit {
     this.getPokemon();
   }
 
-  getPokemon() {
-    this.pokemonId$ = this.route.paramMap
+  getPokemon(): void {
+    this.pokemon$ = this.route.paramMap
       .pipe(
-        switchMap((params: ParamMap) => this.service.getPokemon(params.get('id')))
+        switchMap((params: ParamMap) => {
+          return this.service.getPokemon(params.get('id'))
+        })
       );
   }
 
-  catchPokemon(pokemon) {
+  catchPokemon(pokemon): void {
     this.service.catchPokemon(pokemon)
     .subscribe(_ => console.log('catched'));
   }
 
-  checkIfCatched(id: string): boolean {
-    if (this.service.checkIfCatched(id)) { return true; }
+  checkCatched(id: string): boolean {
+    if (this.service.checkCatched(id)) { return true; }
   }
 
-  getDate(id: string) {
-    const pokemon = this.service.checkIfCatched(id);
+  getDate(id: string): Date {
+    const pokemon = this.service.checkCatched(id);
     if (pokemon) { return pokemon.date; }
   }
 
-  checkAuth() {
-    return this.auth.isLoggedIn;
+  checkAuth(): Observable<boolean> {
+    return this.auth.isLoggedIn$;
   }
 
 }

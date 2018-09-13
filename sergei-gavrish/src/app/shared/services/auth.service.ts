@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap, delay} from 'rxjs/operators';
 
 import { User } from '../models/user';
+import { environment } from '../../../environments/environment'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
@@ -14,11 +15,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private isLoggedIn = new BehaviorSubject<boolean>(false);
   redirectUrl: string;
 
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
+  get isLoggedIn$() {
+    return this.isLoggedIn.asObservable();
   }
 
   constructor(private http: HttpClient) { }
@@ -27,11 +28,11 @@ export class AuthService {
     const body = new HttpParams()
       .set('login', login)
       .set('password', password);
-    return this.http.post<User>('http://localhost:3000/users/login', body, httpOptions)
+    return this.http.post<User>(`${environment.host}/users/login`, body, httpOptions)
       .pipe(
         delay(1000),
         tap(response => {
-          this.loggedIn.next(true);
+          this.isLoggedIn.next(true);
           this.setSession(response);
         })
       );
@@ -41,7 +42,7 @@ export class AuthService {
     const body = new HttpParams()
       .set('login', login)
       .set('password', password);
-    return this.http.post<User>('http://localhost:3000/users/signup', body, httpOptions);
+    return this.http.post<User>(`${environment.host}/users/signup`, body, httpOptions);
   }
 
   private setSession(response): void {
@@ -53,7 +54,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('tokenId');
     localStorage.removeItem('expiresAt');
-    this.loggedIn.next(false);
+    this.isLoggedIn.next(false);
   }
 
 }
