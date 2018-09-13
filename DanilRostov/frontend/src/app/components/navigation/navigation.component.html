@@ -1,11 +1,24 @@
 <nav>
   <div class="nav-wrapper">
-    <div class="container">
-      <a routerLink="/" class="brand-logo">Pokedex-Angular</a>
+    <div class="container header-container">
+      <a routerLink="/" class="brand-logo">EPAM Pokedex</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a routerLink="/">All pokemons</a></li>
         <li><a routerLink="/catched">Catched pokemons</a></li>
+        <li><a 
+          class="dropdown-trigger" 
+          data-target="dropdown1"
+          (click)="onDropDownToggle()"
+        >Sign In<i id="drop-down-icon" class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+      <ul id="dropdown" class="dropdown-content">
+        <li><a
+          (click)="onSingInModalToggle()"
+        >Sign In</a></li>
+        <li class="divider"></li>
+        <li><a>Sign Up</a></li>
       </ul>
     </div>
   </div>
 </nav>
+<app-modal-sing-in></app-modal-sing-in>

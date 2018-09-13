@@ -1,0 +1,27 @@
+.modal-sign-in {
+  height: auto;
+  max-height: none;
+}
+
+.modal-sign-in-active {
+  display: block;
+  position: absolute;
+  z-index: 10;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.modal-sign-in-close {
+  position: absolute;
+  font-size: 35px;
+  right: 20px;
+  top: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.modal-sign-in-close:hover {
+  color: red;
+}

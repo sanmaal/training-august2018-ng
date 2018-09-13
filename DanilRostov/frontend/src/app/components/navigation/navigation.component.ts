@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalsService } from '../../services/modals.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalsService: ModalsService) { }
 
   ngOnInit() {
+  }
+
+  onDropDownToggle() {
+    this.toggleDropDown();
+  }
+
+  onSingInModalToggle() {
+    this.modalsService.singInModalToggle();
+    this.toggleDropDown();
+  }
+
+  toggleDropDown() {
+    const dropDownElement = document.getElementById('dropdown');
+    dropDownElement.classList.toggle('dropdown-content-active');
   }
 
 }

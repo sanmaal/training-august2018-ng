@@ -9,7 +9,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { CatchedPageComponent } from './components/catched-page/catched-page.component';
 import { RouterModule } from '@angular/router';
-// import { routes } from './routes';
+import { ModalSingInComponent } from './components/modal-sing-in/modal-sing-in.component';
 
 const routes = [
   {
@@ -29,7 +29,8 @@ const routes = [
     NavigationComponent,
     HomePageComponent,
     PokemonCardComponent,
-    CatchedPageComponent
+    CatchedPageComponent,
+    ModalSingInComponent
   ],
   imports: [
     BrowserModule,

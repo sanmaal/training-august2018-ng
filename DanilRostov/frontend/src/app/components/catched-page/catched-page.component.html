@@ -1,3 +1,9 @@
 <div class="container">
-  Catched pokemons
+  <div class="row">
+    <app-pokemon-card 
+      *ngFor="let p of catchedPokemons" 
+      [pokemon]="p" 
+      [id]="p.id"
+    ></app-pokemon-card>
+  </div>
 </div>

@@ -1,0 +1,16 @@
+.nav-wrapper {
+  background-color: #009CB1;
+}
+
+.header-container {
+  position: relative;
+}
+
+.dropdown-content-active {
+  display: block;
+  opacity: 1;
+  transition: all 0.2s ease;
+  left: auto;
+  right: 24px;
+  top: 64px;
+}

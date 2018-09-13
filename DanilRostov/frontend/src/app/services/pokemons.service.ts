@@ -15,4 +15,8 @@ export class PokemonsService {
     return this.http.get(url)
       .pipe(map(res => res.json()))
   }
+
+  catchPokemon(pokemon) {
+    console.log(pokemon);
+  }
 }

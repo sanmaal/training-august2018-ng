@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PokemonsService } from '../../services/pokemons.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -11,12 +12,14 @@ export class PokemonCardComponent implements OnInit {
 
   imageUrl;
 
+  constructor(private pokemonsService: PokemonsService) { }
+
   ngOnInit() {
     this.imageUrl = `https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/${this.id}.png`;
   }
 
-  onClick() {
-    console.log(`Clicked on ${this.id} pokemon`);
+  onClick(pokemon) {
+    this.pokemonsService.catchPokemon(pokemon);
   }
 
 }
