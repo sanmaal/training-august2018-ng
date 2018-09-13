@@ -14,9 +14,19 @@ export class PokemonsListComponent implements OnInit {
   constructor(private pokemonsService: PokemonsService) { }
 
   ngOnInit() {
-    this.pokemonsService.getPokemons().subscribe(pokemons => {
-      this.pokemons = pokemons;
-    });
+    this.onLoadPokemons();
   }
 
+  onLoadPokemons() {
+    const numberOfLoadedPokemons = this.pokemons.length;
+    if (!numberOfLoadedPokemons) {
+      this.pokemonsService.getPokemons(numberOfLoadedPokemons).subscribe(pokemons => {
+        this.pokemons = pokemons;
+      });
+    } else {
+      this.pokemonsService.getPokemons(numberOfLoadedPokemons).subscribe(pokemons => {
+        this.pokemons = [...this.pokemons, ...pokemons];
+      });
+    }
+  }
 }

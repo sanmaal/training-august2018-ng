@@ -1,17 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.css']
 })
-export class PokemonCardComponent {
+export class PokemonCardComponent implements OnInit {
   @Input() pokemon;
+  @Input() id;
 
-  imageUrl = `https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/1.png`;
+  imageUrl;
+
+  ngOnInit() {
+    this.imageUrl = `https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/${this.id}.png`;
+  }
 
   onClick() {
-    console.log(1);
+    console.log(`Clicked on ${this.id} pokemon`);
   }
 
 }

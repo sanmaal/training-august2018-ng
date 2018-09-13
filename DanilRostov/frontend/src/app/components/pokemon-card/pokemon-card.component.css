@@ -6,3 +6,7 @@
   color: #000 !important;
   position: static !important;
 }
+
+.card-action__btn {
+  cursor: pointer;
+}
