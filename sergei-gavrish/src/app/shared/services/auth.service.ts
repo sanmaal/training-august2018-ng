@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { catchError, tap, delay} from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { User } from '../models/user';
+import { environment } from '../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
@@ -27,9 +28,8 @@ export class AuthService {
     const body = new HttpParams()
       .set('login', login)
       .set('password', password);
-    return this.http.post<User>('http://localhost:3000/users/login', body, httpOptions)
+    return this.http.post<User>(`${environment.host}/users/login`, body, httpOptions)
       .pipe(
-        delay(1000),
         tap(response => {
           this.loggedIn.next(true);
           this.setSession(response);
@@ -41,7 +41,7 @@ export class AuthService {
     const body = new HttpParams()
       .set('login', login)
       .set('password', password);
-    return this.http.post<User>('http://localhost:3000/users/signup', body, httpOptions);
+    return this.http.post<User>(`${environment.host}/users/signup`, body, httpOptions);
   }
 
   private setSession(response): void {
