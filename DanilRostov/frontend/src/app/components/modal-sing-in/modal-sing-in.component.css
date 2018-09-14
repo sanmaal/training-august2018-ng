@@ -25,3 +25,7 @@
 .modal-sign-in-close:hover {
   color: red;
 }
+
+.modal-warning {
+  color: #e53935;
+}
