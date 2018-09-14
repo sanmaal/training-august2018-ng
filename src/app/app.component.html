@@ -1,0 +1,9 @@
+<app-main-nav>
+  <h1>it'll work soon</h1>
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle routerLink="/pokemons" value="bold" checked>All</mat-button-toggle>
+    <mat-button-toggle routerLink="/cathed_pokemons" value="italic" [disabled] = "!getAuth()">Chatched</mat-button-toggle>
+  </mat-button-toggle-group>
+  <router-outlet></router-outlet>
+  <!-- <app-item-list></app-item-list> -->
+</app-main-nav>  
