@@ -1,0 +1,12 @@
+.pokemon-id {
+  font-size: 24px;
+  color: #009CB2;
+}
+
+.pokemon-text {
+  font-size: 18px;
+}
+
+.header {
+  text-transform: capitalize;
+}

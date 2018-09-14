@@ -31,7 +31,7 @@ export class PokemonCardComponent implements OnInit {
     this.pokemonsService.catchPokemon(pokemon).subscribe();
   }
 
-  onDetailedPokemon() {
-    this.pokemonsService.setCurrentPokemonId(this.id);
+  onDetailedPokemon(pokemon) {
+    this.pokemonsService.setCurrentPokemonId(pokemon);
   }
 }

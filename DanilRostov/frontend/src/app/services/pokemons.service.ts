@@ -13,7 +13,6 @@ import { BASE_URL } from '../constants/api';
 export class PokemonsService {
   limit = 8;
   catchedPokemons = [];
-  currentPokemon;
 
   constructor(
     private http: HttpClient,
@@ -63,17 +62,10 @@ export class PokemonsService {
       })
     };
     return this.http.get<Object>(url, httpOptions)
-      .pipe(map(pokemon => {
-        console.log(pokemon);
-      }));
+      .pipe(map(pokemon => pokemon));
   }
 
-  setCurrentPokemonId(id) {
-    this.currentPokemon = id;
-    this.router.navigate(['/pokemon']);
-  }
-
-  getCurrentPokemonId() {
-    return this.currentPokemon;
+  setCurrentPokemonId(pokemon) {
+    this.router.navigate([`/pokemon/${pokemon.id}`]);
   }
 }

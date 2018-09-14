@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 import { PokemonsService } from '../../services/pokemons.service';
 import { IMG_UR } from '../../constants/api';
@@ -9,11 +11,25 @@ import { IMG_UR } from '../../constants/api';
   styleUrls: ['./pokemon-page.component.css']
 })
 export class PokemonPageComponent implements OnInit {
-  
-  constructor(private pokemonsService: PokemonsService) { }
+  pokemon;
+  imgUrl;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private pokemonsService: PokemonsService
+  ) { }
 
   ngOnInit() {
-    console.log(this.pokemonsService.getCurrentPokemonId());
+    const pokemonId = this.route.paramMap.destination.value.id;
+    this.fetchPokemon(pokemonId);
+    this.imgUrl = `${IMG_UR}/${pokemonId}.png`;
+  }
+
+  fetchPokemon(id) {
+    this.pokemonsService.getPokemonById(id).subscribe(pokemon => {
+      this.pokemon = pokemon[0];
+    });
   }
 
 }

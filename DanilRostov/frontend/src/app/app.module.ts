@@ -26,7 +26,7 @@ const routes: Routes = [
     canActivate: [CanActivateAuthorised]
   },
   {
-    path: 'pokemon',
+    path: 'pokemon/:id',
     component: PokemonPageComponent,
     canActivate: [CanActivateAuthorised]
   }

@@ -3,6 +3,7 @@
 }
 
 .card-title {
+  text-transform: capitalize;
   color: #000 !important;
   position: static !important;
 }
