@@ -1,50 +1,49 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { BehaviorSubject, Observable, of, defer } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { PokemonPageComponent } from './pokemon-page.component';
 import { PokemonsService } from '../../shared/services/pokemons.service';
 import { Pokemon } from '../../shared/models/pokemon';
-
-const getTestPokemon = (): Pokemon => {
-  return {
-    id: 1,
-    _id: '5b95001c76e9652d94bc0468',
-    name: 'bulbasaur' };
-};
-
-const pokemonData = {
-  id: 1,
-  _id: '5b95001c76e9652d94bc0468',
-  name: 'bulbasaur'
-};
-
-const asyncData = <T>(data: T) => {
-  return defer(() => Promise.resolve(data));
-};
-
-class PokemonData {
-  public getPokemon(id: string): Observable<Pokemon> {
-    return of({
-      id: 1,
-      _id: '5b95001c76e9652d94bc0468',
-      name: 'bulbasaur'
-    });
-  }
-}
 
 class TestPokemonsService extends PokemonsService {
   constructor() {
     super(null);
   }
 
-  pokemon = getTestPokemon();
-  result: Observable<any>;
+  private testCatchedPokemons = [
+    {
+      id: 1,
+      _id: '5b95001c76e9652d94bc0468',
+      name: 'bulbasaur',
+      date: new Date('2018-09-12 16:59:14.102'),
+    },
+    {
+      id: 2,
+      _id: '5b95001c76e9652d94bc0469',
+      name: 'ivysaur',
+      date: new Date('2018-09-12 16:59:17.931'),
+    },
+  ];
 
-  public getPokemon(id: number | string): Observable<Pokemon> {
-    return this.result = asyncData(this.pokemon);
+  getPokemon(id: number | string): Observable<Pokemon> {
+    return of({
+      id: 1,
+      _id: '5b95001c76e9652d94bc0468',
+      name: 'bulbasaur',
+      date: new Date('2018-09-12 16:59:14.102'),
+    });
+  }
+
+  catchPokemon(pokemon) {
+    return of(pokemon);
+  }
+
+  checkCatched(id) {
+    return this.testCatchedPokemons.find( pokemon =>
+      pokemon._id === id );
   }
 }
 
@@ -63,8 +62,6 @@ describe('PokemonPageComponent', () => {
     )
   };
 
-  let pokemon: PokemonData;
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -73,6 +70,10 @@ describe('PokemonPageComponent', () => {
       ],
       declarations: [ PokemonPageComponent ],
       providers: [
+        {
+           provide: PokemonsService,
+           useClass: TestPokemonsService,
+        },
         {
           provide: ActivatedRoute,
           useValue: fakeActivatedRoute,
@@ -91,4 +92,17 @@ describe('PokemonPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('checkCatched should return true', () => {
+    expect(component.checkCatched('5b95001c76e9652d94bc0468')).toBe(true);
+  });
+
+  it('checkCatched should return undefined', () => {
+    expect(component.checkCatched('777')).toBe(undefined);
+  });
+
+  it('getDate should return undefined', () => {
+    expect(component.getDate('777')).toBe(undefined);
+  });
+
 });

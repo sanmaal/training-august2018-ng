@@ -1,12 +1,12 @@
 <li class="pokemon" *ngIf="pokemon$ | async as pokemon">
   <a>
-    <img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon$.id}}.png" alt={{pokemon$.name}}>
-    <span>{{pokemon$.name}}</span>
+    <img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" alt={{pokemon.name}}>
+    <span>{{pokemon.name}}</span>
   </a>
   <button 
     *ngIf="checkAuth() | async"
-    (click)="catchPokemon(pokemon$._id)"
-    [disabled]="checkCatched(pokemon$._id)"
+    (click)="catchPokemon(pokemon._id)"
+    [disabled]="checkCatched(pokemon._id)"
   >Catch</button>
-  <p *ngIf="checkCatched(pokemon$._id)">{{getDate(pokemon$._id)}}</p>
+  <p *ngIf="checkCatched(pokemon._id)">{{getDate(pokemon._id)}}</p>
 </li>

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { catchError, tap, delay} from 'rxjs/operators';
+import { tap, delay} from 'rxjs/operators';
 
 import { User } from '../models/user';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })

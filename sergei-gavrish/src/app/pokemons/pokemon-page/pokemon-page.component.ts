@@ -29,9 +29,8 @@ export class PokemonPageComponent implements OnInit {
   getPokemon(): void {
     this.pokemon$ = this.route.paramMap
       .pipe(
-        switchMap((params: ParamMap) => {
-          return this.service.getPokemon(params.get('id'))
-        })
+        switchMap((params: ParamMap) =>
+          this.service.getPokemon(params.get('id')))
       );
   }
 

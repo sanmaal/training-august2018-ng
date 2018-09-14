@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Pokemon } from '../../shared/models/pokemon';
-import { PokemonsService } from '../../shared/services/pokemons.service';
-import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'pokemons-list-page',
@@ -14,9 +12,7 @@ export class PokemonsListPageComponent implements OnInit, OnChanges {
   @Input() isLoggedIn: boolean;
   @Output() loadPageClick: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(
-    private service: PokemonsService,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -27,11 +23,6 @@ export class PokemonsListPageComponent implements OnInit, OnChanges {
 
   loadPage(event) {
     this.loadPageClick.emit(event);
-  }
-
-  checkPokemon(id: string) {
-    return this.service.catchedPokemons.filter( pokemon =>
-      pokemon._id === id ? true : false);
   }
 
 }

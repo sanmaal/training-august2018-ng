@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 
@@ -27,6 +27,7 @@ export class PokemonsService {
   get pokemons$() {
     return this.pokemons;
   }
+
   get catchedPokemons$() {
     return this.catchedPokemons;
   }
@@ -34,8 +35,17 @@ export class PokemonsService {
   set pokemonsPage$(numb: number) {
     this.pokemonsPage += numb;
   }
+
   set catchedPokemonsPage$(numb: number) {
     this.catchedPokemonsPage += numb;
+  }
+
+  get pokemonsPage$() {
+    return this.pokemonsPage;
+  }
+
+  get catchedPokemonsPage$() {
+    return this.catchedPokemonsPage;
   }
 
   constructor(private http: HttpClient) {
@@ -73,7 +83,7 @@ export class PokemonsService {
       .set('id', id);
     return this.http.put(`${environment.host}/pokemons/catch`, body, httpOptions)
       .pipe(
-        tap((res: Pokemon[]) => this.catchedPokemons = this.catchedPokemons.concat(...res)),
+        tap((pokemon: Pokemon[]) => this.catchedPokemons = this.catchedPokemons.concat(...pokemon)),
         catchError(this.handleError<any>(`catchPokemon ${id}`))
       );
   }
@@ -90,4 +100,5 @@ export class PokemonsService {
       return of(result as T);
     };
   }
+
 }
