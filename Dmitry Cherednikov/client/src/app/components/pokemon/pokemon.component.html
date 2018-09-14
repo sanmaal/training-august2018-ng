@@ -1,0 +1,34 @@
+<div *ngIf="poke" class="page">
+  <img
+    src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{poke.id}}.png"
+    class="img img-large"
+    alt="Pokemon {{poke.name}}.png"
+  />
+  <h1>
+    {{poke.name}}
+  </h1>
+  <p>
+    {{poke | data}}
+  </p>
+  <a (click)="onBack()">
+    back
+  </a>
+</div>
+
+<div *ngIf="isFetching && !poke" class="page">
+  <p>
+    Fetching...
+  </p>
+</div>
+
+<div *ngIf="errorMessage && !poke" class="page">
+  <p>
+    {{errorMessage}}
+  </p>
+  <button
+    class="button button-load"
+    (click)="getPokemon(id)"
+  >
+    retry
+  </button>
+</div>

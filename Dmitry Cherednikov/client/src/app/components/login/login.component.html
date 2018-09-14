@@ -1,0 +1,49 @@
+<div class="container">
+    <form [formGroup]="loginForm" class="group">
+      <div class="form-group group">
+        <label for="name">
+          Name*
+        </label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Choose a name"
+        >
+        <div *ngIf="submitted && f.name.errors">
+          <span *ngIf="f.name.errors.required">Name is required</span>
+          <span *ngIf="f.name.errors.minlength">Too short</span>
+          <span *ngIf="f.name.errors.maxlength">Too big</span>
+        </div>
+      </div>
+      <div class="form-group group">
+          <label for="password">
+            Password*
+          </label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            placeholder="Create a password"
+          />
+          <div *ngIf="submitted && f.password.errors">
+            <span *ngIf="f.password.errors.required">Password is required</span>
+            <span *ngIf="f.password.errors.minlength">Too short</span>
+            <span *ngIf="f.password.errors.maxlength">Too big</span>
+          </div>
+      </div>
+      <p>
+        New to Pokedex? <a routerLink="/signup">Sign up</a>
+      </p>
+      <button 
+        (click)="onSubmit()"
+        type="submit" 
+        class="btn btn-submit"
+      >
+        Log in
+      </button>
+      <p *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+    </form>
+  </div>

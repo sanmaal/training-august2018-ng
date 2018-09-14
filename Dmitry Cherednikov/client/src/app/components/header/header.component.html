@@ -1,0 +1,28 @@
+<header>
+  <div style="text-align:center">
+    <ul>
+      <a routerLink="/">
+        Home
+      </a>
+      <a routerLink="/all-pokemons">
+        Pokemons
+      </a>
+      <a *ngIf="user" routerLink="/catched-pokemons">
+        Collection
+      </a>
+    </ul>
+    <ul>
+      <a 
+        *ngIf="user"
+        (click)="logout()">
+        Logout
+      </a>
+      <a *ngIf="!user" routerLink="/login">
+        Login
+      </a>
+      <a *ngIf="!user" routerLink="/signup">
+        Sign up
+      </a>
+    </ul>
+  </div>
+</header>

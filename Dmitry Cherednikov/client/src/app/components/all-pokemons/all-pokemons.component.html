@@ -1,0 +1,50 @@
+<div *ngIf="!errorMessage && pokemons.length"> 
+  <ul class="list">
+    <li *ngFor="let poke of pokemons">
+      <img
+        src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{poke.id}}.png"
+        class="img-small"
+        alt="Pokemon {{poke.name}}.png"
+      />
+      <h3>
+        <a routerLink="{{poke.id}}">
+          {{poke.name}}
+        </a>
+      </h3>
+      <button
+        *ngIf="user"
+        disabled="{{poke.date}}"
+        class="{{!poke.date ? 'button button-active' : 'button button-disabled'}}"
+        (click)="handleCatch(poke.id)"
+      >
+        {{poke.date | catch}}
+      </button>
+      <span *ngIf="user && poke.date">
+        {{poke.date}}
+      </span>
+    </li>
+  </ul>
+  <button
+    *ngIf="!isFetchedAll"
+    class="button button-load"
+    (click)="getPokemons()"
+  >
+    {{isFetching | loading }}
+  </button>
+</div>
+
+<div *ngIf="isFetching && !pokemons.length">
+  <p>Fetching...</p>
+</div>
+
+<div *ngIf="errorMessage && !pokemons.length">
+  <p>
+    {{ errorMessage }}
+  </p>
+  <button
+    (click)="getPokemons()"
+    class="button button-load"
+  >
+    retry
+  </button>
+</div>
