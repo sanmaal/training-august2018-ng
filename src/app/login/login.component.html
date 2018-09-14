@@ -1,0 +1,15 @@
+<div class="example-container">
+	<div>
+		<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+			<mat-form-field>
+				<input matInput [(ngModel)]="model.email" name="email" placeholder="Login">
+			</mat-form-field>
+			<br>
+			<mat-form-field>
+				<input matInput [(ngModel)]="model.password" type="password" name="password" placeholder="Password">
+			</mat-form-field>
+			<br>
+			<button mat-raised-button type="submit">Click me!</button>
+		</form>
+	</div>
+</div>
