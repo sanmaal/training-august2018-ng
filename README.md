@@ -1,25 +1,27 @@
-# Домашнее задание Angular
+# AngularPokemon
 
-Дедлайн - **14.09.18**!
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
-**Важно**
-Для выполнения задания необходимо использовать бекенд с [ДЗ по NodeJS](https://github.com/sanmaal/training-august2018-node#%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B5%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-nodejs)
+## Development server
 
-В рамках домашнего задания необходимо реализовать клиентскую часть приложения для поиска и ловли покемонов используя фреймворк Angular версии 6+.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-### Требования:
+## Code scaffolding
 
-Должны быть реализованы следующие фичи
-  * Авторизация пользователя
-  * Регистрация пользователя
-  * Вход без авторизации
-  * Для неавторизированных пользователей доступен просмотр списка покемонов без возможности их ловли
-  * Для авторизованных пользователей доступен просмотр списка покемоно с возможностью ловли
-  * Для авторизованных пользователей досупна страница детальной информации о покемоне
-  * Для авторизованных пользователей доступен список пойманых ими покемонов
-  * Для списков покемонов должна быть предусмотрена пагинация любым способом (Load more, Endless scroll, традиционная с номерами страниц)
-  * Покрытие тестами не менее 70%
-  
-  ### Примечания
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-1. Для выполнения задания необходимо форкнуть этот репозиторий, создать в нем каталог со своей фамилией и всю работу выполнить в нем. Cдача работы происходит через создание пулреквеста.
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
