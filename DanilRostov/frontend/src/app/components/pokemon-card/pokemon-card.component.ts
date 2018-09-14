@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { PokemonsService } from '../../services/pokemons.service';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { IMG_UR } from '../../constants/api';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -21,7 +23,7 @@ export class PokemonCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.imageUrl = `https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/${this.id}.png`;
+    this.imageUrl = `${IMG_UR}/${this.id}.png`;
   }
 
   onClick(pokemon) {
@@ -30,6 +32,6 @@ export class PokemonCardComponent implements OnInit {
   }
 
   onDetailedPokemon() {
-    this.router.navigate(['/pokemon']);
+    this.pokemonsService.setCurrentPokemonId(this.id);
   }
 }

@@ -13,6 +13,7 @@ import { CatchedPageComponent } from './components/catched-page/catched-page.com
 import { ModalSingInComponent } from './components/modal-sing-in/modal-sing-in.component';
 import { ModalSignUpComponent } from './components/modal-sign-up/modal-sign-up.component';
 import { CanActivateAuthorised } from './guards/can-activate-catched.guard';
+import { PokemonPageComponent } from './components/pokemon-page/pokemon-page.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'pokemon',
-    component: CatchedPageComponent,
+    component: PokemonPageComponent,
     canActivate: [CanActivateAuthorised]
   }
 ];
@@ -40,7 +41,8 @@ const routes: Routes = [
     PokemonCardComponent,
     CatchedPageComponent,
     ModalSingInComponent,
-    ModalSignUpComponent
+    ModalSignUpComponent,
+    PokemonPageComponent
   ],
   imports: [
     BrowserModule,
