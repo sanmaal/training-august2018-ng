@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="menu">
+  <a class="logo" routerLink="">
+    Pokedex
+  </a>
+  <button *ngIf="checkAuthorization()" mat-button routerLink="caught-pokemons">Caught pokemons</button>
+  <span class="fill-remaining-space"></span>
+
+  <ng-container *ngIf="!checkAuthorization()">
+    <button mat-button routerLink="signup">Sign Up</button>
+    <button mat-button routerLink="login">Log In</button>
+  </ng-container>
+
+  <button *ngIf="checkAuthorization()" mat-button (click)="onLogout()">Log Out</button>
+</mat-toolbar>

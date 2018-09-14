@@ -1,0 +1,15 @@
+<div appInfiniteScroll (scrollBottom)="onScrollBottom()" class="all-pokemons">
+  <div *ngFor="let pokemon of pokemons"
+       class="pokemon">
+    <app-pokemon [pokemon]="pokemon"  [ngClass]="{'auth-pokemon-card': isAuth()}" class="pokemon-card"></app-pokemon>
+    <button *ngIf="isAuth()" mat-flat-button
+            (click)="catchPokemon(pokemon)"
+            [disabled]="pokemon.caught">Catch</button>
+  </div>
+
+  <div class="spinner" *ngIf="pending">
+    <mat-progress-spinner [color]="'primary'"
+                          [mode]="'indeterminate'">
+    </mat-progress-spinner>
+  </div>
+</div>
