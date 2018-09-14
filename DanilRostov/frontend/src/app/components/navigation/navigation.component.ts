@@ -22,6 +22,11 @@ export class NavigationComponent implements OnInit {
     this.toggleDropDown();
   }
 
+  onSingUpModalToggle() {
+    this.modalsService.singUpModalToggle();
+    this.toggleDropDown();
+  }
+
   toggleDropDown() {
     const dropDownElement = document.getElementById('dropdown');
     dropDownElement.classList.toggle('dropdown-content-active');

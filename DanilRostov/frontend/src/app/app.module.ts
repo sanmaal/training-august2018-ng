@@ -11,6 +11,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { CatchedPageComponent } from './components/catched-page/catched-page.component';
 import { ModalSingInComponent } from './components/modal-sing-in/modal-sing-in.component';
+import { ModalSignUpComponent } from './components/modal-sign-up/modal-sign-up.component';
 
 const routes = [
   {
@@ -31,7 +32,8 @@ const routes = [
     HomePageComponent,
     PokemonCardComponent,
     CatchedPageComponent,
-    ModalSingInComponent
+    ModalSingInComponent,
+    ModalSignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -11,4 +11,9 @@ export class ModalsService {
     const modalSignInElement = document.getElementById('modal-sign-in');
     modalSignInElement.classList.toggle('modal-sign-in-active');
   }
+
+  singUpModalToggle() {
+    const modalSignUpElement = document.getElementById('modal-sign-up');
+    modalSignUpElement.classList.toggle('modal-sign-up-active');
+  }
 }

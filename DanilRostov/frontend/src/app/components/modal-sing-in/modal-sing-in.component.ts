@@ -17,10 +17,6 @@ export class ModalSingInComponent implements OnInit {
     this.modalsService.singInModalToggle();
   }
 
-  log(x) {
-    console.log(x);
-  }
-
   signIn() {
     console.log(1);
   }
