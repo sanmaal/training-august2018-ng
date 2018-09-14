@@ -1,0 +1,24 @@
+<div class="login-page-block">
+	<h3>{{status === "login" ? "Log In" : "Sign Up"}}</h3>
+	<form>
+		<label>
+			<span>Login</span>
+			<input type="text" name="name" [(ngModel)]="user.name" />
+		</label>
+		<label>
+			<span>Password</span>
+			<input type="password" name="password" [(ngModel)]="user.password" />
+		</label>
+		<button type="button" id="form-button-action" (click)="submitAction()">Submit</button>
+		<span class="sign-up-request">
+			{{status == "login" ? "Don`t have any accounts here?" : "Already have an account?"}}
+			<button type="button" (click)="toggleStatus()" id="sign-up">
+				{{status === "login" ? "Sign Up" : "Log In"}}
+			</button>
+			!
+		</span>
+		<div *ngIf="message">
+			{{message}}
+		</div>
+	</form>
+</div>
