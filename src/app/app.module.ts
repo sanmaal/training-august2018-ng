@@ -18,16 +18,20 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: 'pokemons',
     pathMatch: 'full'
-  } ,
-  { path: 'pokemons',
+  },
+  { 
+    path: 'pokemons',
     component: PokemonsScreenComponent,
     pathMatch: 'full'
   },
-  { path: 'pokemon/:id', 
-    component: PokemonPageComponent ,
+  { 
+    path: 'pokemon/:id', 
+    component: PokemonPageComponent,
     pathMatch: 'full'
   },
-  { path: '**', component: PageNotFoundComponent }
+  { 
+    path: '**', component: PageNotFoundComponent 
+  }
 ];
 
 

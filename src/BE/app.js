@@ -57,6 +57,11 @@ const localStrategyOptions = {
 */
 
 /**
+ * TODO:
+ * - refactoring middlewares
+ * */ 
+
+/**
  * SHOW_ALL_USERS
  */
 
