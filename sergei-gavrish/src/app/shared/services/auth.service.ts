@@ -30,7 +30,6 @@ export class AuthService {
       .set('password', password);
     return this.http.post<User>(`${environment.host}/users/login`, body, httpOptions)
       .pipe(
-        delay(1000),
         tap(response => {
           this.isLoggedIn.next(true);
           this.setSession(response);
