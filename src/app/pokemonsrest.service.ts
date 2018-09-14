@@ -27,9 +27,7 @@ export class PokemonsrestService {
         tap(pokemons => {//console.log('fetched pokemons');
         //console.log(pokemons);
         return pokemons;
-      }),
-        //catchError(this.handleError('getHeroes', []))
-      );
+      }));
   }
 
   
@@ -39,9 +37,7 @@ export class PokemonsrestService {
         tap(pokemons => {//console.log('fetched pokemons');
         //console.log(pokemons);
         return pokemons;
-      }),
-        //catchError(this.handleError('getHeroes', []))
-      );
+      }));
   }
 
   id = 1;
@@ -52,9 +48,7 @@ export class PokemonsrestService {
         tap(pokemon => {//console.log('fetched pokemons');
         //console.log(pokemons);
         return pokemon;
-      }),
-        //catchError(this.handleError('getHeroes', []))
-      );
+      }));
   }
 
   constructor(private http: HttpClient) { }

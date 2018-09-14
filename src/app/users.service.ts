@@ -23,8 +23,6 @@ export class UsersService {
 
   login(credentials): Observable<any>{
     return this.http.post<any>(this.baseUrl + '/registration' , credentials, this.httpOptions);
-      //catchError(this.handleError('getHeroes', []))
-
   }
 
   constructor(private http: HttpClient) { }
