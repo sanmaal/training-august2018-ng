@@ -3,7 +3,7 @@
     <i 
       id="modal-sign-up-close" 
       class="material-icons modal-sign-up-close"
-      (click)="onSingUpModalClose()"
+      (click)="onSingUpModalClose(); signUpForm.reset()"
     >close</i>
     <h4>Signing Up</h4>
     <p>Please fill all fields to register</p>
@@ -11,7 +11,7 @@
       <form 
         #signUpForm="ngForm" 
         class="col s12"
-        (ngSubmit)="signUp()"
+        (ngSubmit)="signUp(signUpForm); signUpForm.reset()"
       >
         <div class="row">
           <div class="input-field col s12">
@@ -21,13 +21,12 @@
               minlength="5" 
               maxlength="30"
               #userName="ngModel"
-              placeholder="Name" 
-              id="name" 
+              id="userName" 
               type="text" 
               class="validate"
               required
             >
-            <label for="name">Your name</label>
+            <label for="userName">Your name</label>
             <div *ngIf="userName.touched && !userName.valid" class="modal-warning">
               <div *ngIf="userName.errors.required">Name is required</div>
               <div *ngIf="userName.errors.minlength">Name should be minimus {{ userName.errors.minlength.requiredLength }} characters</div>

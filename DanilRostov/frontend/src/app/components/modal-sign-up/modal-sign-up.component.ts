@@ -7,6 +7,9 @@ import { ModalsService } from '../../services/modals.service';
   styleUrls: ['./modal-sign-up.component.css']
 })
 export class ModalSignUpComponent implements OnInit {
+  name;
+  email;
+  password;
 
   constructor(private modalsService: ModalsService) { }
 
@@ -17,7 +20,12 @@ export class ModalSignUpComponent implements OnInit {
     this.modalsService.singUpModalToggle();
   }
 
-  signUp() {
-    console.log('data');
+  signUp(form) {
+    this.modalsService.singUpModalToggle();
+    this.name = form.value.userName;
+    this.password = form.value.password;
+    this.email = form.value.email;
+    console.log(this.name, this.password, this.email);
+    
   }
 }

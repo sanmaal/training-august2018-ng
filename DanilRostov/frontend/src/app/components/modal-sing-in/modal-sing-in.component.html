@@ -3,7 +3,7 @@
     <i 
       id="modal-sign-in-close" 
       class="material-icons modal-sign-in-close"
-      (click)="onSingInModalClose()"
+      (click)="onSingInModalClose(); signInForm.reset()"
     >close</i>
     <h4>Signing In</h4>
     <p>Please type your auth credentials</p>
@@ -11,7 +11,7 @@
       <form 
         #signInForm="ngForm" 
         class="col s12"
-        (ngSubmit)="signIn()"
+        (ngSubmit)="signIn(); signInForm.reset()"
       >
         <div class="row">
           <div class="input-field col s12">
