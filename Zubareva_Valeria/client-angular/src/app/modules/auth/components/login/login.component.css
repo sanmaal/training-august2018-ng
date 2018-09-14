@@ -1,0 +1,26 @@
+.mat-card {
+  max-width: 400px;
+  margin: 200px auto;
+}
+
+.signup-content {
+  padding: 60px 10px;
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+.validation-note {
+  color: red;
+  font-size: 10px;
+}
+
+.login-header {
+  text-align: center;
+}
+
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+}

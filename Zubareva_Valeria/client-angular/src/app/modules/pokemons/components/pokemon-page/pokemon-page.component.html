@@ -1,0 +1,9 @@
+<div class="pokemon">
+  <img class="pokemon__img" src={{srcImage}} />
+  <div class="pokemon__info">
+    <div class="pokemon__name" >{{pokemon.name | titlecase}}</div>
+    <div class="pokemon__caught-info">{{pokemon | caught}}</div>
+    <div *ngIf="pokemon.caught">at {{pokemon.time | date}}</div>
+  </div>
+</div>
+

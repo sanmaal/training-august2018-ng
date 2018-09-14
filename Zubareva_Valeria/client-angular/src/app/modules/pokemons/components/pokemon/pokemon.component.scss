@@ -1,0 +1,10 @@
+.pokemon {
+  display: block;
+  height: 250px;
+  &__img {
+    width: 100%;
+  }
+  &__name {
+    text-align: center;
+  }
+}

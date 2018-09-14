@@ -1,0 +1,27 @@
+.signup-content {
+  padding: 60px 10px;
+
+  &__header {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  &__submit-btn {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.mat-card {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+.validation-note {
+  color: red;
+  font-size: 10px;
+}
