@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalsService } from '../../services/modals.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-modal-sign-up',
@@ -7,11 +8,13 @@ import { ModalsService } from '../../services/modals.service';
   styleUrls: ['./modal-sign-up.component.css']
 })
 export class ModalSignUpComponent implements OnInit {
-  name;
-  email;
-  password;
+  signUpData = {
+    name: null,
+    email: null,
+    password: null
+  }
 
-  constructor(private modalsService: ModalsService) { }
+  constructor(private modalsService: ModalsService, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -22,10 +25,9 @@ export class ModalSignUpComponent implements OnInit {
 
   signUp(form) {
     this.modalsService.singUpModalToggle();
-    this.name = form.value.userName;
-    this.password = form.value.password;
-    this.email = form.value.email;
-    console.log(this.name, this.password, this.email);
-    
+    this.signUpData.name = form.value.userName;
+    this.signUpData.password = form.value.password;
+    this.signUpData.email = form.value.email;
+    this.authService.signUp(this.signUpData);
   }
 }

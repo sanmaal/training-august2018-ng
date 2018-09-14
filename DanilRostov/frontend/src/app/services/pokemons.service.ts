@@ -1,6 +1,7 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Pokemon } from '../models/Pokemon';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,12 @@ import { map } from 'rxjs/operators';
 export class PokemonsService {
   limit = 8;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getPokemons(start) {
     const url = `http://localhost:5000/pokemons?_start=${start}&_limit=${this.limit}`;
-    return this.http.get(url)
-      .pipe(map(res => res.json()))
+    return this.http.get<Array<Pokemon>>(url)
+      .pipe(map(res => res))
   }
 
   catchPokemon(pokemon) {

@@ -27,7 +27,7 @@
               class="validate"
               required
             >
-            <label for="SignIn">Email</label>
+            <label for="emailSignIn">Email</label>
             <div *ngIf="email.touched && !email.valid" class="modal-warning">
               <div *ngIf="email.errors.required">Email is required</div>
               <div *ngIf="email.errors.minlength">Email should be minimus {{ email.errors.minlength.requiredLength }} characters</div>
