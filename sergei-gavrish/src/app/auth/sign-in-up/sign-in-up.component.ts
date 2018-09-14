@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
@@ -27,8 +27,7 @@ export class SignInUpComponent implements OnInit {
     const { login, password } = this.profileForm.value;
     if (login && password) {
       this.service[this.route.snapshot.data.form](login, password)
-        .subscribe(data => {
-          console.log('success');
+        .subscribe(_ => {
           this.router.navigate(['/pokemons/cathced']);
           // route navigate to pokemon page
         });

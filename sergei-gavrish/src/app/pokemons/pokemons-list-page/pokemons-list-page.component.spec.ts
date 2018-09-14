@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { PokemonsListPageComponent } from './pokemons-list-page.component';
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component'
@@ -43,4 +43,10 @@ describe('PokemonsListPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should start event emiter', () => {
+    const event = new MouseEvent('click');
+    expect(component.loadPage(event));
+  });
+
 });

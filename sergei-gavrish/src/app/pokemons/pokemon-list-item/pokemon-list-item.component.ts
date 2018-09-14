@@ -22,17 +22,17 @@ export class PokemonListItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  catchPokemon(pokemon) {
+  catchPokemon(pokemon): void {
     this.service.catchPokemon(pokemon)
     .subscribe(_ => console.log('catched'));
   }
 
-  checkIfCatched(id: string): boolean {
-    if (this.service.checkIfCatched(id)) { return true; }
+  checkCatched(id: string): boolean {
+    if (this.service.checkCatched(id)) { return true; }
   }
 
-  getDate(id: string) {
-    const pokemon = this.service.checkIfCatched(id);
+  getDate(id: string): Date {
+    const pokemon = this.service.checkCatched(id);
     if (pokemon) { return pokemon.date; }
   }
 

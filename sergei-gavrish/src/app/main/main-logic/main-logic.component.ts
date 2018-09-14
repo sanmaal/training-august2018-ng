@@ -6,8 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-main-logic',
-  templateUrl: './main-logic.component.html',
-  styleUrls: ['./main-logic.component.css']
+  template: '<app-main-view *ngLet="isLoggedIn$ | async as isLoggedIn" [isLoggedIn]="isLoggedIn" (logoutClick)="logout()"></app-main-view>',
 })
 export class MainLogicComponent implements OnInit {
   @Input() isLoggedIn$: Observable<boolean>;
@@ -16,7 +15,7 @@ export class MainLogicComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.service.isLoggedIn;
+    this.isLoggedIn$ = this.service.isLoggedIn$;
   }
 
   logout(): void {

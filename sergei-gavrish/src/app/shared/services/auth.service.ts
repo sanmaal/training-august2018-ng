@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { tap, delay} from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { environment } from '../../../environments/environment';
@@ -15,11 +15,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private isLoggedIn = new BehaviorSubject<boolean>(false);
   redirectUrl: string;
 
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
+  get isLoggedIn$() {
+    return this.isLoggedIn.asObservable();
   }
 
   constructor(private http: HttpClient) { }
@@ -31,7 +31,7 @@ export class AuthService {
     return this.http.post<User>(`${environment.host}/users/login`, body, httpOptions)
       .pipe(
         tap(response => {
-          this.loggedIn.next(true);
+          this.isLoggedIn.next(true);
           this.setSession(response);
         })
       );
@@ -53,7 +53,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('tokenId');
     localStorage.removeItem('expiresAt');
-    this.loggedIn.next(false);
+    this.isLoggedIn.next(false);
   }
 
 }

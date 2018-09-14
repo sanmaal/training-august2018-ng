@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +31,5 @@ import { MainModule } from './main/main.module';
     AuthService,
   ],
   bootstrap: [AppComponent],
-  // schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule { }
