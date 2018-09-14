@@ -1,0 +1,20 @@
+<mat-card class="pokemon-card">
+
+  <mat-card-header>
+    <mat-card-title class="pokemon-card__title">{{pokemon.name}}</mat-card-title>
+  </mat-card-header>
+
+  <img mat-card-image src="{{ pokemon.id | pokemonPictureUrl }}" alt="Pokemon Picture" (click)="redirectToPokemon(pokemon.id)">
+
+  <div *ngIf="pokemon.catchInfo">
+    <mat-card-actions>
+      <div *ngIf="!pokemon.catchInfo.isCaught">
+        <button mat-button color="primary" (click)="onCatchClick(pokemon.id)">{{'Catch' | uppercase}}</button>
+      </div>
+      <div *ngIf="pokemon.catchInfo.isCaught">
+        <button mat-button disabled>{{ pokemon.catchInfo.timestamp | date: 'short' }}</button>
+      </div>
+    </mat-card-actions>
+  </div>
+
+</mat-card>

@@ -1,0 +1,14 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-container > * {
+  width: 400px;
+}
+
+.register-form__error-message {
+  display: flex;
+  justify-content: center;
+}

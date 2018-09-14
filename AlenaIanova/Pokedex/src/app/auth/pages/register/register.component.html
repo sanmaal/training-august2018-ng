@@ -1,0 +1,25 @@
+<form [formGroup]="registerForm" class="register-container">
+  <mat-form-field>
+    <label>
+      <input matInput formControlName="email" placeholder="Enter your email" type="email">
+    </label>
+    <mat-error *ngIf="registerForm.controls.email.errors?.required">Email is required</mat-error>
+    <mat-error *ngIf="registerForm.controls.email.errors?.email">Email is not correct</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput formControlName="password" placeholder="Enter your password" type="password">
+    </label>
+    <mat-error *ngIf="registerForm.controls.password.errors?.required">Password is required</mat-error>
+    <mat-error *ngIf="registerForm.controls.password.errors?.minlength">
+      Password should contain {{registerForm.controls.password.errors.minlength.requiredLength}} characters
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput formControlName="name" placeholder="Enter your name">
+    </label>
+  </mat-form-field>
+  <mat-error class="register-form__error-message">{{errorMessage}}</mat-error>
+  <button mat-button color="primary" (click)="send()" disabled="{{!registerForm.valid}}">{{"sing up" | uppercase}}</button>
+</form>

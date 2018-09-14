@@ -1,0 +1,33 @@
+.pokemon-card {
+  max-width: 230px;
+  color: #673ab7;
+}
+
+.pokemon-card__title {
+  font-size: 20px;
+}
+
+.mat-card {
+  padding: 0;
+}
+
+.mat-card-header {
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card-image {
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.mat-card-header-text {
+  margin: 0;
+}

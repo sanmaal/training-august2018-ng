@@ -1,0 +1,36 @@
+.pokemon-details__container{
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card-image{
+  max-width: 450px;
+  width: 100%;
+  margin: 0;
+}
+
+div.pokemon-details__item{
+  font-size: 20px;
+  color: #673ab7;
+  margin: 10px;
+}
+
+div.pokemon-details__item label{
+  margin-right: 5px;
+}
+
+.pokemon-details__content{
+  display: flex;
+}
+
+.pokemon-details__right-block{
+  width: 40%;
+}
+
+.pokemon-details__left-block{
+  width: 60%;
+}
+
+.mat-card{
+  max-width: 800px
+}
