@@ -12,13 +12,10 @@
         >{{ this.userService.userName }}<i id="drop-down-icon" class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
       <ul id="dropdown" class="dropdown-content">
-        <li><a
-          (click)="onSingInModalToggle()"
-        >Sign In</a></li>
+        <li><a class="dropdown__item" (click)="onSingInModalToggle()">Sign In</a></li>
+        <li><a class="dropdown__item" (click)="onSingUpModalToggle()">Sign Up</a></li>
         <li class="divider"></li>
-        <li><a
-          (click)="onSingUpModalToggle()"
-        >Sign Up</a></li>
+        <li><a class="dropdown__item" (click)="onLogOut()">Log out</a></li>
       </ul>
     </div>
   </div>

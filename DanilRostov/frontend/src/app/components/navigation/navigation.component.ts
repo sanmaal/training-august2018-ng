@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalsService } from '../../services/modals.service';
 import { UserService } from '../../services/user.service';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,6 +13,7 @@ export class NavigationComponent implements OnInit {
   constructor(
     private modalsService: ModalsService,
     private userService: UserService,
+    private tokenService: TokenService,
   ) { }
 
   ngOnInit() {
@@ -19,7 +21,6 @@ export class NavigationComponent implements OnInit {
 
   onDropDownToggle() {
     this.toggleDropDown();
-    // console.log(this.userService.userName);
   }
 
   onSingInModalToggle() {
@@ -37,4 +38,9 @@ export class NavigationComponent implements OnInit {
     dropDownElement.classList.toggle('dropdown-content-active');
   }
 
+  onLogOut() {
+    this.toggleDropDown();
+    this.userService.setUserName('Sign In');
+    this.tokenService.removeToken();
+  }
 }

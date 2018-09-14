@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  userName;
+  userName = 'Sign In';
 
   constructor() { }
 
-  setUserData(data) {
-    this.userName = data.name;
+  setUserName(name) {
+    this.userName = name;
   };
 
   getNameOfUser() {

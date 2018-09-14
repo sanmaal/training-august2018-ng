@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Auth } from '../models/Auth';
+import { User } from '../models/User';
 import { BASE_URL } from '../constants/api';
 import { TokenService } from '../services/token.service';
 import { UserService } from '../services/user.service';
@@ -18,6 +19,22 @@ export class AuthService {
     private tokenService: TokenService,
   ) { }
 
+  signIn(data) {
+    const url = `${BASE_URL}/login`;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post<Auth>(url, data, httpOptions)
+      .pipe(map(res => {
+        if (res.isAuth) {
+          this.tokenService.setToken(res.token);
+          this.authorize(res.token).subscribe();
+        } else {
+          alert(res.error);
+        }
+      }));
+  }
+
   signUp(data) {
     const url = `${BASE_URL}/register`;
     const httpOptions = {
@@ -26,25 +43,10 @@ export class AuthService {
     return this.http.post<Auth>(url, data, httpOptions)
       .pipe(map(res => {
         if (res.isAuth) {
-          console.log('is auth')
-        } else {
-          console.log('not auth');
-        }
-      }));
-  }
-
-  signIn(data) {
-    const url = `${BASE_URL}/login`;
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    return this.http.post<Auth>(url, data, httpOptions)
-      .pipe(map(res => {
-        if(res.isAuth) {
           this.tokenService.setToken(res.token);
           this.authorize(res.token).subscribe();
         } else {
-          console.log('not auth');
+          alert(res.error);
         }
       }));
   }
@@ -57,9 +59,9 @@ export class AuthService {
         'x-token': token
       })
     };
-    return this.http.get<Auth>(url, httpOptions)
+    return this.http.get<User>(url, httpOptions)
       .pipe(map(res => {
-        this.userService.setUserData(res);
+        this.userService.setUserName(res.name);
       }));
   }
 }
