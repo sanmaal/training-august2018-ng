@@ -1,0 +1,20 @@
+<mdb-card>
+    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+      <!-- Card img -->
+      
+      <mdb-card-img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" alt="Card image cap"> </mdb-card-img>
+      
+      <a routerLink= "/pokemon/{{pokemon.id}}"> <div class="mask"></div> </a>
+    </div>
+    <!--Card content-->
+    <mdb-card-body>
+      <!--Title-->
+      <mdb-card-title> <h4>{{pokemon.id}}</h4> </mdb-card-title>
+  
+      <!--Text-->
+      <mdb-card-text>
+                <span>{{pokemon.name}}</span>
+      </mdb-card-text>
+      <button (click) = "onClick()" href="#" class="btn btn-primary waves-light" [class.selected]="wasClicked" [class.disabled]="wasClicked" mdbWavesEffect><span *ngIf="!wasClicked">Catch</span><span *ngIf="wasClicked">Caught</span></button>
+    </mdb-card-body>
+</mdb-card>

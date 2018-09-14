@@ -1,0 +1,23 @@
+<p *ngIf="!loading" >
+  <mdb-card>
+    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+      <!-- Card img -->
+      <mdb-card-img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" alt="Card image cap"></mdb-card-img>
+      <a> <div class="mask"></div> </a>
+    </div>
+    <!--Card content-->
+    <mdb-card-body>
+      <!--Title-->
+      <mdb-card-title> <h4>{{pokemon.id}}</h4> </mdb-card-title>
+  
+      <!--Text-->
+      <mdb-card-text>
+                <span>{{pokemon.name}}</span>
+      </mdb-card-text>
+    </mdb-card-body>
+</mdb-card>
+
+</p>
+<p *ngIf="loading">
+    <span> Pokemon is downloading..</span>
+</p>
