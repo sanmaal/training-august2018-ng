@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PokemonsService } from '../../services/pokemons.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -10,7 +10,6 @@ export class HomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
   }
 
 }

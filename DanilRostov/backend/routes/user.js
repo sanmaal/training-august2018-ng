@@ -34,8 +34,12 @@ router.delete('/user', checkToken, (req, res) => {
 
 // CATCH POKEMON
 router.put('/catch', checkToken, (req, res) => {
-  const pokemonId = req.query.pokemonId;
-  User.findByIdAndUpdate(req.payload.id, { $push: { pokemons: pokemonId } })
+  const newPokemon = {
+    id: req.body.id,
+    name: req.body.name
+  };
+  console.log(newPokemon); 
+  User.findByIdAndUpdate(req.payload.id, { $push: { pokemons: newPokemon } })
     .then(user => User.findById(user._id))
     .then(user => res.status(200).send(user.pokemons))
 });

@@ -8,12 +8,10 @@ import { PokemonsService } from '../../services/pokemons.service';
   providers: [PokemonsService]
 })
 export class CatchedPageComponent implements OnInit {
-
-  catchedPokemons = [];
-
+  
   constructor(private pokemonsService: PokemonsService) { }
 
   ngOnInit() {
-    
+    this.pokemonsService.getChatchedPokemons().subscribe()
   }
 }

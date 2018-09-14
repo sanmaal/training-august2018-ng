@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { Auth } from '../models/Auth';
 import { User } from '../models/User';
@@ -19,6 +20,7 @@ export class AuthService {
     private http: HttpClient, 
     private userService: UserService,
     private tokenService: TokenService,
+    private router: Router
   ) { }
 
   signIn(data) {
@@ -66,7 +68,6 @@ export class AuthService {
         if (res.isAuth) {
           this.isAuth = true;
           this.userService.setUserName(res.name);
-          alert(`Hello ${res.name}`);
         } else {
           this.isAuth = false;
           this.tokenService.removeToken();
@@ -75,6 +76,7 @@ export class AuthService {
   }
 
   logOut(defaultSignInValue) {
+    this.router.navigate(['/']);
     this.userService.setUserName(defaultSignInValue);
     this.tokenService.removeToken();
     this.isAuth = false;

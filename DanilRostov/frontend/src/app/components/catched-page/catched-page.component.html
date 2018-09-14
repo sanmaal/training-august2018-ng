@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <app-pokemon-card 
-      *ngFor="let p of catchedPokemons" 
+      *ngFor="let p of this.pokemonsService.catchedPokemons" 
       [pokemon]="p" 
       [id]="p.id"
     ></app-pokemon-card>

@@ -10,3 +10,7 @@
 .card-action__btn {
   cursor: pointer;
 }
+
+.card {
+  cursor: pointer;
+}

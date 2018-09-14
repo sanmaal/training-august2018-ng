@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -12,15 +12,22 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
 import { CatchedPageComponent } from './components/catched-page/catched-page.component';
 import { ModalSingInComponent } from './components/modal-sing-in/modal-sing-in.component';
 import { ModalSignUpComponent } from './components/modal-sign-up/modal-sign-up.component';
+import { CanActivateAuthorised } from './guards/can-activate-catched.guard';
 
-const routes = [
+const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
   },
   {
     path: 'catched',
-    component: CatchedPageComponent
+    component: CatchedPageComponent,
+    canActivate: [CanActivateAuthorised]
+  },
+  {
+    path: 'pokemon',
+    component: CatchedPageComponent,
+    canActivate: [CanActivateAuthorised]
   }
 ];
 
@@ -41,7 +48,7 @@ const routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [CanActivateAuthorised],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
