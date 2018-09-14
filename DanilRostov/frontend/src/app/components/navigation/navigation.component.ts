@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalsService } from '../../services/modals.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -8,13 +9,17 @@ import { ModalsService } from '../../services/modals.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private modalsService: ModalsService) { }
+  constructor(
+    private modalsService: ModalsService,
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
   }
 
   onDropDownToggle() {
     this.toggleDropDown();
+    // console.log(this.userService.userName);
   }
 
   onSingInModalToggle() {

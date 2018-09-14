@@ -9,7 +9,7 @@
           class="dropdown-trigger" 
           data-target="dropdown1"
           (click)="onDropDownToggle()"
-        >Sign In<i id="drop-down-icon" class="material-icons right">arrow_drop_down</i></a></li>
+        >{{ this.userService.userName }}<i id="drop-down-icon" class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
       <ul id="dropdown" class="dropdown-content">
         <li><a

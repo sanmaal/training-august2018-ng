@@ -17,7 +17,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email: req.body.email })
     .then(user => {
       if(user) {
-        res.status(500).send({
+        res.status(200).send({
           isAuth: false,
           token: null,
           error: 'this email has already created'
@@ -57,7 +57,7 @@ router.post('/login', (req, res) => {
     .then((user) => {
       const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
       if (!passwordIsValid) {
-        return res.status(401).send({ 
+        return res.status(200).send({ 
           isAuth: false, 
           token: null,
           error: 'bad password'
@@ -72,7 +72,7 @@ router.post('/login', (req, res) => {
         error: null
       });
     })
-    .catch(err => res.status(500).send({
+    .catch(err => res.status(200).send({
       isAuth: false,
       token: null,
       error: 'can not find user'

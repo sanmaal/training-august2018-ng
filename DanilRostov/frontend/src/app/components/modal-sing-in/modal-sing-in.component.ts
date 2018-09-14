@@ -26,8 +26,6 @@ export class ModalSingInComponent implements OnInit {
     this.modalsService.singInModalToggle();
     this.signInData.password = form.value.password;
     this.signInData.email = form.value.email;
-    this.authService.signIn(this.signInData).subscribe(res => {
-      console.log(res.isAuth);
-    });
+    this.authService.signIn(this.signInData).subscribe();
   }
 }

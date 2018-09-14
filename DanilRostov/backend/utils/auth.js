@@ -6,15 +6,17 @@ const checkToken = (req, res, next) => {
   const token = req.headers['x-token'];
   if (!token) {
     return res.status(403).send({ 
-      isAuth: false, 
-      status: 'No token' 
+      isAuth: false,
+      token: token,
+      error: 'No token' 
     });
   }
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(500).send({ 
         isAuth: false, 
-        status: 'Failed to authenticate token' 
+        token: null,
+        error: 'Failed to authenticate token' 
       });
     }
     req.payload = decoded;
