@@ -14,4 +14,8 @@ export class TokenService {
   removeToken() {
     localStorage.removeItem('access_token');
   };
+
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
 }

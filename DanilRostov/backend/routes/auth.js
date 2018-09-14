@@ -31,7 +31,7 @@ router.post('/register', (req, res) => {
       })
         .then(user => {
           const token = jwt.sign({ id: user._id }, config.secret, {
-            expiresIn: 3600
+            expiresIn: 20
           });
           res.status(200).send({
             isAuth: true,
@@ -47,7 +47,10 @@ router.post('/register', (req, res) => {
 // AUTHORIZE USER
 router.get('/authorize', checkToken, (req, res) => {
   User.findById(req.payload.id, { password: 0 })
-    .then(user => res.status(200).send(user))
+    .then(user => res.status(200).send({
+      ...user._doc, 
+      isAuth: true
+    }))
     .catch(err => res.status(500).send(err))
 });
 

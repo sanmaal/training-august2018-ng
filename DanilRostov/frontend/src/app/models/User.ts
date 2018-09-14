@@ -4,5 +4,6 @@ export interface User {
   name: string,
   email: string,
   id: string,
-  pokemons: Array<Pokemon>
+  pokemons: Array<Pokemon>,
+  isAuth: boolean
 };

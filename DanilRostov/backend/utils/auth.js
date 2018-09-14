@@ -7,20 +7,31 @@ const checkToken = (req, res, next) => {
   if (!token) {
     return res.status(403).send({ 
       isAuth: false,
-      token: token,
+      token: null,
       error: 'No token' 
     });
   }
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
-      return res.status(500).send({ 
+      console.log(err);
+      return res.status(200).send({ 
         isAuth: false, 
         token: null,
         error: 'Failed to authenticate token' 
       });
     }
-    req.payload = decoded;
-    next();
+    const expTime = decoded.exp;
+    const currentTime = Math.floor(Date.now() / 1000);
+    if (currentTime >= expTime) {
+      return res.status(200).send({
+        isAuth: false,
+        token: null,
+        error: 'Token is expired'
+      });
+    } else {
+      req.payload = decoded;
+      next();
+    }
   });
 };
 

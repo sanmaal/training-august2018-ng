@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalsService } from '../../services/modals.service';
 import { UserService } from '../../services/user.service';
 import { TokenService } from '../../services/token.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,10 +11,14 @@ import { TokenService } from '../../services/token.service';
 })
 export class NavigationComponent implements OnInit {
 
+  defaultSignInValue = 'Sign In';
+  isShow = true;
+
   constructor(
     private modalsService: ModalsService,
     private userService: UserService,
     private tokenService: TokenService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -40,7 +45,6 @@ export class NavigationComponent implements OnInit {
 
   onLogOut() {
     this.toggleDropDown();
-    this.userService.setUserName('Sign In');
-    this.tokenService.removeToken();
+    this.authService.logOut(this.defaultSignInValue);
   }
 }

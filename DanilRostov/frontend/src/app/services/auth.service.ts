@@ -13,6 +13,8 @@ import { UserService } from '../services/user.service';
 })
 export class AuthService {
 
+  isAuth = false;
+
   constructor(
     private http: HttpClient, 
     private userService: UserService,
@@ -61,7 +63,27 @@ export class AuthService {
     };
     return this.http.get<User>(url, httpOptions)
       .pipe(map(res => {
-        this.userService.setUserName(res.name);
+        if (res.isAuth) {
+          this.isAuth = true;
+          this.userService.setUserName(res.name);
+          alert(`Hello ${res.name}`);
+        } else {
+          this.isAuth = false;
+          this.tokenService.removeToken();
+        }        
       }));
+  }
+
+  logOut(defaultSignInValue) {
+    this.userService.setUserName(defaultSignInValue);
+    this.tokenService.removeToken();
+    this.isAuth = false;
+  }
+
+  checkToken() {
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.authorize(token).subscribe();
+    }
   }
 }
