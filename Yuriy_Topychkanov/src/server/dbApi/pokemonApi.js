@@ -23,7 +23,7 @@ module.exports.findPokemonById = function (id) {
 
 module.exports.getPokemonsCatchedByUser = function (user, startFrom) {
   return User
-    .findOne({ email: user.email }).populate('capturedPokemons.id')
+    .findOne({ email: user.email })
         .then(
             ({ capturedPokemons }) => Promise.resolve(capturedPokemons.slice(startFrom, startFrom + 10)),
             (err) => Promise.reject(err)

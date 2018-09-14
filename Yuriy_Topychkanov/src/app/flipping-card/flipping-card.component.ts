@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthenticationService } from "../services/authentication/authentication.service";
 
 
 @Component({
@@ -10,15 +11,13 @@ export class FlippingCardComponent implements OnInit {
   @Input() data: any;
   additions: any = [];
   flipped: boolean = false;
+  isLoggedIn: boolean = false;
 
-  constructor() {
+  constructor(private auth: AuthenticationService) {
   }
 
   ngOnInit() {
-    /*  const { additions } = this.data;
-      Object.keys(additions).map((name) => {
-        this.additions.push({name: name, value: additions[name]});
-      })*/
+    this.isLoggedIn = this.auth.isLoggedIn();
   }
 
   rotateCard() {

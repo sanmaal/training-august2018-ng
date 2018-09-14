@@ -2,11 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const session = require('express-session');
 const app = express();
 const port = 3000;
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'SECRET' , resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
@@ -15,6 +14,13 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next()
 });
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({ "message": err.name + ": " + err.message });
+  }
+});
+
 require('./routes/pokemonsRoute')(app);
 require('./routes/usersRoute')(app);
 

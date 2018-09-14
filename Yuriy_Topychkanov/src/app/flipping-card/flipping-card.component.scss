@@ -34,7 +34,7 @@
     padding: 2rem;
 
   }
-  .stripe a {
+  .stripe.dark a {
     display: none;
   }
 }
@@ -120,12 +120,11 @@
   flex-direction: row;
   align-items: flex-start;
   padding: 15px;
-  .app-btn-holder {
+  width: 100%;
 
-  }
+
   ul {
     list-style: none;
     width: 100%;
   }
 }
-

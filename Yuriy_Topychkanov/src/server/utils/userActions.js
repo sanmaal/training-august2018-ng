@@ -4,34 +4,45 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 module.exports.register = function registerUser(req, res) {
-    const { email, password } = req.body;
-    const hashPassword = createHash(password);
-    userApi.saveUser(email, hashPassword)
-        .then(
-            () => res.send('user registered')
-        )
-        .catch(
-            () => res.send(`User with email ${email} already registered`)
-        );
+  const { email, password } = req.body;
+  const hashPassword = createHash(password);
+  userApi.saveUser(email, hashPassword)
+    .then(
+      (user) => {
+        let token = user.generateJwt();
+        res.json({ "token": token })
+      })
+    .catch(
+      () => res.send({ error: `User with email ${email} already registered` })
+    );
 };
 
 
-
 module.exports.login = function (req, res, next) {
-    passport.authenticate('local', doLogin)(req, res, next);
+  passport.authenticate('local', doLogin)(req, res, next);
 
-    function doLogin(err, user, info) {
-        if (err) {
-            return next(err)
-        }
-        if (info) {
-            return res.send(info.message);
-        }
-        return req.logIn(
-            user,
-          err => err ? next(err) : res.redirect('/catched-pokemons?page=1')
-        );
+  function doLogin(err, user, info) {
+    let token;
+
+    if (err) {
+      return next(err)
     }
+    if (info) {
+      return res.send(info.message);
+    }
+
+    if (user) {
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token": token
+      });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
+    }
+
+  }
 };
 
 module.exports.logout = function (req, res) {
@@ -39,26 +50,35 @@ module.exports.logout = function (req, res) {
     res.redirect('/');
 };
 
+
+module.exports.readUserProfile = function (req, res) {
+
+  if (req.payload) {
+    userApi.findUserById(req.payload.id)
+      .then((docs) => console.log(docs))
+  }
+};
+
 function authenticateUser(email, password, done) {
     const hashPassword = createHash(password);
 
     userApi.validateUserData(email, hashPassword)
-        .then(
-            (user) => {
-                done(null, user);
-            }
-        )
-        .catch(
-            err => typeof err === "string" ? done(null, false, { message: err }) : done(err)
-        );
+      .then(
+        (user) => {
+          done(null, user);
+        }
+      )
+      .catch(
+        err => typeof err === "string" ? done(null, false, { message: err }) : done(err)
+      );
 }
 
 function createHash(str) {
     try {
-        return crypto.createHmac('sha256', str).update('I love cupcakes').digest('hex');
+      return crypto.createHmac('sha256', str).update('I love cupcakes').digest('hex');
     }
     catch (e) {
-        console.error(e);
+      console.error(e);
     }
 }
 

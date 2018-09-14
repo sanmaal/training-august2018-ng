@@ -13,7 +13,7 @@
               <a class="nav-link waves-light" routerLink="/" routerLinkActive="active" mdbWavesEffect>Pokemons list<span
                 class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isLoggedIn">
               <a class="nav-link waves-light" mdbWavesEffect routerLink="/catched-pokemons" routerLinkActive="active">Catched
                 pokemons</a>
             </li>
@@ -21,8 +21,11 @@
               <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
                 <i class="fa fa-user"></i> Profile</a>
               <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect (click)="toggleForm('Login')">Sign in</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect (click)="toggleForm('Registration')">Register</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="toggleForm('Login')" *ngIf="!isLoggedIn">Sign
+                  in</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="toggleForm('Registration')"
+                   *ngIf="!isLoggedIn">Register</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="userLogout()" *ngIf="isLoggedIn">Logout</a>
               </div>
             </li>
 

@@ -12,6 +12,8 @@ import { MainBlockComponent } from './main-block/main-block.component';
 import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
 import { FlippingCardComponent } from './flipping-card/flipping-card.component';
 import { UserFormsModule } from "./user-forms/user-forms.module";
+import { HttpClientModule } from "@angular/common/http";
+import { CatchedPokemonsListComponent } from './catched-pokemons-list/catched-pokemons-list.component';
 
 
 @NgModule({
@@ -23,11 +25,13 @@ import { UserFormsModule } from "./user-forms/user-forms.module";
     MainBlockComponent,
     PokemonsListComponent,
     FlippingCardComponent,
+    CatchedPokemonsListComponent,
   ],
   imports: [
     BrowserModule,
     UserFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

@@ -4,16 +4,23 @@
     <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{data.pokemonId}}.png"
          class="services">
 
-    <div class="stripe dark">
+    <div class="stripe dark" *ngIf="isLoggedIn">
       <a>
         <p><span>{{data.name | uppercase}}</span><br>
           <i class="fa fa-angle-right"></i>
         </p>
       </a>
     </div>
-    <a class="rotate-btn" (click)="rotateCard()">
+    <a class="rotate-btn" (click)="rotateCard()" *ngIf="isLoggedIn">
       <i class="fa fa-repeat"></i> Learn more
     </a>
+    <div class="stripe light" *ngIf="!isLoggedIn">
+      <a>
+        <p><span>{{data.name | uppercase}}</span><br>
+          <i class="fa fa-angle-right"></i>
+        </p>
+      </a>
+    </div>
   </div>
 
   <div class="app-card-back-side app-card">

@@ -1,12 +1,25 @@
 const User = require('../models/user');
 
 module.exports.saveUser = function (email, password) {
-    const user = new User({ email: email, password: password, capturedPokemons: [] });
-    return user.save()
-        .then(
-            docs => Promise.resolve(docs),
-            err => Promise.reject(err)
-        )
+  const user = new User({ email: email, password: password, capturedPokemons: [] });
+  return user.save()
+    .then(
+      docs => Promise.resolve(docs),
+      err => Promise.reject(err)
+    )
+};
+
+module.exports.findUserById = function (id) {
+  return User
+    .findById(id)
+    .then(
+      (docs) => {
+        Promise.resolve(docs)
+      },
+      (err) => {
+        Promise.reject(err)
+      }
+    );
 };
 
 module.exports.validateUserData = function (email, password) {

@@ -1,6 +1,11 @@
-<form class="text-center border border-light p-5 bg-white" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form class="text-center border border-light p-5 bg-white" [formGroup]="registrationForm" (ngSubmit)="onSubmit()"
+      *ngIf="!registrationComplete">
 
   <p class="h4 mb-4">Sign up</p>
+
+  <div class="form-text text-muted mb-2">
+    {{registrationErrorMessage}}
+  </div>
 
   <!-- E-mail -->
   <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" formControlName="email"
@@ -18,3 +23,6 @@
   </button>
   <hr>
 </form>
+<div class="text-center border border-light p-5 bg-white" *ngIf="registrationComplete">
+  USER REGISTRED
+</div>
