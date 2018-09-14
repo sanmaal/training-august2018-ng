@@ -11,7 +11,7 @@
       <form 
         #signInForm="ngForm" 
         class="col s12"
-        (ngSubmit)="signIn(); signInForm.reset()"
+        (ngSubmit)="signIn(signInForm); signInForm.reset()"
       >
         <div class="row">
           <div class="input-field col s12">

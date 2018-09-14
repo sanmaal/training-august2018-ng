@@ -28,6 +28,8 @@ export class ModalSignUpComponent implements OnInit {
     this.signUpData.name = form.value.userName;
     this.signUpData.password = form.value.password;
     this.signUpData.email = form.value.email;
-    this.authService.signUp(this.signUpData);
+    this.authService.signUp(this.signUpData).subscribe(res => {
+      console.log(res.isAuth);
+    });
   }
 }

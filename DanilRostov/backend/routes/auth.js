@@ -14,22 +14,34 @@ const config = require('../config/keys');
 
 // REGISTER USER
 router.post('/register', (req, res) => {
-  const encodedPass = bcrypt.hashSync(req.body.password, 10);
-  User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: encodedPass
-  })
-  .then(user => {
-    const token = jwt.sign({ id: user._id }, config.secret, { 
-      expiresIn: 3600 
-    });
-    res.status(200).send({ 
-      isAuth: true, 
-      token: token
-    });
-  })
-  .catch(err => res.status(500).send(err));
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if(user) {
+        res.status(500).send({
+          isAuth: false,
+          token: null,
+          error: 'this email has already created'
+        });
+      };
+      const encodedPass = bcrypt.hashSync(req.body.password, 10);
+      User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: encodedPass
+      })
+        .then(user => {
+          const token = jwt.sign({ id: user._id }, config.secret, {
+            expiresIn: 3600
+          });
+          res.status(200).send({
+            isAuth: true,
+            token: token,
+            error: null
+          });
+        })
+        .catch(err => res.status(500).send(err));
+    })
+    .catch(err => res.status(500).send(err));
 });
 
 // AUTHORIZE USER
@@ -47,7 +59,8 @@ router.post('/login', (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({ 
           isAuth: false, 
-          token: null 
+          token: null,
+          error: 'bad password'
         });
       }
       const token = jwt.sign({ id: user._id }, config.secret, {
@@ -55,10 +68,15 @@ router.post('/login', (req, res) => {
       });
       res.status(200).send({ 
         isAuth: true, 
-        token: token 
+        token: token,
+        error: null
       });
     })
-    .catch(err => res.status(500).send('Server error'));
+    .catch(err => res.status(500).send({
+      isAuth: false,
+      token: null,
+      error: 'can not find user'
+    }));
 });
 
 module.exports = router;
