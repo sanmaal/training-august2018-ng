@@ -1,0 +1,46 @@
+/* @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css'); */
+
+.container {
+  width: 300px;
+  height: 330px;
+  margin-top: 60px;
+  padding: 30px 20px;
+  /* border: 1px solid #7f7f7f; */
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: start;
+  justify-content: center;
+}
+
+label {
+  padding: 15px 0 8px 0;
+  font-size: 25px;
+}
+
+input {
+  padding: 5px 40px 5px 5px;
+  font-size: 20px;
+  color: #7f7f7f;
+}
+
+a {
+  text-decoration: underline;
+}
+
+p {
+  padding: 15px 10px;
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 15px;
+  color: #6d9dc5;
+}
+

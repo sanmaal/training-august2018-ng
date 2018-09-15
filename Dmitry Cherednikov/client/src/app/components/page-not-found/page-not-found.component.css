@@ -1,0 +1,24 @@
+h1 {
+  font-size: 70px;
+}
+
+img {
+  min-width: 200px;
+  max-width: 380px;
+
+}
+
+p {
+  font-size: 26px;
+  text-transform: none;
+}
+
+a {
+  display: inline-block;
+  padding: 60px 30px 5px 30px;
+  font-size: 28px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
