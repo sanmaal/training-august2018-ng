@@ -6,11 +6,11 @@ import { AuthService } from '../../services/auth.service';
 import { IMG_UR } from '../../constants/api';
 
 @Component({
-  selector: 'app-pokemon-card',
-  templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.css']
+  selector: 'app-pokemon-card-catched',
+  templateUrl: './pokemon-card-catched.component.html',
+  styleUrls: ['./pokemon-card-catched.component.css']
 })
-export class PokemonCardComponent implements OnInit {
+export class PokemonCardCatchedComponent implements OnInit {
   @Input() pokemon;
   @Input() id;
 
@@ -25,13 +25,4 @@ export class PokemonCardComponent implements OnInit {
   ngOnInit() {
     this.imageUrl = `${IMG_UR}/${this.id}.png`;
   }
-
-  onClick(pokemon) {
-    event.stopImmediatePropagation();
-    this.pokemonsService.catchPokemon(pokemon).subscribe();
-  }
-
-  // onDetailedPokemon(pokemon) {
-  //   this.pokemonsService.setCurrentPokemonId(pokemon);
-  // }
 }

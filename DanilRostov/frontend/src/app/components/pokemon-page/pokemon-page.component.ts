@@ -11,7 +11,9 @@ import { IMG_UR } from '../../constants/api';
   styleUrls: ['./pokemon-page.component.css']
 })
 export class PokemonPageComponent implements OnInit {
-  pokemon;
+  pokemon = {
+    name: null
+  };
   imgUrl;
 
   constructor(
@@ -21,9 +23,12 @@ export class PokemonPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const pokemonId = this.route.paramMap.destination.value.id;
-    this.fetchPokemon(pokemonId);
-    this.imgUrl = `${IMG_UR}/${pokemonId}.png`;
+    this.route.paramMap
+      .subscribe(params => {
+        const pokemonId = params.get('id');
+        this.fetchPokemon(pokemonId);
+        this.imgUrl = `${IMG_UR}/${pokemonId}.png`;
+      });    
   }
 
   fetchPokemon(id) {

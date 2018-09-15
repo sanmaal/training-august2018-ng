@@ -1,15 +1,17 @@
 <div class="col s3">
   <div class="card" (click)="onDetailedPokemon(pokemon)">
-    <div class="card-image">
-      <img src="{{ imageUrl }}">
-      <span class="card-title">{{ pokemon.name }}</span>
-    </div>
-    <div class="card-action">
-      <a 
-        *ngIf="this.authService.isAuth"
-        class="waves-effect waves-light btn catch-btn"
-        (click)="onClick(pokemon)"
-      >Catch!</a>
-    </div>
+    <a [routerLink]="['pokemon', pokemon.id]">
+      <div class="card-image">
+        <img src="{{ imageUrl }}">
+        <span class="card-title">{{ pokemon.name }}</span>
+      </div>
+      <div class="card-action">
+        <a 
+          *ngIf="this.authService.isAuth"
+          class="waves-effect waves-light btn catch-btn"
+          (click)="onClick(pokemon)"
+        >Catch!</a>
+      </div>
+    </a>
   </div>
 </div>

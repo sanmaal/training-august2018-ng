@@ -1,7 +1,7 @@
 "use strict"
 const app = require('./app');
 const cors = require('cors');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5005;
 const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 

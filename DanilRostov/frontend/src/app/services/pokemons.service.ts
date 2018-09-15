@@ -21,7 +21,7 @@ export class PokemonsService {
   ) { }
 
   getPokemons(start) {
-    const url = `http://localhost:5000/pokemons?_start=${start}&_limit=${this.limit}`;
+    const url = `${BASE_URL}/pokemons?_start=${start}&_limit=${this.limit}`;
     return this.http.get<Array<Pokemon>>(url)
       .pipe(map(res => res));
   }

@@ -14,6 +14,7 @@ import { ModalSingInComponent } from './components/modal-sing-in/modal-sing-in.c
 import { ModalSignUpComponent } from './components/modal-sign-up/modal-sign-up.component';
 import { CanActivateAuthorised } from './guards/can-activate-catched.guard';
 import { PokemonPageComponent } from './components/pokemon-page/pokemon-page.component';
+import { PokemonCardCatchedComponent } from './components/pokemon-card-catched/pokemon-card-catched.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
     CatchedPageComponent,
     ModalSingInComponent,
     ModalSignUpComponent,
-    PokemonPageComponent
+    PokemonPageComponent,
+    PokemonCardCatchedComponent
   ],
   imports: [
     BrowserModule,

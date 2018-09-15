@@ -1,0 +1,17 @@
+.card-content {
+  height: 130px;
+}
+
+.card-title {
+  text-transform: capitalize;
+  color: #000 !important;
+  position: static !important;
+}
+
+.card-action__btn {
+  cursor: pointer;
+}
+
+.card {
+  cursor: pointer;
+}
