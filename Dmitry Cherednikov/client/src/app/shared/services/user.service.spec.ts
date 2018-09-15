@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;
-  let httpClient: HttpClientTestingModule;
+  let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -15,7 +15,10 @@ describe('UserService', () => {
       providers: [UserService]
     });
     service = TestBed.get(UserService);
-    httpClient = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get(HttpTestingController);
+  });
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', inject([UserService], (service: UserService) => {

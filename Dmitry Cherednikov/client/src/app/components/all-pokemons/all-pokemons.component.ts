@@ -53,7 +53,7 @@ export class AllPokemonsComponent implements OnInit {
           pokemon.date = data;
         },
         error => {
-          console.log(error);
+          this.errorMessage = error.error;
         }
       )
   }

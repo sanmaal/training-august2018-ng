@@ -36,14 +36,14 @@ router.get('/all', checkAuth, async (req, res) => {
 		.then(data => res.send(data))
 		.catch(err => {
 			// handle errors
-			res.status(500).send({ message: 'Something went wrong' })
+			res.status(500).send('Something went wrong')
 		})
 });
 
 router.get('/all/:id', checkAuth, (req, res) => { // todo
 	Pokemon.findOne({ id: req.params.id})
 		.then(async (pokemon) => {	
-				if (!pokemon) return res.status(404).send({ message: `Not found` })
+				if (!pokemon) return res.status(404).send(`Not found`)
 				
 				//todo fix
 				let user;	
@@ -58,7 +58,7 @@ router.get('/all/:id', checkAuth, (req, res) => { // todo
 		.then(data => res.send(data))
 		.catch(err => {
 			// handle errors
-			res.status(500).send({ message: `Something went wrong` })
+			res.status(500).send(`Something went wrong`)
 		})
 });
 

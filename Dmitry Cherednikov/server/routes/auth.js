@@ -36,12 +36,8 @@ router.post('/signup', async (req, res) => {
 
 	const token = user.generateAuthToken();
 	res
-		// .header('x-auth-token', token)
-		.send({
-			// _id: user._id,
-			// name: user.name,
-			message: 'You are good to go'
-		})
+	.header('x-auth-token', token)
+	.send({ name: user.name, token });
 })
 
 module.exports = router;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonsService } from '../../shared/services/pokemons.service';
+import { UserService } from '../../shared/services/user.service';
 import { Pokemon } from '../../shared/models/pokemon';
 
 @Component({
@@ -10,6 +11,7 @@ import { Pokemon } from '../../shared/models/pokemon';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent implements OnInit {
+  user: any;
   id: number;
   poke: any;
   isFetching: boolean = false;
@@ -19,9 +21,11 @@ export class PokemonComponent implements OnInit {
     private route: ActivatedRoute, 
     private pokemonsService: PokemonsService,
     private location: Location,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
+    this.userService.user.subscribe(user => this.user = user);
     this.route.params
       .subscribe(
         params => {

@@ -50,6 +50,8 @@ export class SignupComponent implements OnInit {
       .signup(this.loginForm.value)
       .subscribe(
         data => {
+          localStorage.setItem('user', JSON.stringify(data));
+          this.userService.userEmitChange(data);
           this.router.navigate(['/all-pokemons']);
         },
         error => {
