@@ -1,6 +1,7 @@
 const userApi = require('../dbApi/userApi');
 const crypto = require('crypto');
 const passport = require('passport');
+const { createJWToken } = require('../libs/auth');
 const LocalStrategy = require('passport-local').Strategy;
 
 module.exports.register = function registerUser(req, res) {
@@ -9,7 +10,7 @@ module.exports.register = function registerUser(req, res) {
   userApi.saveUser(email, hashPassword)
     .then(
       (user) => {
-        let token = user.generateJwt();
+        let token = createJWToken(user);
         res.json({ "token": token })
       })
     .catch(
@@ -32,11 +33,14 @@ module.exports.login = function (req, res, next) {
     }
 
     if (user) {
-      token = user.generateJwt();
-      res.status(200);
-      res.json({
-        "token": token
-      });
+      res.status(200)
+        .json({
+          success: true,
+          token: createJWToken({
+            sessionData: user,
+            maxAge: 3600
+          })
+        });
     } else {
       // If user is not found
       res.status(401).json(info);
@@ -51,13 +55,6 @@ module.exports.logout = function (req, res) {
 };
 
 
-module.exports.readUserProfile = function (req, res) {
-
-  if (req.payload) {
-    userApi.findUserById(req.payload.id)
-      .then((docs) => console.log(docs))
-  }
-};
 
 function authenticateUser(email, password, done) {
     const hashPassword = createHash(password);

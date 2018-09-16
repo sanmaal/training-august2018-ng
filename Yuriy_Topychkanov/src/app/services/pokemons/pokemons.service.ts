@@ -17,11 +17,11 @@ export class PokemonsService {
 
   getCatchedPokemonsPerPage(page) {
     const token = this.auth.getToken();
+    console.log(token);
     if (token) {
       this.auth.request(
         this.http.get(
-          `http://localhost:3000/catched-pokemons/?page=${page}`,
-          { headers: { Authorization: `Bearer ${token}` } }
+          `http://localhost:3000/catched-pokemons/?page=${page}&token=${token}`,
         )
       )
         .subscribe((data) => console.log(data))
