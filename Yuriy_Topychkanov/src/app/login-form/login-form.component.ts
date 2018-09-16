@@ -10,8 +10,8 @@ import { AuthenticationService } from "../services/authentication/authentication
   styleUrls: [ './login-form.component.scss' ]
 })
 export class LoginFormComponent {
-  authorizedSuccessFull: boolean = false;
-
+  authorizedSuccessfull: boolean = false;
+  errorMessage: string;
   authorizationForm = new FormGroup({
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.pattern('^[a-zA-Z0-9]{8,30}$')),
@@ -25,7 +25,10 @@ export class LoginFormComponent {
       this.userFormsService.authorizeUser(this.authorizationForm.value)
         .subscribe((data: any) => {
           if (data.token) {
-            this.authorizedSuccessFull = true;
+            this.authorizedSuccessfull = true;
+          }
+          if (data.error) {
+            this.errorMessage = data.error;
           }
         });
 

@@ -1,7 +1,8 @@
-<form class="text-center border border-light p-5 bg-white" [formGroup]="authorizationForm" (ngSubmit)="onSubmit()">
+<form class="text-center border border-light p-5 bg-white" [formGroup]="authorizationForm" (ngSubmit)="onSubmit()"
+      *ngIf="!authorizedSuccessfull">
 
   <p class="h4 mb-4">Sign in</p>
-
+  {{errorMessage}}
   <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" formControlName="email" placeholder="E-mail"
          required>
 
@@ -15,3 +16,6 @@
   </button>
   <hr>
 </form>
+<div class="text-center border border-light p-5 bg-white" *ngIf="authorizedSuccessfull">
+  You successfully authorized
+</div>

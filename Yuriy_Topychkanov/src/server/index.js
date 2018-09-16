@@ -14,12 +14,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next()
 });
-app.use(function (err, req, res, next) {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401);
-    res.json({ "message": err.name + ": " + err.message });
-  }
-});
 
 require('./routes/pokemonsRoute')(app);
 require('./routes/usersRoute')(app);

@@ -23,7 +23,7 @@ module.exports.findPokemonById = function (id) {
 
 module.exports.getPokemonsCatchedByUser = function (user, startFrom) {
   return User
-    .findOne({ email: user.email })
+    .findOne({ email: user.email }).populate('capturedPokemons.pokemon')
         .then(
             ({ capturedPokemons }) => Promise.resolve(capturedPokemons.slice(startFrom, startFrom + 10)),
             (err) => Promise.reject(err)
@@ -33,12 +33,12 @@ module.exports.getPokemonsCatchedByUser = function (user, startFrom) {
 module.exports.addPokemonToUser = function (user, id, timestamp) {
   return User
     .updateOne(
-        { $and: [ { email: user.email }, { 'capturedPokemons.id': { $ne: id } } ] },
+      { $and: [ { email: user.email }, { 'capturedPokemons.id': { $ne: id } } ] },
       { $push: { capturedPokemons: { id: id, timestamp: timestamp } } })
-        .then(
-            (res) => res.n ? Promise.resolve('pokemon catched') : Promise.reject('can not catch pokemon twice'),
-            err => Promise.reject(err)
-        );
+    .then(
+      (res) => console.log(res),
+      err => Promise.reject(err)
+    );
 };
 
 module.exports.removePokemonFromUser = function (user, id) {

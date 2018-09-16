@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from "../services/authentication/authentication.service";
+import { PokemonsService } from "../services/pokemons/pokemons.service";
 
 
 @Component({
@@ -13,8 +14,17 @@ export class FlippingCardComponent implements OnInit {
   flipped: boolean = false;
   isLoggedIn: boolean = false;
 
-  constructor(private auth: AuthenticationService) {
+  constructor(private auth: AuthenticationService, private pokemonsService: PokemonsService) {
   }
+
+  catchPokemon(id) {
+    this.pokemonsService.catchPokemon(id).subscribe((data) => console.log(data));
+  }
+
+  releasePokemon(id) {
+    this.pokemonsService.releasePokemon(id).subscribe((data) => console.log(data))
+  }
+
 
   ngOnInit() {
     this.isLoggedIn = this.auth.isLoggedIn();

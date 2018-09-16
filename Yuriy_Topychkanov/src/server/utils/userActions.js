@@ -14,7 +14,7 @@ module.exports.register = function registerUser(req, res) {
         res.json({ "token": token })
       })
     .catch(
-      () => res.send({ error: `User with email ${email} already registered` })
+      (err) => console.log(err)
     );
 };
 
@@ -66,7 +66,7 @@ function authenticateUser(email, password, done) {
         }
       )
       .catch(
-        err => typeof err === "string" ? done(null, false, { message: err }) : done(err)
+        err => done(null, false, { message: err })
       );
 }
 

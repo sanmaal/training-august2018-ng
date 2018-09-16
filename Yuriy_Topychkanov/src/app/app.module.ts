@@ -14,6 +14,7 @@ import { FlippingCardComponent } from './flipping-card/flipping-card.component';
 import { UserFormsModule } from "./user-forms/user-forms.module";
 import { HttpClientModule } from "@angular/common/http";
 import { CatchedPokemonsListComponent } from './catched-pokemons-list/catched-pokemons-list.component';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CatchedPokemonsListComponent } from './catched-pokemons-list/catched-po
     PokemonsListComponent,
     FlippingCardComponent,
     CatchedPokemonsListComponent,
+    PokemonDetailComponent,
   ],
   imports: [
     BrowserModule,

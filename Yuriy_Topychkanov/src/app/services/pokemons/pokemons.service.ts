@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AuthenticationService } from "../authentication/authentication.service";
 import { Router } from "@angular/router";
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/x-www-form-urlencoded',
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +23,32 @@ export class PokemonsService {
 
   getCatchedPokemonsPerPage(page) {
     const token = this.auth.getToken();
-    console.log(token);
     if (token) {
-      this.auth.request(
+      return this.auth.request(
         this.http.get(
           `http://localhost:3000/catched-pokemons/?page=${page}&token=${token}`,
         )
       )
-        .subscribe((data) => console.log(data))
     }
   }
 
+  catchPokemon(id) {
+    const token = this.auth.getToken();
+    if (token) {
+      const formData = { id: id, token: token };
+      return this.auth.request(
+        this.http.post('http://localhost:3000/catch-pokemon/', formData, httpOptions)
+      )
+    }
+  }
+
+  releasePokemon(id) {
+    const token = this.auth.getToken();
+    if (token) {
+      const formData = { id: id, token: token };
+      return this.auth.request(
+        this.http.post('http://localhost:3000/catch-pokemon/', formData, httpOptions)
+      )
+    }
+  }
 }

@@ -46,6 +46,7 @@ export class AuthenticationService {
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     if (user) {
+      console.log(user);
       return user.exp > Date.now() / 1000;
     } else {
       return false;
@@ -53,8 +54,10 @@ export class AuthenticationService {
   }
 
   public request(base): Observable<any> {
+
     const request = base.pipe(
       map((data: any) => {
+
         if (data.token) {
           this.saveToken(data.token);
         }

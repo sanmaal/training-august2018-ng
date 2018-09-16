@@ -13,13 +13,22 @@ export class CatchedPokemonsListComponent implements OnInit {
   constructor(private pokemonsService: PokemonsService) {
   }
 
-  addPokemons() {
-    this.pokemonsService.getCatchedPokemonsPerPage(this.page)
+  initPokemons() {
+    this.pokemonsService.getCatchedPokemonsPerPage(1)
+      .subscribe((pokemons) => {
+        this.pokemons = pokemons;
+        this.pokemons.map((pokemon, key) => {
+          pokemon.name = pokemon.pokemon.name;
+          return pokemon
+        })
+      });
   }
 
   ngOnInit() {
-    this.addPokemons()
+    this.initPokemons()
   }
+
+
 
   /* loadMore() {
      this.page += 1;
