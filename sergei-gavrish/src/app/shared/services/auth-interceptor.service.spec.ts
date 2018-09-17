@@ -5,6 +5,8 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 
+import { environment } from '../../../environments/environment';
+
 import { AuthInterceptor } from './auth-interceptor.service';
 import { PokemonsService } from './pokemons.service';
 
@@ -40,7 +42,7 @@ describe('AuthInterceptorService', () => {
       expect(response).toBeTruthy();
     });
     const httpRequest = httpMock.expectOne(
-      `http://localhost:3000/pokemons/catched/?_page=1&_limit=12`
+      `${environment.host}/pokemons/catched/?_page=1&_limit=12`
     );
     expect(httpRequest.request.headers.has('x-access-token'));
   });
@@ -51,7 +53,7 @@ describe('AuthInterceptorService', () => {
       expect(response).toBeTruthy();
     });
     const httpRequest = httpMock.expectOne(
-      `http://localhost:3000/pokemons/catched/?_page=1&_limit=12`
+      `${environment.host}/pokemons/catched/?_page=1&_limit=12`
     );
     expect(httpRequest.request.headers.has('Content-Type'));
   });
