@@ -47,7 +47,16 @@ export class PokemonsService {
     if (token) {
       const formData = { id: id, token: token };
       return this.auth.request(
-        this.http.post('http://localhost:3000/catch-pokemon/', formData, httpOptions)
+        this.http.post('http://localhost:3000/release-pokemon/', formData, httpOptions)
+      )
+    }
+  }
+
+  getPokemonDetailPage(id) {
+    const token = this.auth.getToken();
+    if (token) {
+      return this.auth.request(
+        this.http.get(`http://localhost:3000/pokemon/${id}?token=${token}`)
       )
     }
   }

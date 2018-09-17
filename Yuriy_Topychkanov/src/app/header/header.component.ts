@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private formsService: UserFormsService, private auth: AuthenticationService) {
+    this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data);
   }
 
   toggleForm(name) {
@@ -24,9 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.auth.isLoggedIn()) {
-      this.isLoggedIn = true;
-    }
+
   }
 
 }

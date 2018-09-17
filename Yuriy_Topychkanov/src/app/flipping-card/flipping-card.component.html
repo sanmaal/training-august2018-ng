@@ -21,6 +21,9 @@
         </p>
       </a>
     </div>
+    <a class="rotate-btn app-rotate-btn" *ngIf="!isLoggedIn">
+      PLEASE AUTHORIZE TO LEARN MORE
+    </a>
   </div>
 
   <div class="app-card-back-side app-card">
@@ -28,15 +31,17 @@
     <div class="app-content-holder">
       <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{data.id}}.png"
            class="services">
-      <ul>
-        <li *ngFor="let addition of additions">
-          {{addition.name | uppercase}}: {{addition.value}}
-        </li>
-      </ul>
+      <div class="app-date-holder" *ngIf="timestampOfCapture">
+        DATE OF CAPTURE: {{timestampOfCapture | date:'medium' | uppercase }}
+
+      </div>
     </div>
     <div class="app-btn-holder">
-      <button type="button" class="btn btn-indigo" (click)="catchPokemon(data.id)">CATCH</button>
-      <button type="button" class="btn btn-indigo">DETAIL</button>
+      <button type="button" class="btn btn-indigo" (click)="catchPokemon(data.id)" *ngIf="!pokemonCatched">CATCH
+      </button>
+      <button type="button" class="btn btn-indigo" (click)="releasePokemon(data.id)" *ngIf="pokemonCatched">RELEASE
+      </button>
+      <button type="button" class="btn btn-indigo" (click)="moveToPokemonDetail(data.id)">DETAIL</button>
     </div>
     <div class="stripe dark">
       <a>
@@ -47,7 +52,7 @@
     </div>
 
     <a class="rotate-btn" (click)="rotateCard()">
-      <i class="fa fa-undo"></i> Click here to rotate back</a>
+      <i class="fa fa-undo"></i> CLICK HERE TO ROTATE BACK</a>
 
   </div>
 </div>

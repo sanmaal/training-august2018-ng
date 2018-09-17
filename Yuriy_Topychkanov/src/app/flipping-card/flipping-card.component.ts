@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from "../services/authentication/authentication.service";
 import { PokemonsService } from "../services/pokemons/pokemons.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -13,8 +14,11 @@ export class FlippingCardComponent implements OnInit {
   additions: any = [];
   flipped: boolean = false;
   isLoggedIn: boolean = false;
+  pokemonCatched: boolean = false;
+  timestampOfCapture: Number;
 
-  constructor(private auth: AuthenticationService, private pokemonsService: PokemonsService) {
+  constructor(private auth: AuthenticationService, private pokemonsService: PokemonsService, private router: Router) {
+    this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data);
   }
 
   catchPokemon(id) {
@@ -25,9 +29,17 @@ export class FlippingCardComponent implements OnInit {
     this.pokemonsService.releasePokemon(id).subscribe((data) => console.log(data))
   }
 
+  moveToPokemonDetail(id) {
+    this.router.navigate([ `/pokemon/${id}` ]);
+  }
 
   ngOnInit() {
-    this.isLoggedIn = this.auth.isLoggedIn();
+    if (this.data.pokemon) {
+      this.pokemonCatched = true;
+    }
+    if (this.data.timestamp) {
+      this.timestampOfCapture = this.data.timestamp;
+    }
   }
 
   rotateCard() {

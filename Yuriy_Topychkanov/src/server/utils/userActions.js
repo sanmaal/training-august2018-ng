@@ -9,12 +9,9 @@ module.exports.register = function registerUser(req, res) {
   const hashPassword = createHash(password);
   userApi.saveUser(email, hashPassword)
     .then(
-      (user) => {
-        let token = createJWToken(user);
-        res.json({ "token": token })
-      })
+      () => res.status(200).json({ status: 'success' }))
     .catch(
-      (err) => console.log(err)
+      () => res.json({ error: 'User with specified email already registered' })
     );
 };
 
@@ -33,13 +30,11 @@ module.exports.login = function (req, res, next) {
     }
 
     if (user) {
+      const token = createJWToken({ sessionData: user, maxAge: 3600 });
       res.status(200)
         .json({
           success: true,
-          token: createJWToken({
-            sessionData: user,
-            maxAge: 3600
-          })
+          token: token
         });
     } else {
       // If user is not found

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
   private token: string;
+  private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isUserLoggedIn());
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -16,6 +17,7 @@ export class AuthenticationService {
   public saveToken(token: string): void {
     localStorage.setItem('mean-token', token);
     this.token = token;
+    this.isLoggedIn$().next(true);
   }
 
   public getToken(): string {
@@ -26,6 +28,7 @@ export class AuthenticationService {
   }
 
   public logout(): void {
+    this.isLoggedIn$().next(false);
     this.token = '';
     window.localStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');
@@ -43,18 +46,18 @@ export class AuthenticationService {
     }
   }
 
-  public isLoggedIn(): boolean {
+  private isUserLoggedIn() {
     const user = this.getUserDetails();
-    if (user) {
-      console.log(user);
-      return user.exp > Date.now() / 1000;
-    } else {
-      return false;
-    }
+    return user ? user.exp > Date.now() / 1000 : false;
+
+  }
+
+  public isLoggedIn$(): BehaviorSubject<boolean> {
+    return this.isLoggedIn;
   }
 
   public request(base): Observable<any> {
-
+    this.isLoggedIn$().next(this.isUserLoggedIn());
     const request = base.pipe(
       map((data: any) => {
 
@@ -64,6 +67,7 @@ export class AuthenticationService {
         return data;
       })
     );
+
     return request;
   }
 

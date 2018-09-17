@@ -16,6 +16,7 @@ export class RegistrationFormComponent {
   registrationForm = new FormGroup({
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.pattern('^[a-zA-Z0-9]{8,30}$')),
+    confirmPassword: new FormControl('', Validators.pattern('^[a-zA-Z0-9]{8,30}$'))
   });
 
 
@@ -24,9 +25,14 @@ export class RegistrationFormComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
+      const { password, confirmPassword } = this.registrationForm.value;
+      if (password !== confirmPassword) {
+        this.registrationErrorMessage = 'Passwords do not match';
+        return false;
+      }
       this.userFormsService.registerUser(this.registrationForm.value)
         .subscribe((data: any) => {
-          if (data.token) {
+          if (data.status === 'success') {
             this.registrationCompleteMessage = data.message;
             this.registrationComplete = true;
           }

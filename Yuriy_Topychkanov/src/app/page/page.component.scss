@@ -1,3 +1,10 @@
 .left-menu {
   padding-left: 0;
 }
+
+.app-page-holder {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 780px;
+}

@@ -9,7 +9,7 @@
         <h5 class="title">Links</h5>
         <ul class="list-unstyled">
           <li><a routerLink="/" routerLinkActive="active">Pokemons</a></li>
-          <li><a routerLink="/catched-pokemons" routerLinkActive="active">Catched pokemons</a></li>
+          <li><a routerLink="/catched-pokemons" routerLinkActive="active" *ngIf="isLoggedIn">Catched pokemons</a></li>
         </ul>
       </div>
     </div>

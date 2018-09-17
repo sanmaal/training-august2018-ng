@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from "../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-footer',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './footer.component.scss' ]
 })
 export class FooterComponent implements OnInit {
+  private isLoggedIn: boolean = false;
 
-  constructor() {
+  constructor(private auth: AuthenticationService) {
+    this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data)
   }
 
   ngOnInit() {

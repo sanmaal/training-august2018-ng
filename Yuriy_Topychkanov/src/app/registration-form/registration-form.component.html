@@ -17,6 +17,8 @@
   <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
     At least 8 characters/digits
   </small>
+  <input type="password" id="defaultRegisterFormPasswordConfirm" class="form-control" formControlName="confirmPassword"
+         placeholder="Confirm password" required>
 
   <!-- Sign up button -->
   <button mdbBtn color="info" block="true" class="my-4" [disabled]="!registrationForm.valid" type="submit">Sign in
