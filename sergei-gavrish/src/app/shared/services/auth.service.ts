@@ -18,7 +18,7 @@ export class AuthService {
   private isLoggedIn = new BehaviorSubject<boolean>(false);
   redirectUrl: string;
 
-  get isLoggedIn$() {
+  get isLoggedIn$(): Observable<boolean> {
     return this.isLoggedIn.asObservable();
   }
 

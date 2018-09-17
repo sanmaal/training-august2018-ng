@@ -17,55 +17,59 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PokemonsService {
-  private pokemons: Pokemon[] = [];
-  private catchedPokemons: Pokemon[] = [];
+  private _pokemons: Pokemon[] = [];
+  private _catchedPokemons: Pokemon[] = [];
 
-  private pokemonsPage = 1;
-  private catchedPokemonsPage = 1;
+  private _pokemonsPage = 1;
+  private _catchedPokemonsPage = 1;
   private limit = 12;
 
-  get pokemons$() {
-    return this.pokemons;
+  get pokemons(): Pokemon[] {
+    return this._pokemons;
   }
 
-  get catchedPokemons$() {
-    return this.catchedPokemons;
+  get catchedPokemons(): Pokemon[] {
+    return this._catchedPokemons;
   }
 
-  set pokemonsPage$(numb: number) {
-    this.pokemonsPage += numb;
+  set pokemonsPage(numb: number) {
+    this._pokemonsPage += numb;
   }
 
-  set catchedPokemonsPage$(numb: number) {
-    this.catchedPokemonsPage += numb;
+  set catchedPokemonsPage(numb: number) {
+    this._catchedPokemonsPage += numb;
   }
 
-  get pokemonsPage$() {
-    return this.pokemonsPage;
+  get pokemonsPage(): number {
+    return this._pokemonsPage;
   }
 
-  get catchedPokemonsPage$() {
-    return this.catchedPokemonsPage;
+  get catchedPokemonsPage(): number {
+    return this._catchedPokemonsPage;
   }
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(`${environment.host}/pokemons/?_page=${this.pokemonsPage}&_limit=${this.limit}`)
+    return this.http.get<Pokemon[]>(`${environment.host}/pokemons/?_page=${this._pokemonsPage}&_limit=${this.limit}`)
       .pipe(
-        tap((pokemons: Pokemon[]) => this.pokemons = this.pokemons.concat(...pokemons)),
+        tap((pokemons: Pokemon[]) => this._pokemons = this._pokemons.concat(...pokemons)),
         catchError(this.handleError('getPokemons', []))
       );
   }
 
   getCathcedPokemons(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(
-      `${environment.host}/pokemons/catched/?_page=${this.catchedPokemonsPage}&_limit=${this.limit}`,
+      `${environment.host}/pokemons/catched/?_page=${this._catchedPokemonsPage}&_limit=${this.limit}`,
       httpOptions
     )
       .pipe(
-        tap((pokemons: Pokemon[]) => this.catchedPokemons = this.catchedPokemons.concat(...pokemons)),
+        tap((pokemons: Pokemon[]) => {
+          this._catchedPokemons = this._catchedPokemons.concat(
+            pokemons.filter(pokemon => {
+              return !this._catchedPokemons.some(cathed => cathed._id === pokemon._id);
+          }));
+        }),
         catchError(this.handleError('getPokemons', []))
       );
   }
@@ -83,13 +87,13 @@ export class PokemonsService {
       .set('id', id);
     return this.http.put(`${environment.host}/pokemons/catch`, body, httpOptions)
       .pipe(
-        tap((pokemon: Pokemon[]) => this.catchedPokemons = this.catchedPokemons.concat(...pokemon)),
+        tap((pokemon: Pokemon[]) => this._catchedPokemons = this._catchedPokemons.concat(...pokemon)),
         catchError(this.handleError<any>(`catchPokemon ${id}`))
       );
   }
 
   checkCatched(id: string): void | Pokemon {
-    return this.catchedPokemons.find( pokemon =>
+    return this._catchedPokemons.find( pokemon =>
       pokemon._id === id );
   }
 

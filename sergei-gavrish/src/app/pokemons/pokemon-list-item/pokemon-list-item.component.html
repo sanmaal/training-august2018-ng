@@ -6,7 +6,7 @@
   <button
     (click)="catchPokemon(pokemon._id)"
     *ngIf="isLoggedIn"
-    [disabled]="checkCatched(pokemon._id)"
+    [hidden]="checkCatched(pokemon._id)"
   >Catch</button>
   <p *ngIf="checkCatched(pokemon._id)">{{getDate(pokemon._id)}}</p>
 </li>

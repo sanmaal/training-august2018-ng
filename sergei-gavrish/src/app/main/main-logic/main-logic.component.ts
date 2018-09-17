@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -11,8 +12,10 @@ import { AuthService } from '../../shared/services/auth.service';
 export class MainLogicComponent implements OnInit {
   @Input() isLoggedIn$: Observable<boolean>;
 
-  constructor(private service: AuthService) {
-  }
+  constructor(
+    private service: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.service.isLoggedIn$;
@@ -20,7 +23,7 @@ export class MainLogicComponent implements OnInit {
 
   logout(): void {
     this.service.logout();
-    // TODO: redirect
+    this.router.navigate(['/pokemons']);
   }
 
 }

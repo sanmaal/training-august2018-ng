@@ -5,16 +5,16 @@ import { AuthService } from '../../shared/services/auth.service';
 import { Pokemon } from '../../shared/models/pokemon';
 
 @Component({
-  selector: 'pokemons-list',
+  selector: 'app-catched-list',
   template: `
-    <pokemons-page
-      [pokemons]="getPokemons()"
-      (loadPageClick)="loadPage($event)"
-      [isLoggedIn]="auth.isLoggedIn$ | async"
-    ></pokemons-page>
+  <pokemons-page
+    [pokemons]="getPokemons()"
+    (loadPageClick)="loadPage($event)"
+    [isLoggedIn]="auth.isLoggedIn$ | async"
+  ></pokemons-page>
   `,
 })
-export class PokemonsListComponent implements OnInit {
+export class CatchedListComponent implements OnInit {
 
   constructor(
     private service: PokemonsService,
@@ -26,7 +26,7 @@ export class PokemonsListComponent implements OnInit {
   }
 
   checkIfAny(): void {
-    if (!this.service.pokemons.length) {
+    if (!this.service.catchedPokemons.length) {
       this.loadMore();
     } else {
       this.getPokemons();
@@ -34,16 +34,16 @@ export class PokemonsListComponent implements OnInit {
   }
 
   loadMore(): void {
-    this.service.getPokemons()
+    this.service.getCathcedPokemons()
       .subscribe(_ => this.getPokemons());
   }
 
   getPokemons(): Pokemon[] {
-    return this.service.pokemons;
+    return this.service.catchedPokemons;
   }
 
   loadPage(): void {
-    this.service.pokemonsPage = 1;
+    this.service.catchedPokemonsPage = 1;
     this.loadMore();
   }
 

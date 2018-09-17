@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { PokemonsListPageComponent } from './pokemons-list-page.component';
+import { PokemonsPageComponent } from './pokemons-page.component';
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component'
 
 
-describe('PokemonsListPageComponent', () => {
-  let component: PokemonsListPageComponent;
-  let fixture: ComponentFixture<PokemonsListPageComponent>;
+describe('PokemonsPageComponent', () => {
+  let component: PokemonsPageComponent;
+  let fixture: ComponentFixture<PokemonsPageComponent>;
 
   const fakeActivatedRoute = {
     snapshot: {
@@ -23,7 +23,7 @@ describe('PokemonsListPageComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
       ],
-      declarations: [ PokemonsListPageComponent, PokemonListItemComponent ],
+      declarations: [ PokemonsPageComponent, PokemonListItemComponent ],
       providers: [
         {
           provide: ActivatedRoute,
@@ -35,7 +35,7 @@ describe('PokemonsListPageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PokemonsListPageComponent);
+    fixture = TestBed.createComponent(PokemonsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
