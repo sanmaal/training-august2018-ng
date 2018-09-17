@@ -13,9 +13,7 @@ export class AppComponent {
   constructor(
     private sessionService: SessionService,
     private router: Router
-  ) {
-    this.sessionService.isTokenExpired();
-  }
+  ) {}
 
   logOut = () => {
     this.sessionService.logOut();

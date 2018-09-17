@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule} from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,13 +21,19 @@ import { AuthGuard } from './shared/auth.guard';
     BrowserAnimationsModule,
   ],
   providers: [
+    SessionService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
     },
-    SessionService,
-    AuthGuard
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (sessionService: SessionService) => () => sessionService.isTokenExpired(),
+      deps: [SessionService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
