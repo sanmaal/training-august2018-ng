@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -17,7 +18,6 @@ export class PokemonPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private service: PokemonsService,
     private auth: AuthService,
   ) { }
@@ -46,10 +46,6 @@ export class PokemonPageComponent implements OnInit {
   getDate(id: string): Date {
     const pokemon = this.service.checkCatched(id);
     if (pokemon) { return pokemon.date; }
-  }
-
-  checkAuth(): Observable<boolean> {
-    return this.auth.isLoggedIn$;
   }
 
 }

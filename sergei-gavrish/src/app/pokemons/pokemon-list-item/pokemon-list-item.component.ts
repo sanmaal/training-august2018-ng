@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PokemonsService } from '../../shared/services/pokemons.service';
@@ -9,7 +9,7 @@ import { Pokemon } from '../../shared/models/pokemon';
   templateUrl: './pokemon-list-item.component.html',
   styleUrls: ['./pokemon-list-item.component.css']
 })
-export class PokemonListItemComponent implements OnInit {
+export class PokemonListItemComponent {
   @Input() pokemon: Pokemon;
   @Input() isLoggedIn: boolean;
 
@@ -18,9 +18,6 @@ export class PokemonListItemComponent implements OnInit {
     private router: Router,
     private service: PokemonsService,
   ) { }
-
-  ngOnInit() {
-  }
 
   catchPokemon(pokemon): void {
     this.service.catchPokemon(pokemon)

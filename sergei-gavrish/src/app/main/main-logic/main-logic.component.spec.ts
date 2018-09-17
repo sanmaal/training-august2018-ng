@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MainLogicComponent } from './main-logic.component';
 import { MainViewComponent } from '../main-view/main-view.component';
-import { NgLetModule } from '../../shared/directives/ngLet';
 
 describe('MainLogicComponent', () => {
   let component: MainLogicComponent;
@@ -12,8 +12,8 @@ describe('MainLogicComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         HttpClientTestingModule,
-        NgLetModule,
       ],
       declarations: [
         MainLogicComponent,

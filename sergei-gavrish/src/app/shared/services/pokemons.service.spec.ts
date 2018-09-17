@@ -61,21 +61,21 @@ describe('PokemonsService', () => {
   }));
 
   it('get pokemons', () => {
-    expect(pokemonsService.pokemons$).toEqual([]);
+    expect(pokemonsService.pokemons).toEqual([]);
   });
 
   it('get catchedPokemons', () => {
-    expect(pokemonsService.catchedPokemons$).toEqual([]);
+    expect(pokemonsService.catchedPokemons).toEqual([]);
   });
 
   it('set pokemonsPage', () => {
-    pokemonsService.pokemonsPage$ = 1;
-    expect(pokemonsService.pokemonsPage$).toEqual(2);
+    pokemonsService.pokemonsPage = 1;
+    expect(pokemonsService.pokemonsPage).toEqual(2);
   });
 
   it('set catchedPokemonsPage', () => {
-    pokemonsService.catchedPokemonsPage$ = 1;
-    expect(pokemonsService.catchedPokemonsPage$).toEqual(2);
+    pokemonsService.catchedPokemonsPage = 1;
+    expect(pokemonsService.catchedPokemonsPage).toEqual(2);
   });
 
   it('should return expected pokemons (HttpClient called once)', () => {

@@ -1,12 +1,12 @@
-<li>
-  <a routerLink="/pokemon/{{pokemon._id}}">
+<li class="pokemon">
+  <a class="pokemon-link" routerLink="/pokemon/{{pokemon._id}}">
     <img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" alt={{pokemon.name}}>
     <span>{{pokemon.name}}</span>
   </a>
   <button
     (click)="catchPokemon(pokemon._id)"
     *ngIf="isLoggedIn"
-    [disabled]="checkCatched(pokemon._id)"
+    [hidden]="checkCatched(pokemon._id)"
   >Catch</button>
   <p *ngIf="checkCatched(pokemon._id)">{{getDate(pokemon._id)}}</p>
 </li>

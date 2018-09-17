@@ -1,0 +1,19 @@
+<form 
+  class="wrap"
+  [formGroup]="profileForm" 
+  (ngSubmit)="onSubmit()">
+  <label>
+    Login:
+    <input type="text" formControlName="login" required>
+  </label>
+  <label>
+    Password:
+    <input type="password" formControlName="password" required>
+  </label>
+  <label>
+    Confirm password:
+    <input type="password" formControlName="confirmPassword" required>
+  </label>
+  <div *ngIf="profileForm.controls.confirmPassword.hasError('wrongPassword') && (profileForm.controls.confirmPassword.dirty || profileForm.controls.confirmPassword.touched)">Password not match</div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>

@@ -4,13 +4,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PokemonsService } from '../../shared/services/pokemons.service';
 import { AuthService } from '../../shared/services/auth.service';
 
-import { PokemonsListComponent } from './pokemons-list.component';
+import { CatchedListComponent } from './catched-list.component';
 import { PokemonsPageComponent } from '../pokemons-page/pokemons-page.component';
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';
 
-describe('PokemonsListComponent', () => {
-  let component: PokemonsListComponent;
-  let fixture: ComponentFixture<PokemonsListComponent>;
+describe('CatchedListComponent', () => {
+  let component: CatchedListComponent;
+  let fixture: ComponentFixture<CatchedListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('PokemonsListComponent', () => {
         RouterTestingModule,
       ],
       declarations: [
-        PokemonsListComponent,
+        CatchedListComponent,
         PokemonsPageComponent,
         PokemonListItemComponent,
       ],
@@ -32,7 +32,7 @@ describe('PokemonsListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PokemonsListComponent);
+    fixture = TestBed.createComponent(CatchedListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -41,7 +41,7 @@ describe('PokemonsListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return pokemons', () => {
+  it('should return catched pokemons', () => {
     expect(component.getPokemons()).toEqual([]);
   });
 
