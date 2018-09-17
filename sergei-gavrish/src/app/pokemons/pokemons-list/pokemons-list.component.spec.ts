@@ -7,7 +7,6 @@ import { AuthService } from '../../shared/services/auth.service';
 import { PokemonsListComponent } from './pokemons-list.component';
 import { PokemonsPageComponent } from '../pokemons-page/pokemons-page.component';
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';
-import { NgLetModule } from '../../shared/directives/ngLet';
 
 describe('PokemonsListComponent', () => {
   let component: PokemonsListComponent;
@@ -16,7 +15,6 @@ describe('PokemonsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        NgLetModule,
         HttpClientTestingModule,
         RouterTestingModule,
       ],

@@ -7,7 +7,6 @@ import { AuthService } from '../../shared/services/auth.service';
 import { CatchedListComponent } from './catched-list.component';
 import { PokemonsPageComponent } from '../pokemons-page/pokemons-page.component';
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';
-import { NgLetModule } from '../../shared/directives/ngLet';
 
 describe('CatchedListComponent', () => {
   let component: CatchedListComponent;
@@ -16,7 +15,6 @@ describe('CatchedListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        NgLetModule,
         HttpClientTestingModule,
         RouterTestingModule,
       ],
