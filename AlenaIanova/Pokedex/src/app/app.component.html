@@ -5,15 +5,15 @@
       <div class="header__pokemons-buttons">
         POKEDEX
         <button mat-button routerLink="/pokemons">Pokemons</button>
-        <div *ngIf="isAuthenticated().getValue()" class="header-buttons__caught">
+        <div *ngIf="isAuthenticated()" class="header-buttons__caught">
           <button mat-button routerLink="/pokemons/caught">My pokemons</button>
         </div>
       </div>
-      <div *ngIf="!isAuthenticated().getValue()">
+      <div *ngIf="!isAuthenticated()">
         <button mat-button routerLink="/auth">Sing In</button>
         <button mat-button routerLink="/auth/register">Sing Up</button>
       </div>
-      <div *ngIf="isAuthenticated().getValue()">
+      <div *ngIf="isAuthenticated()">
         <label class="header__user_name"> {{getUserInfo().name}} </label>
         <button mat-button (click)="logOut()">Log Out</button>
       </div>

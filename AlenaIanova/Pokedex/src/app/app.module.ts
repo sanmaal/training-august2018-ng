@@ -30,7 +30,7 @@ import { AuthGuard } from './shared/auth.guard';
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: (sessionService: SessionService) => () => sessionService.isTokenExpired(),
+      useFactory: (sessionService: SessionService) => () => new Promise (resolve => {sessionService.checkLogIn(); resolve(); }),
       deps: [SessionService],
       multi: true
     }

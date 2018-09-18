@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpInterceptor, HttpEvent } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { SessionService } from './session.service';
+import { TokenService } from './token.service';
 
 
 @Injectable({
@@ -10,11 +10,11 @@ import { SessionService } from './session.service';
 })
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor( private sessionService: SessionService ) {
+  constructor( private tokenService: TokenService ) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.sessionService.getToken();
+    const token = this.tokenService.getToken();
 
     if (token) {
       const headersUpdate = req.clone({

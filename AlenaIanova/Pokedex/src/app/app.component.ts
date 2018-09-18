@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionService } from './shared/session.service';
 import { Router } from '@angular/router';
+import { TokenService } from './shared/token.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent {
 
   constructor(
     private sessionService: SessionService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   logOut = () => {
@@ -27,6 +29,6 @@ export class AppComponent {
   }
 
   getUserInfo = () => {
-    return this.sessionService.getUserInfo();
+    return this.tokenService.getUserInfo();
   }
 }

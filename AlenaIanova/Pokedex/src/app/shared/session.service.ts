@@ -1,65 +1,39 @@
 import { Injectable } from '@angular/core';
-import * as jwt_decode from 'jwt-decode';
 import { BehaviorSubject} from 'rxjs';
+import { TokenService } from './token.service';
 
-export const TOKEN_NAME = 'jwt_token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  isAuthenticated = new BehaviorSubject<boolean>(false);
+  _isAuthenticated = new BehaviorSubject<boolean>(false);
 
-  constructor() {}
+  constructor(private tokenService: TokenService) {}
 
-  getToken(): string {
-    return localStorage.getItem(TOKEN_NAME);
+  get isAuthenticated(): boolean {
+    return this._isAuthenticated.getValue();
   }
 
-  setToken(newToken: string) {
-    if (!this.isTokenExpired(newToken)) {
-      localStorage.setItem(TOKEN_NAME, newToken);
-      this.isAuthenticated.next(true);
+  set isAuthenticated(newValue: boolean) {
+    if (this.isAuthenticated !== newValue) {
+      this._isAuthenticated.next(newValue);
     }
   }
 
-  isTokenExpired(token?: string): boolean {
-    token = token ? token : this.getToken();
-    if (!token) {
-      this.isAuthenticated.next(false);
-      return true;
-    }
-    const date = this.getTokenExpirationDate(token);
-    if (date === undefined) {
-      this.isAuthenticated.next(false);
-      return false;
-    }
-    this.isAuthenticated.next(date.valueOf() > new Date().valueOf());
-    return !(date.valueOf() > new Date().valueOf());
+  logIn(token: string) {
+    this.tokenService.setToken(token);
+    this.isAuthenticated = true;
   }
 
-  getTokenExpirationDate(token: string): Date {
-    const decoded = jwt_decode(token);
-    if (decoded.exp === undefined) {
-      return null;
-    }
-    const date = new Date(0);
-    date.setUTCSeconds(decoded.exp);
-    return date;
-  }
-
-  getUserInfo(): Object {
-    const decoded = jwt_decode(this.getToken());
-    if (!decoded) {
-      return {};
-    }
-    return decoded;
+  checkLogIn() {
+    this.isAuthenticated = !this.tokenService.isTokenExpired();
   }
 
   logOut() {
-    localStorage.removeItem(TOKEN_NAME);
-    this.isAuthenticated.next(false);
+    this.tokenService.removeToken();
+    this.isAuthenticated = false;
   }
 
 }

@@ -17,14 +17,13 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private sessionService: SessionService,
-
   ) { }
 
   register(newUser: any): Observable<any> {
     return this.http.post<any>(`${environment.host}register`, newUser, httpOptions)
       .pipe(
         tap(res => {
-          this.sessionService.setToken(res.token);
+          this.sessionService.logIn(res.token);
         }),
         catchError(this.handleError<any>())
       );
@@ -34,7 +33,7 @@ export class AuthService {
     return this.http.post<any>(`${environment.host}login`, user, httpOptions)
       .pipe(
         tap(res => {
-          this.sessionService.setToken(res.token);
+          this.sessionService.logIn(res.token);
         }),
         catchError(this.handleError<any>())
       );
