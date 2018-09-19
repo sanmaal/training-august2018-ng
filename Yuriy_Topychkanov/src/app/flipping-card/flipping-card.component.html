@@ -31,15 +31,15 @@
     <div class="app-content-holder">
       <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{data.id}}.png"
            class="services">
-      <div class="app-date-holder" *ngIf="timestampOfCapture">
-        DATE OF CAPTURE: {{timestampOfCapture | date:'medium' | uppercase }}
+      <div class="app-date-holder" *ngIf="data.timestamp">
+        DATE OF CAPTURE: {{data.timestamp | date:'medium' | uppercase }}
 
       </div>
     </div>
     <div class="app-btn-holder">
-      <button type="button" class="btn btn-indigo" (click)="catchPokemon(data.id)" *ngIf="!pokemonCatched">CATCH
+      <button type="button" class="btn btn-indigo" (click)="catchPokemon(data.id)" *ngIf="!data.timestamp">CATCH
       </button>
-      <button type="button" class="btn btn-indigo" (click)="releasePokemon(data.id)" *ngIf="pokemonCatched">RELEASE
+      <button type="button" class="btn btn-indigo" (click)="releasePokemon(data.id)" *ngIf="data.timestamp">RELEASE
       </button>
       <button type="button" class="btn btn-indigo" (click)="moveToPokemonDetail(data.id)">DETAIL</button>
     </div>

@@ -49,7 +49,6 @@ export class AuthenticationService {
   private isUserLoggedIn() {
     const user = this.getUserDetails();
     return user ? user.exp > Date.now() / 1000 : false;
-
   }
 
   public isLoggedIn$(): BehaviorSubject<boolean> {
@@ -57,7 +56,13 @@ export class AuthenticationService {
   }
 
   public request(base): Observable<any> {
-    this.isLoggedIn$().next(this.isUserLoggedIn());
+    const userLoggedIn = this.isUserLoggedIn();
+
+    if (!userLoggedIn) {
+      this.logout();
+    } else {
+      this.isLoggedIn$().next(userLoggedIn);
+    }
     const request = base.pipe(
       map((data: any) => {
 

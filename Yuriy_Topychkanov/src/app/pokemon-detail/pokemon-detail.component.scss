@@ -1,0 +1,13 @@
+.app-detail-page-holder {
+  display: flex;
+  figure .h5 {
+    text-align: center;
+  }
+}
+
+.app-info-holder {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  text-align: center;
+}

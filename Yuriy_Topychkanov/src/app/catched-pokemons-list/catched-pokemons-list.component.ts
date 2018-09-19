@@ -9,30 +9,27 @@ import { PokemonsService } from "../services/pokemons/pokemons.service";
 export class CatchedPokemonsListComponent implements OnInit {
   pokemons: any = [];
   page: number = 1;
-
+  needLoader: boolean = false;
   constructor(private pokemonsService: PokemonsService) {
   }
 
-  initPokemons() {
-    this.pokemonsService.getCatchedPokemonsPerPage(1)
+
+  addPokemons() {
+    this.pokemonsService.getCatchedPokemonsPerPage(this.page)
       .subscribe((pokemons) => {
-        this.pokemons = pokemons;
-        this.pokemons.map((pokemon, key) => {
-          pokemon.name = pokemon.pokemon.name;
-          return pokemon
-        })
-      });
+        pokemons.length === 10 ? this.needLoader = true : this.needLoader = false;
+        this.pokemons = this.pokemons.concat(pokemons)
+      })
   }
 
   ngOnInit() {
-    this.initPokemons()
+    this.addPokemons()
   }
 
 
-
-  /* loadMore() {
-     this.page += 1;
-     this.addPokemons()
-   }*/
+  loadMore() {
+    this.page += 1;
+    this.addPokemons()
+  }
 
 }

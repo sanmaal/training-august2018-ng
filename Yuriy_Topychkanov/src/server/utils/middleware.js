@@ -4,7 +4,7 @@ module.exports.verifyJWT_MW = function (req, res, next) {
   let token = (req.method === 'POST') ? req.body.token : req.query.token;
   if (!token) {
     try {
-      req.body = JSON.parse(Object.keys(req.body)[ 0 ])
+      req.body = JSON.parse(Object.keys(req.body)[ 0 ]);
       token = req.body.token;
     } catch (err) {
       req.body = req.body

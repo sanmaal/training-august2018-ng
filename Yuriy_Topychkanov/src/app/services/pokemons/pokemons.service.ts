@@ -13,11 +13,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PokemonsService {
-
+  pokemonsListPage = 1;
   constructor(private http: HttpClient, private auth: AuthenticationService, private router: Router) {
   }
 
-  getPokemonsPerPage(page) {
+  getPokemonsPerPage(page = this.pokemonsListPage) {
+    const token = this.auth.getToken();
+    if (token) {
+      return this.http.get(`http://localhost:3000/?page=${page}&token=${token}`);
+    }
     return this.http.get(`http://localhost:3000/?page=${page}`);
   }
 
@@ -31,6 +35,7 @@ export class PokemonsService {
       )
     }
   }
+
 
   catchPokemon(id) {
     const token = this.auth.getToken();
@@ -50,6 +55,10 @@ export class PokemonsService {
         this.http.post('http://localhost:3000/release-pokemon/', formData, httpOptions)
       )
     }
+  }
+
+  moveToPokemonDetail(id) {
+    this.router.navigate([ `/pokemon/${id}` ]);
   }
 
   getPokemonDetailPage(id) {

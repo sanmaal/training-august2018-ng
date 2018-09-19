@@ -2,9 +2,9 @@
 <div class="app-catalog-cards-holder">
   <app-flipping-card #cards *ngFor="let pokemon of pokemons" [data]="pokemon">
   </app-flipping-card>
-  <!--  <div class="app-btn-holder">
-      <button (click)="loadMore()" class="btn">Load more</button>
-    </div>-->
+  <div class="app-btn-holder" *ngIf="needLoader">
+    <button (click)="loadMore()" class="btn">Load more</button>
+  </div>
 </div>
 <!--/.Rotating card-->
 

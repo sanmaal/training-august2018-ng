@@ -11,7 +11,7 @@ module.exports.register = function registerUser(req, res) {
     .then(
       () => res.status(200).json({ status: 'success' }))
     .catch(
-      () => res.json({ error: 'User with specified email already registered' })
+      (err) => res.json({ error: `USER` })
     );
 };
 
@@ -45,41 +45,40 @@ module.exports.login = function (req, res, next) {
 };
 
 module.exports.logout = function (req, res) {
-    req.logout();
-    res.redirect('/');
+  req.logout();
+  res.redirect('/');
 };
 
 
-
 function authenticateUser(email, password, done) {
-    const hashPassword = createHash(password);
+  const hashPassword = createHash(password);
 
-    userApi.validateUserData(email, hashPassword)
-      .then(
-        (user) => {
-          done(null, user);
-        }
-      )
-      .catch(
-        err => done(null, false, { message: err })
-      );
+  userApi.validateUserData(email, hashPassword)
+    .then(
+      (user) => {
+        done(null, user);
+      }
+    )
+    .catch(
+      err => done(null, false, { message: err })
+    );
 }
 
 function createHash(str) {
-    try {
-      return crypto.createHmac('sha256', str).update('I love cupcakes').digest('hex');
-    }
-    catch (e) {
-      console.error(e);
-    }
+  try {
+    return crypto.createHmac('sha256', str).update('I love cupcakes').digest('hex');
+  }
+  catch (e) {
+    console.error(e);
+  }
 }
 
 passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, authenticateUser));
 
 passport.serializeUser(function (user, done) {
-    done(null, user);
+  done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-    done(null, user);
+  done(null, user);
 });

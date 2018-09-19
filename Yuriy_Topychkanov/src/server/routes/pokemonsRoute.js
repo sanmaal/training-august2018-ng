@@ -9,7 +9,7 @@ module.exports = function (app) {
   app.all('/pokemon/:id', verifyJWT_MW);
   app.all('/release-pokemon', verifyJWT_MW);
   app.get('/', function (req, res) {
-    pokemonActions.getPokemons(req, res)
+    pokemonActions.getPokemons(req, res);
   });
   app.get('/pokemon/:id', function (req, res) {
     pokemonActions.getPokemon(req, res);
