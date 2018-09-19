@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from '../../shared/session.service';
-import { User } from './user';
+import { User, NewUser } from './user';
 import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class AuthService {
     private sessionService: SessionService,
   ) { }
 
-  register(newUser: any): Observable<any> {
+  register(newUser: NewUser): Observable<any> {
     return this.http.post<any>(`${environment.host}register`, newUser, httpOptions)
       .pipe(
         tap(res => {

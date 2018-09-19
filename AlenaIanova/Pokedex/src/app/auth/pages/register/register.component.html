@@ -17,6 +17,13 @@
   </mat-form-field>
   <mat-form-field>
     <label>
+      <input matInput formControlName="confirmPassword" placeholder="Confirm your password" type="password">
+    </label>
+    <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.required">Confirm password is required</mat-error>
+    <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.notMatch">Password not match</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
       <input matInput formControlName="name" placeholder="Enter your name">
     </label>
   </mat-form-field>
