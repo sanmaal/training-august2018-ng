@@ -1,9 +1,7 @@
-<div class="pokemon">
-    <img class="pokemon__img" src={{srcImage}} />
-    <div class="pokemon__info">
-      <div class="pokemon__name" >{{pokemon.name | uppercase}}</div>
-      <div class="pokemon__caught-info">{{caught | caught}}</div>
-    </div>
-  </div>
-  
-  
+<div class="container">
+  <img class="img-fluid" src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" />
+  <ul class="list-group">
+    <li class="list-group-item">{{pokemon.name | uppercase}}</li>
+    <li *ngIf="checkAuthorization()" class="list-group-item list-group-item-info">{{caught | caught}}</li>
+  </ul>
+</div>

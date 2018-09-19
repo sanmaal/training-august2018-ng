@@ -63,7 +63,7 @@ exports.searchByNamePokemon = (userData) => {
 
 exports.showPokemon = (id) => {
   return Pokemon
-        .find({id: id});
+        .findOne({id: id});
 }
 
 exports.catchPokemon = (userId, pokemonId) => {

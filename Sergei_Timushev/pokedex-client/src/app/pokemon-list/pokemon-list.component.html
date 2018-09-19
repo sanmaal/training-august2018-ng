@@ -1,5 +1,5 @@
-  <div appScroll (scrollBottom)="onScrollBottom()" class="row">
-    <div *ngFor="let pokemon of pokemons" class="col-xs-12 col-md-6 col-lg-4 pokemon-item">
+  <div appScroll (scrollBottom)="onScrollLoadMore()" class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4 pokemon-item" *ngFor="let pokemon of pokemons">
       <app-pokemon [pokemon]="pokemon" (click)="onSelect(pokemon)"></app-pokemon>
     </div>
   </div>
