@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PokemonsList } from '../../shared/pokemons-list';
 
 @Component({
@@ -9,13 +9,25 @@ import { PokemonsList } from '../../shared/pokemons-list';
 export class PokemonsListComponent implements OnInit {
 
   @Input() pokemonsList: PokemonsList;
-  @Input() loadMore: Function;
-  @Input() onCatchClick: Function;
-  @Input() redirectToPokemon: Function;
+  @Output() loadMore = new EventEmitter();
+  @Output() catchPokemonClick = new EventEmitter<number>();
+  @Output() redirectToPokemon = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handleLoadMorePress = () => {
+    this.loadMore.emit();
+  }
+
+  handleCatchPokemonClick = (pokemonId: number) => {
+    this.catchPokemonClick.emit(pokemonId);
+  }
+
+  handleRedirectToPokemon = (pokemonId: number) => {
+    this.redirectToPokemon.emit(pokemonId);
   }
 
 }

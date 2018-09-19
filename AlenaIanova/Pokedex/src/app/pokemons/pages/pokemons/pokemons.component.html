@@ -1,6 +1,6 @@
 <app-pokemons-list
   [pokemonsList]="pokemonsList"
-  [loadMore]="loadMore"
-  [onCatchClick]="handleCatchClick"
-  [redirectToPokemon]="redirectToPokemon">
+  (loadMore)="loadMore()"
+  (catchPokemonClick)="handleCatchClick($event)"
+  (redirectToPokemon)="redirectToPokemon($event)">
 </app-pokemons-list>

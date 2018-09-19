@@ -1,12 +1,16 @@
 <mat-grid-list [cols]="5" rowHeight="450">
   <mat-grid-tile *ngFor="let pokemon of pokemonsList.pokemons">
-    <app-pokemon-card [pokemon]="pokemon" [onCatchClick]="onCatchClick" [redirectToPokemon]="redirectToPokemon"></app-pokemon-card>
+    <app-pokemon-card
+      [pokemon]="pokemon"
+      (onCatchClick)="handleCatchPokemonClick(pokemon.id)"
+      (redirectToPokemon)="handleRedirectToPokemon(pokemon.id)"
+    ></app-pokemon-card>
   </mat-grid-tile>
 </mat-grid-list>
 
 <div align="center">
   <div *ngIf="pokemonsList.page < pokemonsList.pages">
-    <button mat-button (click)="loadMore()" class="pokemons-list__load-button">
+    <button mat-button (click)="handleLoadMorePress()" class="pokemons-list__load-button">
       {{'load more' | uppercase}}
     </button>
   </div>
