@@ -18,9 +18,8 @@ export class PokemonPageComponent implements OnInit {
     _id: '',
     id: null,
     name: '',
-    users: [],
+    caught: false,
   };
-  caught: boolean = false;
   pokemonId: number;
 
   constructor(private pokemonsService: PokemonsService, private route: ActivatedRoute, private authService: AuthService) {
@@ -36,20 +35,15 @@ export class PokemonPageComponent implements OnInit {
       .subscribe(pokemonData => {
         this.pokemon = <Pokemon>pokemonData;
       });
-      
-    this.authService.getToken();
   }
 
   checkAuthorization() {
     return this.authService.checkAuth()
   }
 
-  catchPokemon(pokemon) {
-    this.pokemonsService.catchPokemon(pokemon);
-  }
-
-  // checkIfCatched(id: string): boolean {
-  //   if (this.pokemonsService.isPokemonCaughtByUser(id)) { return true; }
-  // }
-  
+  catchPokemon() {
+    this.pokemonsService.catchPokemon(this.pokemon.id).subscribe(
+      () => { this.pokemon.caught = true},
+      err => console.error(err));
+  }  
 }

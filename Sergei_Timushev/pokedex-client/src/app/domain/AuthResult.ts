@@ -1,3 +1,3 @@
 export class AuthResult {
-  public token: string;
+  token: string;
 }

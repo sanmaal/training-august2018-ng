@@ -69,20 +69,20 @@ exports.showPokemon = (id) => {
 exports.catchPokemon = (userId, pokemonId) => {
   return User
         .findByIdAndUpdate(userId, {
-            $addToSet: { caughtPokemonsList: pokemonId }
+            $push: { caughtPokemonsList: pokemonId }
           })
 }
 
 exports.getCatchedPokemons = (userId, perPage, page) => {
-  return User.findById(userId)
+  return User.findById(userId, {password: 0})
         .then((result) => {
-          const catchedPokemons = result.catchList;
+          const catchedPokemons = result.caughtPokemonsList;          
           return catchedPokemons;
         })
-        .then((result) => {
-          return Pokemon
-              .find({id: {$in : result}})
-              .skip((perPage * page) - perPage)
-              .limit(perPage);
-        })
+        // .then((result) => {
+        //   return Pokemon
+        //       .find({id: {$in : result}})
+        //       .skip((perPage * page) - perPage)
+        //       .limit(perPage);
+        // })
 }

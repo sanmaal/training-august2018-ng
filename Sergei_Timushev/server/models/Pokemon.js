@@ -7,6 +7,7 @@ const Pokemon = mongoose.Schema({
   },
   id: {
     type: Number,
+    require: true
   },
   users: {
     type: Array

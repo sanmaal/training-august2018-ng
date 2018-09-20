@@ -34,22 +34,21 @@ router.post ('/', (req, res, next) => {
       })
 });
 
-router.put ('/catch/:id', checkAuth, (req, res, next) => {
-    const userId = req.userId;
-    const pokemonId = req.params.id;      
-    api.catchPokemon (userId, pokemonId)
-        .then (() => {
-          res.status(200).send(pokemonId);
-        })
-        .catch (error => {
-          return next(error);
-        });
+router.put ('/catch', checkAuth, (req, res, next) => {
+  const { pokemonId } = req.body;
+  console.log(req.body);
+  api.catchPokemon (req.userId, pokemonId)
+      .then (() => {
+        res.status(200).send(pokemon);
+      })
+      .catch (error => {
+        return next(error);
+      });
 });
 
 router.get ('/caught/:page', checkAuth, (req, res, next) => {  
-  const perPage = 10;
+  const perPage = 12;
   let page = req.params.page || 1;
-
   api.getCatchedPokemons (req.userId, perPage, page)
       .then ((result) => {
         res.send(result);

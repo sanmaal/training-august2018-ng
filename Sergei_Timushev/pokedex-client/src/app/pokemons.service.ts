@@ -23,7 +23,7 @@ export class PokemonsService {
     return this.http.get<any>(`${this.pokemonsUrl}/caught/${page}`);
   }
 
-  public catchPokemon(userId, pokemonid): Observable<any> {
-    return this.http.put<any>(`${this.pokemonsUrl}/catch/${pokemonid}`);
+  public catchPokemon(pokemonId): Observable<any> {
+    return this.http.put<any>(`${this.pokemonsUrl}/catch`, pokemonId);
   }
 }

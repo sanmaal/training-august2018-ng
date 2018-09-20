@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthResult } from "./domain/AuthResult";
-import { log } from 'util';
-
 
 @Injectable()
 export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  private usersUrl: string = 'http://localhost:3000/users';
+  usersUrl: string = 'http://localhost:3000/users';
 
   isAuth: boolean = false;  
 
@@ -31,12 +29,11 @@ export class AuthService {
   }
 
   public setToken(token) {
+    localStorage.setItem('token', token);    
     this.isAuth = true;
-    localStorage.setItem('token', token);
   }
 
   public getToken() {
-    console.log(localStorage);
     return localStorage.getItem('token');
   }
 

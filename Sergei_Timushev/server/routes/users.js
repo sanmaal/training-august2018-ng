@@ -24,7 +24,6 @@ router.post ('/login', (req, res, next) => {
             expiresIn: 86400
           });
           res.status(200).send({token: token});
-          res.redirect('/');
         } else {
           return next(error)
         }

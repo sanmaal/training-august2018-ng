@@ -1,6 +1,6 @@
-import {Pokemon} from "./Pokemon";
+import { Pokemon } from "./Pokemon";
 
 export class CaughtPokemon {
-  public pokemon: Pokemon;
-  public time: string;
+  pokemon: Pokemon;
+  time: string;
 }
