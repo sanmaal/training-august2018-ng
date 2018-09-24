@@ -1,0 +1,14 @@
+
+<ul class="pokemons-list">
+	<li *ngFor="let pokemon of pokemons" class="pokemons-list__item">
+		<a routerLink="/detail/{{pokemon.id}}">
+			<img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" alt="">
+			<span>{{pokemon.name}}</span>
+		</a>
+		<button *ngIf="authToken" (click)="pokemon.caught ? leavePokemon(pokemon) : catchPokemon(pokemon)" class="{{pokemon.caught ? 'release-pokemon' : ''}}">{{pokemon.caught ? 'Release' : 'Catch'}}</button>
+	</li>
+</ul>
+
+<span *ngIf="showError">{{errorText}}</span>
+
+<button *ngIf="!lessPokemons" id="load-more-btn" (click)="getPokemons()">Load more!</button>

@@ -1,0 +1,29 @@
+.modal.show{
+	background: rgba(44,44,44,.5);
+	z-index: 9999;
+}
+
+.modal-content{
+	border-radius: 6px;
+}
+
+.modal-body{
+	padding: 25px;
+	text-align: center;
+}
+
+.success .modal-body{
+	background: #4ea741;
+	color: #fff;
+}
+
+.modal-body button{
+	width: 100%;
+	background: rgba(255,255,255,.4);
+	color: #fff;
+}
+
+.warning .modal-body{
+	background: #eac44c;
+	color: #fff;
+}

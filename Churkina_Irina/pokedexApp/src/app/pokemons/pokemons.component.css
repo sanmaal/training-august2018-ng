@@ -1,0 +1,122 @@
+.pokemons-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.pokemons-list li {
+  flex-basis: calc(25% - 20px);
+  width: calc(25% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.pokemons-list li span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: PokemonFont;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.pokemons-list li img {
+  max-width: 100%;
+}
+
+#load-more-btn {
+  font-size: 1.1rem;
+  padding: 10px;
+  width: 95%;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  background: #28a745;
+  margin: 0 auto;
+  display: block
+}
+
+#load-more-btn:hover {
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 768px) {
+  .pokemons-list li {
+    flex-basis: calc(50% - 20px);
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .pokemons-list li {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+/*List item:*/
+
+li {
+  list-style-type: none;
+}
+.pokemons-list__item{
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 0 3px #ccc;
+  border-radius: 4px;
+  transition: 0.3s;
+  text-align: center
+}
+.pokemons-list__item:hover {
+  box-shadow: 0 0 10px 1px #ccc;
+}
+
+.pokemons-list__item span a {
+  display: block;
+  text-decoration: none;
+}
+.pokemons-list__item span a:hover {
+  text-decoration: none;
+}
+
+.pokemons-list__item button {
+  display: block;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background: #ff5c77;
+  margin: 5px auto;
+  padding: 10px 15px;
+  width: 100%;
+  position: relative;
+  top: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.pokemons-list__item button.release-pokemon{
+	background: #00bfff;
+}
+
+.pokemons-list__item button:disabled {
+  background: #bbb;
+  cursor: default;
+}
+
+.pokemons-list__item button:hover {
+  opacity: 0.9;
+}
+
+.pokemons-list__item span {
+  display: block;
+  text-align: center;
+  padding: 5px;
+  color: #555;
+}
+.pokemons-list__item span:first-letter {
+  text-transform: uppercase;
+}
