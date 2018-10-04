@@ -1,0 +1,10 @@
+<div *ngIf="showModal" class="modal fade show {{class}}" id="exampleModalCenter" tabindex="-1" style="display: block">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>{{text}}</p>
+				<button (click)="closeModal()" type="button" class="btn">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

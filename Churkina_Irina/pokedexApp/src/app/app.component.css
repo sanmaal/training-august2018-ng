@@ -1,0 +1,19 @@
+body{
+	margin: 0 !important;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+@font-face {
+  font-family: "PokemonFont";
+  src: url("/src/fonts/PokemonSolid.ttf");
+}
+
+app-modal{
+	position: fixed;
+	z-index: 9999;
+}

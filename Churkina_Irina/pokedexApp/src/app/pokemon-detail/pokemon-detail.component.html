@@ -1,0 +1,6 @@
+<div class="pokemon-info">
+	<span class="pokemon-info__id">{{pokemon.id}}</span>
+	<span class="pokemon-info__name">{{pokemon.name}}</span>
+	<span *ngIf="pokemon.caughtDate" class="pokemon-info__caught">You caught me! Date: {{pokemon.caughtDate}}</span>
+	<img src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png"/>
+</div>
