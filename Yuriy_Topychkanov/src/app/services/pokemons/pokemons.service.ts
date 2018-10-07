@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AuthenticationService } from "../authentication/authentication.service";
 import { Router } from "@angular/router";
+import {
+  catchedPokemons,
+  catchPokemon,
+  pokemonsDetail,
+  pokemonsPerPage,
+  releasePokemon
+} from "../../../environments/pokemonUrls";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,19 +26,14 @@ export class PokemonsService {
 
   getPokemonsPerPage(page = this.pokemonsListPage) {
     const token = this.auth.getToken();
-    if (token) {
-      return this.http.get(`http://localhost:3000/?page=${page}&token=${token}`);
-    }
-    return this.http.get(`http://localhost:3000/?page=${page}`);
+    return this.http.get(pokemonsPerPage(page, token));
   }
 
-  getCatchedPokemonsPerPage(page) {
+  getCatchedPokemons() {
     const token = this.auth.getToken();
     if (token) {
       return this.auth.request(
-        this.http.get(
-          `http://localhost:3000/catched-pokemons/?page=${page}&token=${token}`,
-        )
+        this.http.get(catchedPokemons(token))
       )
     }
   }
@@ -42,7 +44,7 @@ export class PokemonsService {
     if (token) {
       const formData = { id: id, token: token };
       return this.auth.request(
-        this.http.post('http://localhost:3000/catch-pokemon/', formData, httpOptions)
+        this.http.post(catchPokemon, formData, httpOptions)
       )
     }
   }
@@ -52,20 +54,20 @@ export class PokemonsService {
     if (token) {
       const formData = { id: id, token: token };
       return this.auth.request(
-        this.http.post('http://localhost:3000/release-pokemon/', formData, httpOptions)
+        this.http.post(releasePokemon, formData, httpOptions)
       )
     }
   }
 
   moveToPokemonDetail(id) {
-    this.router.navigate([ `/pokemon/${id}` ]);
+    this.router.navigate([ pokemonsDetail(id) ]);
   }
 
   getPokemonDetailPage(id) {
     const token = this.auth.getToken();
     if (token) {
       return this.auth.request(
-        this.http.get(`http://localhost:3000/pokemon/${id}?token=${token}`)
+        this.http.get(pokemonsDetail(id, token))
       )
     }
   }

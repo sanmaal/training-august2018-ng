@@ -2,12 +2,12 @@
   <figure>
     <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{pokemonData.id}}.png"/>
     <figcaption class="h5">
-      {{pokemonData.name | uppercase}}
+      {{pokemonData.name}}
     </figcaption>
   </figure>
   <div class="app-info-holder">
     <div class="app-date-holder" *ngIf="pokemonData.timestamp">
-      DATE OF CAPTURE: {{pokemonData.timestamp | date:'medium' | uppercase }}
+      DATE OF CAPTURE: {{pokemonData.timestamp | date:'medium'}}
     </div>
     <div class="app-btn-holder">
       <button type="button" class="btn btn-indigo" (click)="catchPokemon(pokemonData.id)"
@@ -18,3 +18,4 @@
       </button>
     </div>
   </div>
+</div>

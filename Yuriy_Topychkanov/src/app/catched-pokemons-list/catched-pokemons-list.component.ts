@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonsService } from "../services/pokemons/pokemons.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-catched-pokemons-list',
@@ -8,28 +9,42 @@ import { PokemonsService } from "../services/pokemons/pokemons.service";
 })
 export class CatchedPokemonsListComponent implements OnInit {
   pokemons: any = [];
+  pokemonsData: any = [];
   page: number = 1;
   needLoader: boolean = false;
+  subscription: Subscription;
+
   constructor(private pokemonsService: PokemonsService) {
   }
 
-
-  addPokemons() {
-    this.pokemonsService.getCatchedPokemonsPerPage(this.page)
-      .subscribe((pokemons) => {
-        pokemons.length === 10 ? this.needLoader = true : this.needLoader = false;
-        this.pokemons = this.pokemons.concat(pokemons)
+  addPokemonsData() {
+    this.subscription = this.pokemonsService.getCatchedPokemons()
+      .subscribe((pokemonsData) => {
+        this.pokemonsData = pokemonsData;
+        this.addPokemonsOnPage();
       })
   }
 
+  addPokemonsOnPage() {
+    const startPosition = (this.page - 1) * 10;
+    const endPosition = this.page * 10;
+    const pokemons = this.pokemonsData.slice(startPosition, endPosition);
+    this.needLoader = endPosition < this.pokemonsData.length;
+    this.pokemons = this.pokemons.concat(pokemons);
+  }
+
   ngOnInit() {
-    this.addPokemons()
+    this.addPokemonsData()
   }
 
 
   loadMore() {
     this.page += 1;
-    this.addPokemons()
+    this.addPokemonsOnPage()
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

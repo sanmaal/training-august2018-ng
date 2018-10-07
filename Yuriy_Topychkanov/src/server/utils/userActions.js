@@ -11,7 +11,7 @@ module.exports.register = function registerUser(req, res) {
     .then(
       () => res.status(200).json({ status: 'success' }))
     .catch(
-      (err) => res.json({ error: `USER` })
+      (err) => res.json({ error: `${err}` })
     );
 };
 
@@ -20,8 +20,6 @@ module.exports.login = function (req, res, next) {
   passport.authenticate('local', doLogin)(req, res, next);
 
   function doLogin(err, user, info) {
-    let token;
-
     if (err) {
       return next(err)
     }
@@ -31,11 +29,13 @@ module.exports.login = function (req, res, next) {
 
     if (user) {
       const token = createJWToken({ sessionData: user, maxAge: 3600 });
+
       res.status(200)
         .json({
           success: true,
           token: token
         });
+
     } else {
       // If user is not found
       res.status(401).json(info);

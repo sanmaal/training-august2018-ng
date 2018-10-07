@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserFormsService } from "../services/user-forms/user-forms.service";
-import { AuthenticationService } from "../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +15,7 @@ export class LoginFormComponent {
     password: new FormControl('', Validators.pattern('^[a-zA-Z0-9]{8,30}$')),
   });
 
-  constructor(private userFormsService: UserFormsService, private auth: AuthenticationService) {
+  constructor(private userFormsService: UserFormsService) {
   }
 
   onSubmit() {

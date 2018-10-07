@@ -6,7 +6,7 @@
 
     <div class="stripe dark" *ngIf="isLoggedIn">
       <a>
-        <p><span>{{data.name | uppercase}}</span><br>
+        <p><span>{{data.name}}</span><br>
           <i class="fa fa-angle-right"></i>
         </p>
       </a>
@@ -16,7 +16,7 @@
     </a>
     <div class="stripe light" *ngIf="!isLoggedIn">
       <a>
-        <p><span>{{data.name | uppercase}}</span><br>
+        <p><span>{{data.name}}</span><br>
           <i class="fa fa-angle-right"></i>
         </p>
       </a>
@@ -32,7 +32,7 @@
       <img src="https://github.com/epam-js-may-2018/homework-7-js/raw/master/pokemons/{{data.id}}.png"
            class="services">
       <div class="app-date-holder" *ngIf="data.timestamp">
-        DATE OF CAPTURE: {{data.timestamp | date:'medium' | uppercase }}
+        DATE OF CAPTURE: {{data.timestamp | date:'medium'}}
 
       </div>
     </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="stripe dark">
       <a>
-        <p><span>{{data.name | uppercase }}</span><br>
+        <p><span>{{data.name}}</span><br>
           <i class="fa fa-angle-right"></i>
         </p>
       </a>

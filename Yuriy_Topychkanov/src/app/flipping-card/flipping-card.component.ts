@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from "../services/authentication/authentication.service";
 import { PokemonsService } from "../services/pokemons/pokemons.service";
+import { Subscription } from "rxjs";
 
 
 @Component({
@@ -13,9 +14,9 @@ export class FlippingCardComponent implements OnInit {
   flipped: boolean = false;
   isLoggedIn: boolean = false;
   pokemonCatched: boolean = false;
+  loginSubscription: Subscription;
 
   constructor(private auth: AuthenticationService, private pokemonsService: PokemonsService) {
-    this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data);
   }
 
   catchPokemon(id) {
@@ -35,9 +36,15 @@ export class FlippingCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginSubscription = this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data);
+
     if (this.data.timestamp) {
       this.pokemonCatched = true;
     }
+  }
+
+  ngOnDestroy() {
+    this.loginSubscription.unsubscribe();
   }
 
   rotateCard() {

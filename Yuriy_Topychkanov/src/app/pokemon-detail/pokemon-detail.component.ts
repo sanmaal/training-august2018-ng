@@ -12,13 +12,13 @@ export class PokemonDetailComponent implements OnInit {
   pokemonData: any = {};
 
   constructor(private pokemonsService: PokemonsService, private router: ActivatedRoute) {
+  }
+
+  ngOnInit() {
     this.pokemonId = this.router.snapshot.params[ 'id' ];
     this.pokemonsService.getPokemonDetailPage(this.pokemonId).subscribe((data) => {
       this.pokemonData = data;
     });
-  }
-
-  ngOnInit() {
   }
 
   catchPokemon(id) {

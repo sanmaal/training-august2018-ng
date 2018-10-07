@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../services/authentication/authentication.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-footer',
@@ -8,12 +9,16 @@ import { AuthenticationService } from "../services/authentication/authentication
 })
 export class FooterComponent implements OnInit {
   private isLoggedIn: boolean = false;
+  subscription: Subscription;
 
   constructor(private auth: AuthenticationService) {
-    this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data)
   }
 
   ngOnInit() {
+    this.subscription = this.auth.isLoggedIn$().subscribe((data: boolean) => this.isLoggedIn = data)
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
