@@ -1,0 +1,86 @@
+<div id="modal-sign-up" class="modal modal-sign-up">
+  <div class="modal-content">
+    <i 
+      id="modal-sign-up-close" 
+      class="material-icons modal-sign-up-close"
+      (click)="onSingUpModalClose(); signUpForm.reset()"
+    >close</i>
+    <h4>Signing Up</h4>
+    <p>Please fill all fields to register</p>
+    <div class="row">
+      <form 
+        #signUpForm="ngForm" 
+        class="col s12"
+        (ngSubmit)="signUp(signUpForm); signUpForm.reset()"
+      >
+        <div class="row">
+          <div class="input-field col s12">
+            <input
+              ngModel 
+              name="userName"
+              minlength="5" 
+              maxlength="30"
+              #userName="ngModel"
+              id="userName" 
+              type="text" 
+              class="validate"
+              required
+            >
+            <label for="userName">Your name</label>
+            <div *ngIf="userName.touched && !userName.valid" class="modal-warning">
+              <div *ngIf="userName.errors.required">Name is required</div>
+              <div *ngIf="userName.errors.minlength">Name should be minimus {{ userName.errors.minlength.requiredLength }} characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input 
+              ngModel 
+              name="email"
+              minlength="3"
+              maxlength="30"
+              #email="ngModel" 
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+              id="email" 
+              type="email" 
+              class="validate"
+              required
+            >
+            <label for="email">Email</label>
+            <div *ngIf="email.touched && !email.valid" class="modal-warning">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.minlength">Email should be minimus {{ email.errors.minlength.requiredLength }} characters</div>
+              <div *ngIf="email.errors.pattern">Email format is not correct</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input 
+              ngModel 
+              minlength="5"
+              maxlength="30"
+              name="password" 
+              #password="ngModel"
+              id="password" 
+              type="password" 
+              class="validate"
+              required
+            >
+            <label for="password">Password</label>
+            <div *ngIf="password.touched && !password.valid" class="modal-warning">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">Password should be minimus {{ password.errors.minlength.requiredLength }} characters</div>
+            </div>
+          </div>
+        </div>
+        <button 
+          type="submit" 
+          [disabled]="!signUpForm.form.valid" 
+          class="waves-effect waves-light btn"
+        >Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>

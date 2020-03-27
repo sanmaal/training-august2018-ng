@@ -1,0 +1,10 @@
+<div class="col s3">
+  <div class="card" (click)="onDetailedPokemon(pokemon)">
+    <a [routerLink]="['../pokemon', pokemon.id]">
+      <div class="card-image">
+        <img src="{{ imageUrl }}">
+        <span class="card-title">{{ pokemon.name }}</span>
+      </div>
+    </a>
+  </div>
+</div>

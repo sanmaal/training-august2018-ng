@@ -1,0 +1,13 @@
+<div class="row">
+  <app-pokemon-card 
+    *ngFor="let p of pokemons" 
+    [pokemon]="p"
+    [id]="p.id"
+  ></app-pokemon-card>
+  <div class="container load-more-btn-box">
+    <a 
+      class="waves-effect waves-light btn"
+      (click)="onLoadPokemons()"
+    >Load more</a>
+  </div>
+</div>

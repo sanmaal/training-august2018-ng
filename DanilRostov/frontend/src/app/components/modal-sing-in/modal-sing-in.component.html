@@ -1,0 +1,66 @@
+<div id="modal-sign-in" class="modal modal-sign-in">
+  <div class="modal-content">
+    <i 
+      id="modal-sign-in-close" 
+      class="material-icons modal-sign-in-close"
+      (click)="onSingInModalClose(); signInForm.reset()"
+    >close</i>
+    <h4>Signing In</h4>
+    <p>Please type your auth credentials</p>
+    <div class="row">
+      <form 
+        #signInForm="ngForm" 
+        class="col s12"
+        (ngSubmit)="signIn(signInForm); signInForm.reset()"
+      >
+        <div class="row">
+          <div class="input-field col s12">
+            <input 
+              ngModel 
+              name="email"
+              minlength="3"
+              maxlength="30"
+              #email="ngModel" 
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+              id="emailSignIn" 
+              type="email" 
+              class="validate"
+              required
+            >
+            <label for="emailSignIn">Email</label>
+            <div *ngIf="email.touched && !email.valid" class="modal-warning">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.minlength">Email should be minimus {{ email.errors.minlength.requiredLength }} characters</div>
+              <div *ngIf="email.errors.pattern">Email format is not correct</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input 
+              ngModel 
+              minlength="5"
+              maxlength="30"
+              name="password" 
+              #password="ngModel"
+              id="passwordSignIn" 
+              type="password" 
+              class="validate"
+              required
+            >
+            <label for="passwordSignIn">Password</label>
+            <div *ngIf="password.touched && !password.valid" class="modal-warning">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">Password should be minimus {{ password.errors.minlength.requiredLength }} characters</div>
+            </div>
+          </div>
+        </div>
+        <button 
+          type="submit" 
+          [disabled]="!signInForm.form.valid" 
+          class="waves-effect waves-light btn"
+        >Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

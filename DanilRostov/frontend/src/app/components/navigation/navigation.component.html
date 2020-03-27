@@ -1,0 +1,24 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="container header-container">
+      <a routerLink="/" class="brand-logo">EPAM Pokedex</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a routerLink="/">All pokemons</a></li>
+        <li *ngIf="this.authService.isAuth"><a routerLink="/catched">Catched pokemons</a></li>
+        <li><a 
+          class="dropdown-trigger" 
+          data-target="dropdown1"
+          (click)="onDropDownToggle()"
+        >{{ this.userService.userName }}<i id="drop-down-icon" class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+      <ul id="dropdown" class="dropdown-content">
+        <li *ngIf="!this.authService.isAuth"><a class="dropdown__item" (click)="onSingInModalToggle()">Sign In</a></li>
+        <li *ngIf="!this.authService.isAuth" class="divider"></li>
+        <li *ngIf="!this.authService.isAuth"><a class="dropdown__item" (click)="onSingUpModalToggle()">Sign Up</a></li>
+        <li *ngIf="this.authService.isAuth"><a class="dropdown__item" (click)="onLogOut()">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<app-modal-sing-in></app-modal-sing-in>
+<app-modal-sign-up></app-modal-sign-up>

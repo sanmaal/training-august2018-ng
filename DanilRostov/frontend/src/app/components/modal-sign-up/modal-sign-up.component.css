@@ -1,0 +1,31 @@
+.modal-sign-up {
+  height: auto;
+  max-height: none;
+}
+
+.modal-sign-up-active {
+  display: block;
+  position: absolute;
+  z-index: 10;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.modal-sign-up-close {
+  position: absolute;
+  font-size: 35px;
+  right: 20px;
+  top: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.modal-sign-up-close:hover {
+  color: red;
+}
+
+.modal-warning {
+  color: #e53935;
+}
