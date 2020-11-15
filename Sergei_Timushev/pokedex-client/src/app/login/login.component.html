@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 well">
+        <h3 class="text-center">Login</h3>
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <input type="email" name="email" class="form-control" formControlName="email" aria-describedby="email" placeholder="Your E-mail" />
+              <small *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" id="email" class="text-muted">
+                Incorrect email
+              </small>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" formControlName="password" aria-describedby="password" placeholder="Your password" />
+              <small *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" id="password" class="text-muted">
+                Password should contain more than 6 symbols
+              </small>
+            </div>
+          </div>
+          <p *ngIf="error" class="validation-note">{{error}}</p>          
+          <div class="text-center col-xs-12">
+            <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Log In</button>
+          </div>
+        </form>
+      </div>
+    </div>

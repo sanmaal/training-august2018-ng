@@ -1,0 +1,6 @@
+.pokemon-item {
+  border-radius: 170px;
+  margin: 0 0 1em 0;
+  background-image: url('../../assets/pokedbol.png');
+  background-size: cover;
+}

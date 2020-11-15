@@ -1,0 +1,5 @@
+  <div appScroll (scrollBottom)="onScrollLoadMore()" class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4 pokemon-item" *ngFor="let pokemon of pokemons">
+      <app-pokemon [pokemon]="pokemon"></app-pokemon>
+    </div>
+  </div>

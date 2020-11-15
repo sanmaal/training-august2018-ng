@@ -1,0 +1,7 @@
+<div class="container">
+  <img class="img-fluid" src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{pokemon.id}}.png" />
+  <ul class="list-group">
+    <li class="list-group-item">{{pokemon.name | uppercase}}</li>
+  </ul>
+  <button *ngIf="checkAuthorization()" class="btn btn-info" (click)="catchPokemon()" [disabled]="pokemon.caught">Catch</button>
+</div>
