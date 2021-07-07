@@ -1,0 +1,6 @@
+<div class="item-list">
+  <div *ngFor="let item of items | paginate: { itemsPerPage: 8, currentPage: p }">
+      <app-item class="item" [item]=item></app-item>
+  </div>
+</div>
+<pagination-controls (pageChange)="p =$event"></pagination-controls>

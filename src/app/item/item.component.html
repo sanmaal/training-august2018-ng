@@ -1,0 +1,14 @@
+<div class="item">
+  <span>
+    <a href="#" (click)="openItem()">
+      <img class="item__img" src="https://raw.githubusercontent.com/epam-js-may-2018/homework-7-js/master/pokemons/{{item.id}}.png" alt="pokemon-img">
+      <br />
+      {{item.name}}
+    </a>
+  </span>
+  <br />
+  <button mat-flat-button routerLink="/info" (click)="catchPokemon(item.name, item.id)">Catch!</button>
+
+</div>
+  
+  

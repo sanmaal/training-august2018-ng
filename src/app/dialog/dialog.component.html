@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Log in</h2>
+
+<mat-dialog-content>
+  <p>account:</p>
+  <input mat-input placeholder="Name" #login>
+  <p>password:</p>
+  <input mat-input placeholder="password" #password>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button (click)="submit(login.value, password.value)">Submit</button>
+</mat-dialog-actions>
