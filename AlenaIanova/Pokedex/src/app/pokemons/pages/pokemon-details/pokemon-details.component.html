@@ -1,0 +1,17 @@
+<div class="pokemon-details__container">
+  <mat-card class="pokemon-details__card">
+    <mat-card-content class="pokemon-details__content">
+      <div class="pokemon-details__left-block">
+        <img mat-card-image src="{{pokemon.id | pokemonPictureUrl}}" alt="{{pokemon.name}}">
+      </div>
+      <div class="pokemon-details__right-block">
+        <div class="pokemon-details__item"> <label> name: </label> {{pokemon.name}} </div>
+        <div class="pokemon-details__item"> <label> id: </label> {{pokemon.id}} </div>
+        <div class="pokemon-details__item"> <label> is caught: </label> {{pokemon.catchInfo.isCaught | boolToString}} </div>
+        <div *ngIf="pokemon.catchInfo.isCaught" class="pokemon-details__item">
+          <label> time: </label> {{pokemon.catchInfo.timestamp | date: 'short'}}
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

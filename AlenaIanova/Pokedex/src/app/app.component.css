@@ -1,0 +1,22 @@
+.mat-toolbar.mat-primary{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__pokemons-buttons{
+  flex-grow: 1;
+}
+
+div.header-buttons__caught,
+.ng-star-inserted{
+  display: inline-block;
+}
+
+label {
+  font-size: 16px;
+  color: #17b0d4;
+}
+
+.mat-card.main__container.mat-card{
+  box-shadow: none !important;
+}
