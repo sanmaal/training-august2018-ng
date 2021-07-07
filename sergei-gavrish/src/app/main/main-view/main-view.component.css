@@ -1,0 +1,94 @@
+nav {
+  background:black;
+  top:0;
+  width: 100%;
+  transition:all 0.5s;
+  position: relative;
+  z-index: 1;
+}
+
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow:0 5px 0 rgba(0,0,0,0.1);
+}
+
+nav ul {
+  margin: 0;
+  padding:0;
+  list-style: none;
+  display:flex;
+}
+
+nav li {
+  flex:1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  padding:20px;
+  display: inline-block;
+  color:white;
+  transition:all 0.2s;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+header {
+  text-align: center;
+  height:45vh;
+  background:#241e49 url(http://paperlief.com/images/pixel-art-pokemon-wallpaper-2.jpg) bottom center no-repeat;
+  background-size:cover;
+  /* display:flex;
+  align-items:flex-start;
+  justify-content: center; */
+  color: #fff;
+  perspective: 500px;
+}
+
+header img {
+  width: 50vh;
+  height: auto;
+}
+
+.pokemon:before {
+  z-index: 1;
+  content: '_';
+  position: absolute;
+  color: #000;
+  left: 0;
+  transform: translateY(-200%);
+  font-size: 10rem;
+  line-height: 20px;
+}
+
+.pokemon {
+  font-size: 3em;
+  border-bottom: 0;
+  font-family: 'againtsregular';
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+          animation-name: floating;
+          animation-duration: 20s;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+  65% {
+    transform: translate(0, 15px) rotateY(10deg) rotateX(10deg);
+    text-shadow: -10px -10px 3px rgba(0,0,0,0.15);
+  }
+  to {
+    transform: translate(0, 0px) rotateY(-12deg);
+    text-shadow: 10px 10px 3px rgba(0,0,0,0.15);
+  }
+}
